@@ -138,21 +138,21 @@ setup(
         ```
         代码如下：
 
-          ```python
-# @file setup.py
-from setuptools import setup
- 
-setup(
-    # Other keywords
-    entry_points={
-        'foo': [
-            'add = add:make',
-            'remove = remove:make',
-            'update = update:make',
-        ],
-    }
-)
-          ```
+            ```python
+    # @file setup.py
+    from setuptools import setup
+            
+    setup(
+        # Other keywords
+        entry_points={
+            'foo': [
+                'add = add:make',
+                'remove = remove:make',
+                'update = update:make',
+            ],
+        }
+    )
+            ```
         ```
 
 1. 界面相关
