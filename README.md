@@ -135,10 +135,10 @@ setup(
 
     * 书写方法如下：
 
-      ```
-      代码如下：
+        ```
+        代码如下：
 
-        ```python
+          ```python
 # @file setup.py
 from setuptools import setup
  
@@ -152,8 +152,8 @@ setup(
         ],
     }
 )
+          ```
         ```
-      ```
 
 1. 界面相关
 
