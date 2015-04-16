@@ -27,6 +27,12 @@
 
 1. 按照如上的目录结构，最终以文件形式存在的是二级目录和三级目录。
 
+> **标题约定**:
+> 
+> `# 一级标题`</br>
+> `## 二级标题`</br>
+> `### 三级标题`</br>
+> 以此类推。
 
 ## 各种信息
 
@@ -118,30 +124,9 @@
     代码如下：
 
     ```python
-# @file setup.py
-from setuptools import setup
- 
-setup(
-    # Other keywords
-    entry_points={
-        'foo': [
-            'add = add:make',
-            'remove = remove:make',
-            'update = update:make',
-        ],
-    }
-)
-    ```
-
-    * 书写方法如下：
-
-        ```
-        代码如下：
-
-            ```python
     # @file setup.py
     from setuptools import setup
-            
+
     setup(
         # Other keywords
         entry_points={
@@ -152,6 +137,27 @@ setup(
             ],
         }
     )
+    ```
+
+    * 书写方法如下：
+
+        ```
+        代码如下：
+
+            ```python
+            # @file setup.py
+            from setuptools import setup
+            
+            setup(
+                # Other keywords
+                entry_points={
+                    'foo': [
+                        'add = add:make',
+                        'remove = remove:make',
+                        'update = update:make',
+                    ],
+                }
+            )
             ```
         ```
 
