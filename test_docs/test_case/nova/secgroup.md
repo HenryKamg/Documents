@@ -7,5 +7,5 @@
 
 |测试编号|测试目的|操作|预期结果|实际结果|备注|Rally/Tempest/None|
 |--------|--------|----|--------|--------|----|------------------|
-|01080101|创建并列出 secgroup||||rules_per_security_group 参数只能指定 rules 的数量||
-|01080102|创建 secgroup 后，将其删除||||||
+|01080101|创建并列出 secgroup||||rules_per_security_group 参数只能指定 rules 的数量|Rally:</br>create-and-list-secgroups.json|
+|01080102|创建 secgroup 后，将其删除|||||Rally:</br>create-and-delete-secgroups.json|
