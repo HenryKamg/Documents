@@ -7,6 +7,6 @@
 
 |测试编号|测试目的|操作|预期结果|实际结果|备注|Rally/Tempest/None|
 |--------|--------|----|--------|--------|----|------------------|
-|01070401|创建并列出子网||||||
-|01070402|创建子网后，将其删除||||||
-|01070403|测试 neutron subnet-update 命令的性能||||创建子网后，修改子网||
+|01070401|创建并列出子网|||||Rally:</br>create_and_list_subnets.json|
+|01070402|创建子网后，将其删除|||||Rally:</br>create_and_delete_subnets.json|
+|01070403|测试 neutron subnet-update 命令的性能||||创建子网后，修改子网|Rally:</br>create_and_update_subnets.json|

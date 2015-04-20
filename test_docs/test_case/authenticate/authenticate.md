@@ -11,10 +11,10 @@
 
 |测试编号|测试目的|操作|预期结果|实际结果|备注|Rally/Tempest/None|
 |--------|--------|----|--------|--------|----|------------------|
-|01010101|验证 keystone 客户端||||||
-|01010102|验证 cinder 客户端的 token||||||
-|01010103|验证 glance 客户端的 token||||||
-|01010104|验证 heat 客户端的 token||||||
-|01010105|验证 neutron 客户端的 token||||||
-|01010106|验证 nova 客户端的 token||||||
+|01010101|验证 keystone 客户端|||||Rally:</br>keystone.json|
+|01010102|验证 cinder 客户端的 token|||||Rally:</br>token_validate_cinder.json|
+|01010103|验证 glance 客户端的 token|||||Rally:</br>token_validate_glance.json|
+|01010104|验证 heat 客户端的 token|||||Rally:</br>token_validate_heat.json|
+|01010105|验证 neutron 客户端的 token|||||Rally:</br>token_validate_neutron.json|
+|01010106|验证 nova 客户端的 token|||||Rally:</br>token_validate_nova.json|
 

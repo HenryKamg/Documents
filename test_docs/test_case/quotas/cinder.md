@@ -7,5 +7,5 @@
 
 |测试编号|测试目的|操作|预期结果|实际结果|备注|Rally/Tempest/None|
 |--------|--------|----|--------|--------|----|------------------|
-|01090101|修改 cinder 的配额||||||
-|01090102|Update and Delete quotas for Cinder？||||||
+|01090101|修改 cinder 的配额|||||Rally:</br>cinder-update.json|
+|01090102|Update and Delete quotas for Cinder？|||||Rally:</br>cinder-update-and-delete.json|
