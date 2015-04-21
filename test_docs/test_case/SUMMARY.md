@@ -1,4 +1,4 @@
-# SUMMARY.md
+# Summary
 
 * [Introduction](README.md)
 * [验证模块的 Token](authenticate/authenticate.md)
@@ -11,6 +11,7 @@
 * [Cinder 模块](cinder/cinder.md)
    * [卷](cinder/volume.md)
    * [快照](cinder/snapshot.md)
+   * [test](cinder/test.md)
 * [Glance 模块](glance/glance.md)
    * [镜像](glance/image.md)
 * [Keystone 模块](keystone/keystone.md)
@@ -28,5 +29,6 @@
    * [虚拟机](nova/servers.md)
 * [Quotas 模块](quotas/quotas.md)
    * [Cinder 配额](quotas/cinder.md)
-   * [Neutron 配额](quotas/neutron.md)  
+   * [Neutron 配额](quotas/neutron.md)
    * [Nova 配额](quotas/nova.md)
+
