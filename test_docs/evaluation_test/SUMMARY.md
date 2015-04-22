@@ -8,7 +8,7 @@
    * [OpenStack 网络配置]()
    * [部署 OpenStack 环境]()
    * [连接到 dashboard]()
-* [OpenStack 环境的基本配置]
+* [OpenStack 环境的基本配置]()
    * [使用镜像服务]()
       * [通过外部 URL 创建镜像]()
       * [通过本地文件创建镜像]()
