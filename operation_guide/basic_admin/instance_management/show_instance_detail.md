@@ -7,27 +7,27 @@
 概括包括（云主机概况、规格、IP地址、安全组、元数据、镜像名称、云硬盘）
 * 云主机概况信息（通过点击云主机名称）
 
-![Instance_Detail](/basic_admin/Picture/instance_detail1.jpg)
+![Instance_Detail](/operation_guide/basic_admin/Picture/instance_detail1.jpg)
 
-![Instance_Detail](/basic_admin/Picture/instance_detail2.jpg)
+![Instance_Detail](/operation_guide/basic_admin/Picture/instance_detail2.jpg)
 
-![Instance_Detail](/basic_admin/Picture/instance_detail3.jpg)
+![Instance_Detail](/operation_guide/basic_admin/Picture/instance_detail3.jpg)
 
 * 云主机日志信息，显示云主机启动日志信息
 
-![Instance_Detail](/basic_admin/Picture/instance_detail4.jpg)
+![Instance_Detail](/operation_guide/basic_admin/Picture/instance_detail4.jpg)
 
 * 云主机控制台，通过点击控制台，打开vnc控制台界面，进行虚拟机操作
 
-![Instance_Detail](/basic_admin/Picture/instance_detail5.jpg)
+![Instance_Detail](/operation_guide/basic_admin/Picture/instance_detail5.jpg)
 
 > 全屏控制台
 
-![Instance_Detail](/basic_admin/Picture/instance_detail6.jpg)
+![Instance_Detail](/operation_guide/basic_admin/Picture/instance_detail6.jpg)
 
 * 云主机操作日志
 
-![Instance_Detail](/basic_admin/Picture/instance_detail7.jpg)
+![Instance_Detail](/operation_guide/basic_admin/Picture/instance_detail7.jpg)
 
 
 
