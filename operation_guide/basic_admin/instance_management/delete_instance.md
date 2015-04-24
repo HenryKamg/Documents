@@ -6,11 +6,11 @@
 
 * 列出云主机信息
 
- ![Delete_instacne1](/basic_admin/Picture/delete1.jpg)
+ ![Delete_instacne1](/operation_guide/basic_admin/Picture/delete1.jpg)
 
 * 选择云主机并进行终止云主操作
 
- ![Delete_instace2](/basic_admin/Picture/delete2.jpg)
+ ![Delete_instace2](/operation_guide/basic_admin/Picture/delete2.jpg)
 
   可通过两种方式云主：
 
@@ -21,7 +21,7 @@
 
 * 等待删除操作后，在云主机信息中，被终止的云主已被删除
 
- ![Delete_instace3](/basic_admin/Picture/delete3.jpg)
+ ![Delete_instace3](/operation_guide/basic_admin/Picture/delete3.jpg)
 
 
 ### 通过命令方式删除云主机
