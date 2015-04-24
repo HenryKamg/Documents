@@ -4,7 +4,7 @@
 
 * 登录Web horizon界面，选择镜像，选中需要删除，点击删除镜像
 
-![Image-Delete]operation_guide/basic_admin/Picture/image_delete1.jpg)
+![Image-Delete](operation_guide/basic_admin/Picture/image_delete1.jpg)
 
 
 ### 通过命令模版
