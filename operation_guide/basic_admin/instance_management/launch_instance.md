@@ -6,14 +6,14 @@
 通过登录horzion界查看云主机信息，登录后选择项目----实例----启动云主机（在启动云主机界面配置云主机信息)
 * 点击启动云主机，配置云主详情信息(云主机名称、云主机类型、云主机数量、云主机启动源、镜像名称）
 
-   ![Launch_instace](/basic_admin/Picture/launch_instance1.jpg)
+   ![Launch_instace](/operation_guide/basic_admin/Picture/launch_instance1.jpg)
 * 从可用网络中选择fix网络net04，点击运行开创建云主机
 
-   ![Launch_instance](/basic_admin/Picture/launch_instance2.jpg)
+   ![Launch_instance](/operation_guide/basic_admin/Picture/launch_instance2.jpg)
 
 * 云主机开始创建，等待一段时间后云主机创建完成
 
-   ![Launch_instance](/basic_admin/Picture/launch_instance3.jpg)
+   ![Launch_instance](/operation_guide/basic_admin/Picture/launch_instance3.jpg)
 
             (备注：创建云主机根据实际情况进行配置云主机类型，云主机镜像)
 
