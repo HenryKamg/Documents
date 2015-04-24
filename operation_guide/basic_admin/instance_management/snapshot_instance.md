@@ -6,17 +6,17 @@
 * 选择云主机，点击创建快照，弹出快照创建界面
 * 输入快照名称，点击创建快照，开始创建
 
-![Snapshot](/basic_admin/Picture/snapshot1.jpg)
+![Snapshot](/operation_guide/basic_admin/Picture/snapshot1.jpg)
 
 * 创建过程如下
 
-![Snapshot](/basic_admin/Picture/snapshot4.jpg)
+![Snapshot](/operation_guide/basic_admin/Picture/snapshot4.jpg)
 
-![Snapshot](/basic_admin/Picture/snapshot2.jpg)
+![Snapshot](/operation_guide/basic_admin/Picture/snapshot2.jpg)
 
 * 创建完成后，镜像界面查看创建快照信息
 
-![Snapshot](/basic_admin/Picture/snapshot3.jpg)
+![Snapshot](/operation_guide/basic_admin/Picture/snapshot3.jpg)
 
 ### 通过命令方式创建快照
 
