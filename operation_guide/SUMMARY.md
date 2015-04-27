@@ -109,17 +109,18 @@
        * tcpdump
        * ...
    * 日志分析
-       * 简介
-       * Keystone日志
+       * [简介](troubleshooting/log_analysis/intro.md)
+       * [Keystone日志](troubleshooting/log_analysis/keystone_log.md)
        * [Glance日志](troubleshooting/log_analysis/glance_log.md)
-       * Nova日志
-       * Neutron日志
-       * Cinder日志
-       * Horizon
-       * Ceph日志
-       * MySQL日志
-       * RabbitMQ日志
-       * ...
+       * [Nova日志](troubleshooting/log_analysis/nova_log.md)
+       * [Neutron日志](troubleshooting/log_analysis/neutron_log.md)
+       * [Cinder日志](troubleshooting/log_analysis/cinder_log.md)
+       * [Horizon](troubleshooting/log_analysis/horizon_log.md)
+       * [Ceph日志](troubleshooting/log_analysis/ceph_log.md)
+       * [MySQL日志](troubleshooting/log_analysis/mysql_log.md)
+       * [RabbitMQ日志](troubleshooting/log_analysis/rabbitmq_log.md)
+       * [Pacemaker日志](troubleshooting/log_analysis/pacemaker_log.md)
+       * [...](troubleshooting/log_analysis/etc.md)
    * 常见故障排除
 * [FAQ](FAQ/faq.md)
 * 获取帮助
