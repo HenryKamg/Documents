@@ -31,13 +31,13 @@
        * 给云主机分配floating ip
    * [安全组管理](basic_admin/security_groups/security.md)
        * [查看当前安全组](basic_admin/security_groups/security_list.md)
-       * 创建新的安全组
-       * 安全组规则管理
+       * [创建新的安全组](basic_admin/security_groups/security_create.md)
+       * [安全组规则管理](basic_admin/security_groups/security_rule_manage.md)
    * 密钥管理
        * 查看密钥
        * 创建新密钥
        * 删除密钥
-   * 用户和项目管理
+   * [用户和项目管理](basic_admin/user_project_management/user_project.md)
        * 查看项目
        * 创建新项目
        * 删除项目
