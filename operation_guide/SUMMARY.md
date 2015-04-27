@@ -65,9 +65,9 @@
        * [负载均衡集群](cluster_admin/introduction_to_ha_and_lb/load_balance.md)
        * [高可用集群的基本操作](cluster_admin/introduction_to_ha_and_lb/ha_operations.md)
        * [负载均衡集群的基本操作](cluster_admin/introduction_to_ha_and_lb/lb_operations.md)
-   * OpenStack集群
-       * 简介（实现OpenStack各组件API HA的集群）
-       * 常用管理命令
+   * [OpenStack集群](cluster_admin/openstack-intro.md)
+       * [简介（实现OpenStack各组件API HA的集群）](cluster_admin/openstack-intro.md)
+       * [常用管理命令](cluster_admin/openstack-admin.md)       
    * MySQL集群管理
        * 简介
        * 常用管理命令
