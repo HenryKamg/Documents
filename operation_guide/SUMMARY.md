@@ -16,12 +16,12 @@
        * [查看已有模板](basic_admin/images_management/show_imange.md)
        * [导入模板](basic_admin/images_management/import_image.md)
        * [删除模板](basic_admin/images_management/delete_image.md)
-   * 规格管理
-       * 查看已有规格
-       * 创建规格
-       * 删除规格
-   * 网络配置管理
-       * 创建外部网络
+   * [规格管理](basic_admin/flavors/flavors.md)
+       * [查看已有规格](basic_admin/flavors/flavors_list.md)
+       * [创建规格](basic_admin/flavors/flavors_create.md)
+       * [删除规格](basic_admin/flavors/flavors_delete.md)
+   * [网络配置管理](basic_admin/network_management/network.md)
+       * [创建外部网络](basic_admin/network_management/network_create.md)
        * 创建内部网络
        * 创建路由器
        * 外部/内部网络与路由器之间的操作
@@ -29,8 +29,8 @@
        * 创建floating ip
        * 删除floating ip
        * 给云主机分配floating ip
-   * 安全组管理
-       * 查看当前安全组
+   * [安全组管理](basic_admin/security_groups/security.md)
+       * [查看当前安全组](basic_admin/security_groups/security_list.md)
        * 创建新的安全组
        * 安全组规则管理
    * 密钥管理
