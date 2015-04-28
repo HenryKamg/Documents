@@ -11,7 +11,6 @@
        * [删除云主机](basic_admin/instance_management/delete_instance.md)
        * [查看云主机详情](basic_admin/instance_management/show_instance_detail.md)
        * [暂停与挂起云主机](basic_admin/instance_management/suspended_instance.md)
-       * [云主机快照备份与恢复](basic_admin/instance_management/snapshot_instance.md)
    * [模板管理](basic_admin/images_management/imange.md)
        * [查看已有模板](basic_admin/images_management/show_imange.md)
        * [导入模板](basic_admin/images_management/import_image.md)
@@ -44,10 +43,10 @@
        * [查看用户](basic_admin/user_project_management/user_list.md)
        * [创建用户](basic_admin/user_project_management/user_create.md)
        * [删除用户](basic_admin/user_project_management/user_delete.md)
-   * 快照管理
-       * 查看已有快照
-       * 创建快照
-       * 删除快照
+   * [快照管理](basic_admin/snapshot_management/snapshot.md)
+       * [查看已有快照](basic_admin/snapshot_management/snapshot_list.md)
+       * [创建快照](basic_admin/snapshot_management/snapshot_create.md)
+       * [删除快照](basic_admin/snapshot_management/snapshot_delete.md)
    * 磁盘卷管理
        * 查看当前磁盘卷
        * 创建磁盘卷
