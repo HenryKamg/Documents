@@ -38,12 +38,12 @@
        * 创建新密钥
        * 删除密钥
    * [用户和项目管理](basic_admin/user_project_management/user_project.md)
-       * 查看项目
-       * 创建新项目
-       * 删除项目
-       * 查看用户
-       * 创建用户
-       * 删除用户
+       * [查看项目](basic_admin/user_project_management/project_list.md)
+       * [创建新项目](basic_admin/user_project_management/project_create.md)
+       * [删除项目](basic_admin/user_project_management/project_delete.md)
+       * [查看用户](basic_admin/user_project_management/user_list.md)
+       * [创建用户](basic_admin/user_project_management/user_create.md)
+       * [删除用户](basic_admin/user_project_management/user_delete.md)
    * 快照管理
        * 查看已有快照
        * 创建快照
