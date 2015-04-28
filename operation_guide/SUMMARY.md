@@ -71,9 +71,9 @@
    * MySQL集群管理
        * 简介
        * 常用管理命令
-   * RabbitMQ集群管理
-       * 简介
-       * 常用管理命令
+   * [RabbitMQ集群管理](cluster_admin/rabbitmq/rabbitmq_cluster.md)
+       * [简介](cluster_admin/rabbitmq/rabbitmq_intro.md)
+       * [常用管理命令](cluster_admin/rabbitmq/rabbitmq_operations.md)
    * [Ceph集群管理](cluster_admin/ceph-intro.md)
        * [简介](cluster_admin/ceph-intro.md)
        * [常用管理命令](cluster_admin/ceph-admin.md)
