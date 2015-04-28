@@ -15,6 +15,16 @@
 * [neutron](#neutron)
 
 #### keystone
+
+##### 服务管理
+keystone只有一个服务：keystone，服务的管理如下:
+
+```
+# systemctl start openstack-keystone.service #启动服务
+# systemctl stop openstack-keystone.service #关闭服务
+# systemctl restart openstack-keystone.service #重启服务
+```
+
 ##### 列出各个服务的 API 地址：
 ```
 [root@node-1 ~]# keystone endpoint-list
@@ -46,10 +56,38 @@
 > 目前 eayunstack 已经集成了脚本来自动清理过期 token。
 
 #### glance
-基本管理同上。
+##### 服务管理
+glance 有两个服务:
+
+| 服务 | 服务名 | 运行的节点 |
+| -- | -- | -- |
+| glance-api | openstack-glance-api.service | 控制节点 |
+| glanceo-registry | openstack-glance-registry.service | 控制节点 |
+
+服务管理如下：
+```
+# systemctl start [服务名] #启动服务
+# systemctl stop [服务名] #关闭服务
+# systemctl restart [服务名] #重启服务
+```
 
 #### cinder
-nova 所有集群组件的服务管理同上。
+##### 服务管理
+cinder 有四个服务:
+
+| 服务 | 服务名 | 运行的节点 |
+| -- | -- | -- |
+| cinder-api | openstack-cinder-api.service | 控制节点 |
+| cinder-scheduler | openstack-cinder-scheduler.service | 控制节点 |
+| cinder-volume | openstack-cinder-volume.service | 控制节点 |
+| cinder-backup | openstack-cinder-backup.service | 控制节点 |
+
+服务管理如下：
+```
+# systemctl start [服务名] #启动服务
+# systemctl stop [服务名] #关闭服务
+# systemctl restart [服务名] #重启服务
+```
 
 ##### 列出所有cinder服务和状态
 ```
@@ -81,7 +119,24 @@ nova 所有集群组件的服务管理同上。
 > 由于该服务主要是为了备份 eqlx 存储，而且该服务不会自动备份 cinder volume，反而开启该服务会占用我们的 eqlx 的一个 session（eqlx最大session为7）。因此该服务按需开启，具体的备份请参考 FAQ相关章节
 
 #### nova
-nova 所有集群组件的服务管理同上。
+##### 服务管理
+| 服务 | 服务名 | 运行的节点 |
+| -- | -- | -- |
+| nova-api | openstack-nova-api.service | 控制节点 |
+| nova-cert | openstack-nova-cert.service | 控制节点 |
+| nova-conductor | openstack-nova-conductor.service | 控制节点 |
+| nova-consoleauth | openstack-nova-consoleauth.service | 控制节点 |
+| nova-novncproxy | openstack-nova-novncproxy.service | 控制节点 |
+| nova-objectstore | openstack-nova-objectstore.service | 控制节点 |
+| nova-scheduler | openstack-nova-scheduler.service | 控制节点 |
+| nova-compute | openstack-nova-compute.service | 计算节点 |
+
+服务管理如下：
+```
+# systemctl start [服务名] #启动服务
+# systemctl stop [服务名] #关闭服务
+# systemctl restart [服务名] #重启服务
+```
 
 ##### 查看所有运行nova服务的主机
 ```
@@ -167,3 +222,9 @@ nova 所有集群组件的服务管理同上。
 ```
 
 #### horzion
+horzion 依托于 apache 运行, 服务名为 httpd.service
+```
+# systemctl start httpd.service #启动服务
+# systemctl stop httpd.service #关闭服务
+# systemctl restart httpd.service #重启服务
+```
