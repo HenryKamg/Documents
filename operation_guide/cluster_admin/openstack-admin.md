@@ -77,7 +77,7 @@ nova 所有集群组件的服务管理同上。
 
 > ###### 注意
 > 关于 cinder-backup 服务的一些特殊说明:
-> 
+>
 > 由于该服务主要是为了备份 eqlx 存储，而且该服务不会自动备份 cinder volume，反而开启该服务会占用我们的 eqlx 的一个 session（eqlx最大session为7）。因此该服务按需开启，具体的备份请参考 FAQ相关章节
 
 #### nova
