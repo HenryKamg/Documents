@@ -60,11 +60,12 @@
 * 高级管理
    * Eqlx存储管理
 * [集群管理](cluster_admin/cluster_admin.md)
-   * [高可用和负载均衡集群](cluster_admin/introduction_to_ha_and_lb/introduction.md)
-       * [高可用集群](cluster_admin/introduction_to_ha_and_lb/high_availability.md)
-       * [负载均衡集群](cluster_admin/introduction_to_ha_and_lb/load_balance.md)
-       * [高可用集群的基本操作](cluster_admin/introduction_to_ha_and_lb/ha_operations.md)
-       * [负载均衡集群的基本操作](cluster_admin/introduction_to_ha_and_lb/lb_operations.md)
+   * [高可用和负载均衡集群](cluster_admin/ha_and_lb/introduction.md)
+       * [高可用集群](cluster_admin/ha_and_lb/high_availability.md)
+       * [负载均衡集群](cluster_admin/ha_and_lb/load_balance.md)
+       * [高可用集群的基本操作](cluster_admin/ha_and_lb/ha_operations.md)
+       * [负载均衡集群的基本操作](cluster_admin/ha_and_lb/lb_operations.md)
+       * [EayunStack 基础服务集群的常用操作](cluster_admin/ha_and_lb/eayunstack_cluster_operations.md)
    * [OpenStack集群](cluster_admin/openstack-intro.md)
        * [简介（实现OpenStack各组件API HA的集群）](cluster_admin/openstack-intro.md)
        * [常用管理命令](cluster_admin/openstack-admin.md)       

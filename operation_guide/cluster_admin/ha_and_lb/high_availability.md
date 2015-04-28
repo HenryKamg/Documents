@@ -53,3 +53,22 @@ CIB （Cluster information base ，集群信息数据库）是整个高可用的
       </configuration>
       ...
     </cib> 
+
+# <a name="eayunstack_ha_resources_list" style="text-decoration: none; color: inherit;" />EayunStack 高可用集群中的资源
+EayunStack 高可用集群中包含以下资源：
+
+| HA 集群资源 | 对应服务 | 资源代理程序 |
+|-------------|----------|--------------|
+| vip\_\_public | OpenStack public 网络  | ocf::mirantis:ns\_IPaddr2 |
+| ping\_vip\_\_public | 使用 ping 监控 OpenStack public 网络  | ocf::pacemaker:ping |
+| vip\_\_management | OpenStack management 网络 | ocf::mirantis:ns\_IPaddr2 |
+| p\_openstack-heat-engine | OpenStack Heat Engine 服务 | ocf::mirantis:heat-engine |
+| p\_openstack-ceilometer-central | OpenStack Ceilometer Central Agent 服务 | ocf::mirantis:ceilometer-agent-central |
+| p\_openstack-ceilometer-alarm-evaluator | OpenStack Ceilometer Alarm Evaluator 服务 | ocf::mirantis:ceilometer-alarm-evaluator |
+| p\_neutron-openvswitch-agent | OpenStack Neutron Open vSwitch Agent 服务 | ocf::mirantis:neutron-agent-ovs |
+| p\_neutron-dhcp-agent | OpenStack Neutron DHCP Agent 服务 | ocf::mirantis:neutron-agent-dhcp  |
+| p\_neutron-metadata-agent | OpenStack Neutron Metadata Agent 服务 | ocf::mirantis:neutron-agent-metadata |
+| p\_neutron-l3-agent | OpenStack Neutron Layer 3 Agent 服务 | ocf::mirantis:neutron-agent-l3 |
+| p\_mysql | Mariadb（Mysql） 数据库服务 | ocf::mirantis:mysql-wss |
+| p\_rabbitmq-server | RabbitMQ 消息队列服务 | ocf::rabbitmq:rabbitmq-server |
+| p\_haproxy | HAPorxy 服务 | ocf::mirantis:ns\_haproxy |
