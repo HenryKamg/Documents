@@ -121,7 +121,7 @@
        * RabbitMQ日志
        * ...
    * 常见故障排除
-* FAQ
+* [FAQ](FAQ/faq.md)
 * 获取帮助
    * 邮件列表
    * IRC
