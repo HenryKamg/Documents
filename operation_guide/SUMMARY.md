@@ -74,9 +74,9 @@
    * RabbitMQ集群管理
        * 简介
        * 常用管理命令
-   * Ceph集群管理
-       * 简介
-       * 常用管理命令
+   * [Ceph集群管理](cluster_admin/ceph-intro.md)
+       * [简介](cluster_admin/ceph-intro.md)
+       * [常用管理命令](cluster_admin/ceph-admin.md)
 * 运维工具
    * 简介
    * 健康检测命令
