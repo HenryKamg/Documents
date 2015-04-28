@@ -58,22 +58,24 @@
        * 恢复磁盘卷
 * 高级管理
    * Eqlx存储管理
-* 集群管理
-   * 集群管理工具简介
-       * 简介
-       * 常用命令
-   * OpenStack集群
-       * 简介（实现OpenStack各组件API HA的集群）
-       * 常用管理命令
+* [集群管理](cluster_admin/cluster_admin.md)
+   * [高可用和负载均衡集群](cluster_admin/introduction_to_ha_and_lb/introduction.md)
+       * [高可用集群](cluster_admin/introduction_to_ha_and_lb/high_availability.md)
+       * [负载均衡集群](cluster_admin/introduction_to_ha_and_lb/load_balance.md)
+       * [高可用集群的基本操作](cluster_admin/introduction_to_ha_and_lb/ha_operations.md)
+       * [负载均衡集群的基本操作](cluster_admin/introduction_to_ha_and_lb/lb_operations.md)
+   * [OpenStack集群](cluster_admin/openstack-intro.md)
+       * [简介（实现OpenStack各组件API HA的集群）](cluster_admin/openstack-intro.md)
+       * [常用管理命令](cluster_admin/openstack-admin.md)       
    * MySQL集群管理
        * 简介
        * 常用管理命令
-   * RabbitMQ集群管理
-       * 简介
-       * 常用管理命令
-   * Ceph集群管理
-       * 简介
-       * 常用管理命令
+   * [RabbitMQ集群管理](cluster_admin/rabbitmq/rabbitmq_cluster.md)
+       * [简介](cluster_admin/rabbitmq/rabbitmq_intro.md)
+       * [常用管理命令](cluster_admin/rabbitmq/rabbitmq_operations.md)
+   * [Ceph集群管理](cluster_admin/ceph-intro.md)
+       * [简介](cluster_admin/ceph-intro.md)
+       * [常用管理命令](cluster_admin/ceph-admin.md)
 * 运维工具
    * 简介
    * 健康检测命令
@@ -106,19 +108,20 @@
        * tcpdump
        * ...
    * 日志分析
-       * 简介
-       * Keystone日志
+       * [简介](troubleshooting/log_analysis/intro.md)
+       * [Keystone日志](troubleshooting/log_analysis/keystone_log.md)
        * [Glance日志](troubleshooting/log_analysis/glance_log.md)
-       * Nova日志
-       * Neutron日志
-       * Cinder日志
-       * Horizon
-       * Ceph日志
-       * MySQL日志
-       * RabbitMQ日志
-       * ...
+       * [Nova日志](troubleshooting/log_analysis/nova_log.md)
+       * [Neutron日志](troubleshooting/log_analysis/neutron_log.md)
+       * [Cinder日志](troubleshooting/log_analysis/cinder_log.md)
+       * [Horizon](troubleshooting/log_analysis/horizon_log.md)
+       * [Ceph日志](troubleshooting/log_analysis/ceph_log.md)
+       * [MySQL日志](troubleshooting/log_analysis/mysql_log.md)
+       * [RabbitMQ日志](troubleshooting/log_analysis/rabbitmq_log.md)
+       * [Pacemaker日志](troubleshooting/log_analysis/pacemaker_log.md)
+       * [...](troubleshooting/log_analysis/etc.md)
    * 常见故障排除
-* FAQ
+* [FAQ](FAQ/faq.md)
 * 获取帮助
    * 邮件列表
    * IRC
