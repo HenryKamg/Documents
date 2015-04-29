@@ -47,15 +47,13 @@
        * [查看已有快照](basic_admin/snapshot_management/snapshot_list.md)
        * [创建快照](basic_admin/snapshot_management/snapshot_create.md)
        * [删除快照](basic_admin/snapshot_management/snapshot_delete.md)
-   * 磁盘卷管理
-       * 查看当前磁盘卷
-       * 创建磁盘卷
-       * 查看磁盘卷详细信息
-       * 挂载磁盘卷
-       * 卸载磁盘卷
-       * 创建磁盘卷快照
-       * 备份磁盘卷
-       * 恢复磁盘卷
+   * [磁盘卷管理](basic_admin/volumes_management/volumes.md)
+       * [查看磁盘卷](basic_admin/volumes_management/volumes_list.md)
+       * [创建磁盘卷](basic_admin/volumes_management/volumes_create.md)
+       * [挂载磁盘卷](basic_admin/volumes_management/volumes_launch.md)
+       * [卸载磁盘卷](basic_admin/volumes_management/volumes_delete_attach.md)
+       * [创建磁盘卷快照](basic_admin/volumes_management/volumes_snapshot.md)
+       * [备份磁盘卷](basic_admin/volumes_management/volumes_backup.md)
 * 高级管理
    * Eqlx存储管理
 * [集群管理](cluster_admin/cluster_admin.md)
