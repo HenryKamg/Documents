@@ -99,14 +99,7 @@
        * 文件系统备份与恢复
            * 配置文件是否需要备份？
 * 故障排除
-   * 故障检测工具
-       * eayunstack-tools
-       * ping&traceroute
-       * ntpq&ntpstat
-       * ps&top
-       * free&df
-       * tcpdump
-       * ...
+   * [故障检测工具](troubleshooting/troubleshooting_tools.md)
    * 日志分析
        * [简介](troubleshooting/log_analysis/intro.md)
        * [Keystone日志](troubleshooting/log_analysis/keystone_log.md)
