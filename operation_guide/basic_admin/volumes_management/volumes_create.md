@@ -21,9 +21,10 @@
 ### 通过命令创建磁盘卷
 
 * 创建磁盘卷，执行如命令
+
 > ```cinder create [--snapshot-id <snapshot-id>]
-                     [--source-volid <source-volid>] [--image-id <image-id>]
-                     [--display-name <display-name>]
+ [--source-volid <source-volid>] [--image-id <image-id>]
+ [--display-name <display-name>]
                      [--display-description <display-description>]
                      [--volume-type <volume-type>]
                      [--availability-zone <availability-zone>]
