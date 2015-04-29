@@ -65,7 +65,7 @@
        * [EayunStack 基础服务集群的常用操作](cluster_admin/ha_and_lb/eayunstack_cluster_operations.md)
    * [OpenStack集群](cluster_admin/openstack-intro.md)
        * [简介（实现OpenStack各组件API HA的集群）](cluster_admin/openstack-intro.md)
-       * [常用管理命令](cluster_admin/openstack-admin.md)       
+       * [常用管理命令](cluster_admin/openstack-admin.md)
    * MySQL集群管理
        * 简介
        * 常用管理命令
@@ -91,13 +91,9 @@
    * [初始化命令](operation_tools/init/init.md)
 * 备份与恢复
    * [Feul备份与恢复](backup_restore/fuel_backup_restore.md)
-   * OpenStack备份与恢复
-       * 数据库备份与恢复
-           * 有无备份需要？
-           * 如需备份需要备份哪些数据库？
-           * 如何备份？
-       * 文件系统备份与恢复
-           * 配置文件是否需要备份？
+   * [OpenStack备份与恢复](backup_restore/openstack_backup_restore/openstack_backup.md)
+       * [数据库备份与恢复](backup_restore/openstack_backup_restore/database_backup.md)
+       * [配置文件备份与恢复](backup_restore/openstack_backup_restore/profile_backup.md)
 * 故障排除
    * [故障检测工具](troubleshooting/troubleshooting_tools.md)
    * 日志分析
