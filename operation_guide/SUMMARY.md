@@ -59,11 +59,12 @@
 * 高级管理
    * Eqlx存储管理
 * [集群管理](cluster_admin/cluster_admin.md)
-   * [高可用和负载均衡集群](cluster_admin/introduction_to_ha_and_lb/introduction.md)
-       * [高可用集群](cluster_admin/introduction_to_ha_and_lb/high_availability.md)
-       * [负载均衡集群](cluster_admin/introduction_to_ha_and_lb/load_balance.md)
-       * [高可用集群的基本操作](cluster_admin/introduction_to_ha_and_lb/ha_operations.md)
-       * [负载均衡集群的基本操作](cluster_admin/introduction_to_ha_and_lb/lb_operations.md)
+   * [高可用和负载均衡集群](cluster_admin/ha_and_lb/introduction.md)
+       * [高可用集群](cluster_admin/ha_and_lb/high_availability.md)
+       * [负载均衡集群](cluster_admin/ha_and_lb/load_balance.md)
+       * [高可用集群的基本操作](cluster_admin/ha_and_lb/ha_operations.md)
+       * [负载均衡集群的基本操作](cluster_admin/ha_and_lb/lb_operations.md)
+       * [EayunStack 基础服务集群的常用操作](cluster_admin/ha_and_lb/eayunstack_cluster_operations.md)
    * [OpenStack集群](cluster_admin/openstack-intro.md)
        * [简介（实现OpenStack各组件API HA的集群）](cluster_admin/openstack-intro.md)
        * [常用管理命令](cluster_admin/openstack-admin.md)       
@@ -77,18 +78,18 @@
        * [简介](cluster_admin/ceph-intro.md)
        * [常用管理命令](cluster_admin/ceph-admin.md)
 * 运维工具
-   * 简介
-   * 健康检测命令
-       * 基础环境检测
-       * OpenStack组件检测
-       * 集群状态检测
-   * 环境管理命令
-       * 错误虚拟机管理
-       * 错误磁盘卷管理
-       * ....
-   * Fuel节点管理命令
-       * Fuel节点备份
-       * Fuel节点恢复
+   * [简介](operation_tools/introduction.md)
+   * [健康检测命令](operation_tools/health_check/health_check.md)
+       * [基础环境检测](operation_tools/health_check/check_environment.md)
+       * [OpenStack组件检测](operation_tools/health_check/check_openstack_component.md)
+       * [集群状态检测](operation_tools/health_check/check_cluster.md)
+   * [环境管理命令](operation_tools/environment_management/environment_management.md)
+       * [上传AMI镜像](operation_tools/environment_management/ami.md)
+       * [列出OpenStack节点信息](operation_tools/environment_management/openstack.md)
+       * [删除错误云硬盘](operation_tools/environment_management/delete_volume.md)
+   * [Fuel节点管理命令](operation_tools/fuel_management/fuel_management.md)
+       * [Fuel节点备份](operation_tools/fuel_management/fuel_backup.md)
+       * [Fuel节点恢复](operation_tools/fuel_management/fuel_restore.md)
 * 备份与恢复
    * Feul备份与恢复
    * OpenStack备份与恢复
@@ -122,8 +123,8 @@
        * [...](troubleshooting/log_analysis/etc.md)
    * 常见故障排除
 * [FAQ](FAQ/faq.md)
-* 获取帮助
-   * 邮件列表
-   * IRC
-   * Fuel & OpenStack社区
+* [获取帮助](help/help.md)
+   * [邮件列表](help/email.md)
+   * [IRC](help/irc.md)
+   * [OpenStack社区](help/fuel_openstack_community.md)
 
