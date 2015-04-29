@@ -2,7 +2,7 @@
 目前在 EayunStack 的环境中，monitor的服务如下：
 
 | 组件 | 服务名 | 运行的节点 |
-| -- | -- | -- |
+| --- | --- | --- |
 | mon | mon.node-1 | node-1 |
 | mon | mon.node-2 | node-2 |
 | mon | mon.node-3 | node-3 |
