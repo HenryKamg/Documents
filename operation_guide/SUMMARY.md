@@ -88,6 +88,7 @@
    * [Fuel节点管理命令](operation_tools/fuel_management/fuel_management.md)
        * [Fuel节点备份](operation_tools/fuel_management/fuel_backup.md)
        * [Fuel节点恢复](operation_tools/fuel_management/fuel_restore.md)
+   * [初始化命令](operation_tools/init/init.md)
 * 备份与恢复
    * Feul备份与恢复
    * OpenStack备份与恢复
