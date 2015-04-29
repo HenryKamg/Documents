@@ -112,7 +112,7 @@
        * [MySQL日志](troubleshooting/log_analysis/mysql_log.md)
        * [RabbitMQ日志](troubleshooting/log_analysis/rabbitmq_log.md)
        * [Pacemaker日志](troubleshooting/log_analysis/pacemaker_log.md)
-       * [...](troubleshooting/log_analysis/etc.md)
+       * [其它日志](troubleshooting/log_analysis/etc.md)
    * 常见故障排除
 * [FAQ](FAQ/faq.md)
 * [获取帮助](help/help.md)
