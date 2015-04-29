@@ -79,18 +79,18 @@
        * [简介](cluster_admin/ceph-intro.md)
        * [常用管理命令](cluster_admin/ceph-admin.md)
 * 运维工具
-   * 简介
-   * 健康检测命令
-       * 基础环境检测
-       * OpenStack组件检测
-       * 集群状态检测
-   * 环境管理命令
-       * 错误虚拟机管理
-       * 错误磁盘卷管理
-       * ....
-   * Fuel节点管理命令
-       * Fuel节点备份
-       * Fuel节点恢复
+   * [简介](operation_tools/introduction/introduction.md)
+   * [健康检测命令](operation_tools/health_check.md)
+       * [基础环境检测](operation_tools/health_check/check_environment.md)
+       * [OpenStack组件检测](operation_tools/health_check/check_openstack_component.md)
+       * [集群状态检测](operation_tools/health_check/check_cluster.md)
+   * [环境管理命令](operation_tools/environment_management/environment_management.md)
+       * [上传AMI镜像](operation_tools/environment_management/ami.md)
+       * [列出OpenStack节点信息](operation_tools/environment_management/openstack.md)
+       * [删除错误云硬盘](operation_tools/environment_management/delete_volume.md)
+   * [Fuel节点管理命令](operation_tools/fuel_management/fuel_management.md)
+       * [Fuel节点备份](operation_tools/fuel_management/fuel_backup.md)
+       * [Fuel节点恢复](operation_tools/fuel_management/fuel_restore.md)
 * 备份与恢复
    * Feul备份与恢复
    * OpenStack备份与恢复
@@ -124,8 +124,8 @@
        * [...](troubleshooting/log_analysis/etc.md)
    * 常见故障排除
 * [FAQ](FAQ/faq.md)
-* 获取帮助
-   * 邮件列表
-   * IRC
-   * Fuel & OpenStack社区
+* [获取帮助](help/help.md)
+   * [邮件列表](help/email.md)
+   * [IRC](help/irc.md)
+   * [OpenStack社区](help/fuel_openstack_community.md)
 
