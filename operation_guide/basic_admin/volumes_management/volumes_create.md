@@ -22,15 +22,15 @@
 
 * 创建磁盘卷，执行如命令
 
-> ```cinder create [--snapshot-id <snapshot-id>]
- [--source-volid <source-volid>] [--image-id <image-id>]
- [--display-name <display-name>]
-                     [--display-description <display-description>]
-                     [--volume-type <volume-type>]
-                     [--availability-zone <availability-zone>]
-                     [--metadata [<key=value> [<key=value> ...]]]
-                     <size>
-```
+> ``` cinder create [--snapshot-id <snapshot-id>]
+  [--source-volid <source-volid>] [--image-id <image-id>]
+  [--display-name <display-name>]
+  [--display-description <display-description>]
+  [--volume-type <volume-type>]
+  [--availability-zone <availability-zone>]
+  [--metadata [<key=value> [<key=value> ]]]
+  <size>```
+
 
 ### 示例
 
