@@ -79,7 +79,7 @@
        * [简介](cluster_admin/ceph-intro.md)
        * [常用管理命令](cluster_admin/ceph-admin.md)
 * 运维工具
-   * [简介](operation_tools/introduction/introduction.md)
+   * [简介](operation_tools/introduction.md)
    * [健康检测命令](operation_tools/health_check.md)
        * [基础环境检测](operation_tools/health_check/check_environment.md)
        * [OpenStack组件检测](operation_tools/health_check/check_openstack_component.md)
