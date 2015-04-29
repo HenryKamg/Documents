@@ -90,7 +90,7 @@
        * [Fuel节点恢复](operation_tools/fuel_management/fuel_restore.md)
    * [初始化命令](operation_tools/init/init.md)
 * 备份与恢复
-   * Feul备份与恢复
+   * [Feul备份与恢复](backup_restore/fuel_backup_restore.md)
    * OpenStack备份与恢复
        * 数据库备份与恢复
            * 有无备份需要？
