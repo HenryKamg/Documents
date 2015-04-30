@@ -21,21 +21,21 @@
        * [删除规格](basic_admin/flavors/flavors_delete.md)
    * [网络配置管理](basic_admin/network_management/network.md)
        * [创建外部网络](basic_admin/network_management/network_create.md)
-       * 创建内部网络
-       * 创建路由器
-       * 外部/内部网络与路由器之间的操作
-       * 查看当前可用floating ip
-       * 创建floating ip
-       * 删除floating ip
-       * 给云主机分配floating ip
+       * [创建内部网络](basic_admin/network_management/network_create_net.md)
+       * [创建路由器](basic_admin/network_management/router_create.md)
+       * [外部/内部网络与路由器之间的操作](basic_admin/network_management/router_connect_network.md)
+       * [查看当前可用floating ip](basic_admin/network_management/floating_list.md)
+       * [创建floating ip](basic_admin/network_management/floating_create.md)
+       * [删除floating ip](basic_admin/network_management/floating_delete.md)
+       * [给云主机分配floating ip](basic_admin/network_management/associate_floating.md)
    * [安全组管理](basic_admin/security_groups/security.md)
        * [查看当前安全组](basic_admin/security_groups/security_list.md)
        * [创建新的安全组](basic_admin/security_groups/security_create.md)
        * [安全组规则管理](basic_admin/security_groups/security_rule_manage.md)
-   * 密钥管理
-       * 查看密钥
-       * 创建新密钥
-       * 删除密钥
+   * [密钥管理](basic_admin/keypairs_management/keypairs.md)
+       * [查看密钥](basic_admin/keypairs_management/keypairs_list.md)
+       * [创建新密钥](basic_admin/keypairs_management/keypairs_create.md)
+       * [删除密钥](basic_admin/keypairs_management/keypairs_delete.md)
    * [用户和项目管理](basic_admin/user_project_management/user_project.md)
        * [查看项目](basic_admin/user_project_management/project_list.md)
        * [创建新项目](basic_admin/user_project_management/project_create.md)
@@ -54,6 +54,7 @@
        * [卸载磁盘卷](basic_admin/volumes_management/volumes_delete_attach.md)
        * [创建磁盘卷快照](basic_admin/volumes_management/volumes_snapshot.md)
        * [备份磁盘卷](basic_admin/volumes_management/volumes_backup.md)
+       * [恢复磁盘卷](basic_admin/volumes_management/volumes_restore.md)
 * 高级管理
    * Eqlx存储管理
 * [集群管理](cluster_admin/cluster_admin.md)
