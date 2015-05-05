@@ -1,10 +1,10 @@
 # 删除规格
 
-### 通过Web horizon界删除规格
+### 通过Web horizon界面删除规格
 
 * 登录Web horizo界面，云主机类型----选择云主机类型----删除云主机类型
 
-![Flavors_Delete](/operation_guide/basic_admin/Picture/flavors_delete1.jpg)
+![Flavors_Delete](../Picture/flavor_delete1.jpg)
 
 * 删除完成后，查看云主机类型，删除的云主机类型已被删除
 
@@ -13,7 +13,7 @@
 
 * 删除规格，执行如下命令
 
-> ``` nova flavor-delete <name>
+> ``` nova flavor-delete <name> ```
 
 ### 示例
 

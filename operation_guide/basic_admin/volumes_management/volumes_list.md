@@ -4,15 +4,15 @@
 
 * 登录Web horizon界面，点击云硬盘，查看云硬盘
 
-![Volumes_List](/operation_guide/basic_admin/Picture/volumes_list1.jpg)
+![Volumes_List](../Picture/volumes_list1.jpg)
 
 * 查看云硬盘详信息
 
-![Volumes_List](/operation_guide/basic_admin/Picture/volumes_list2.jpg)
+![Volumes_List](../Picture/volumes_list2.jpg)
 
 * 通过编辑卷旁边小三角，可以调整云硬盘大小
 
-![Volumes_List](/operation_guide/basic_admin/Picture/volumes_list3.jpg)
+![Volumes_List](../Picture/volumes_list3.jpg)
 
 ### 通过命令查看磁盘卷
 

@@ -3,21 +3,21 @@
 
 ### 通过Web horizon界面查看模版
 
-登录进入horizon界面，点击```镜像```线是模版信息，其中分项目与公有。项目模版属于本项目专有模版，公有属于公共模版。
+登录进入horizon界面，点击```镜像```显示模版信息，其中分项目与公有。项目模版属于本项目专有模版，公有属于公共模版。
 
 * 专有模版
 
-![Image-List](/operation_guide/basic_admin/Picture/image_list1.jpg)
+![Image-List](../Picture/image_list1.jpg)
 
 * 公共模版
 
-![Image-List](/operation_guide/basic_admin/Picture/image_list.jpg)
+![Image-List](../Picture/image_list.jpg)
 
 * 模版概况信息
 
-![Image-List](/operation_guide/basic_admin/Picture/image_list2.jpg)
+![Image-List](../Picture/image_list2.jpg)
 
-![Image-List](/operation_guide/basic_admin/Picture/image_list3.jpg)
+![Image-List](../Picture/image_list3.jpg)
 
 ### 通过命令查看模版
 

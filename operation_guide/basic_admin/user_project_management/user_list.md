@@ -2,13 +2,13 @@
 
 ### 通过Web horizon查看用户
 
-* 登录Web horizon界面----点击identity-----点击用户，列用户信息
+* 登录Web horizon界面----点击identity-----点击用户，列出用户信息
 
-![User_List](/operation_guide/basic_admin/Picture/user_list1.jpg)
+![User_List](../Picture/user_list1.jpg)
 
 * 点击编辑，可对用信息进行编辑（编辑内容包，用户描述信息、密码、项目）
 
-![User_List](/operation_guide/basic_admin/Picture/user_list2.jpg)
+![User_List](../Picture/user_list2.jpg)
 
 * 如不需要编辑，点击取消
 

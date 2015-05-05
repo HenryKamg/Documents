@@ -4,15 +4,15 @@
 
 * 登录Web horizon界面，点击实例----选择实例----创建快照，开始创建快照
 
-![Snapshot_Create](/operation_guide/basic_admin/Picture/snapshot_create1.jpg)
+![Snapshot_Create](../Picture/snapshot_create1.jpg)
 
 * 快照创建过程中，处于保存状态
 
-![Snapshot_Create](/operation_guide/basic_admin/Picture/snapshot_create2.jpg)
+![Snapshot_Create](../Picture/snapshot_create2.jpg)
 
 * 快照创建完成
 
-![Snapshot_Create](/operation_guide/basic_admin/Picture/snapshot_create3.jpg)
+![Snapshot_Create](../Picture/snapshot_create3.jpg)
 
 
 ### 通过命令创建快照

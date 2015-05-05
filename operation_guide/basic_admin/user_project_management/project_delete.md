@@ -6,7 +6,7 @@
 
 * 登录Web horizon界面----点击identity-----点击项目----选择项目----点击删除项目
 
-![Project_Create](/operation_guide/basic_admin/Picture/project_delete1.jpg)
+![Project_Create](../Picture/project_delete1.jpg)
 
 > 删除会将项目下数据删除，轻易不要操作
 

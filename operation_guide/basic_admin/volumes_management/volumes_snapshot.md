@@ -4,15 +4,15 @@
 
 * 登录Web horizon点击云硬盘，选择云硬盘，点击编辑旁边小三角，创建快照
 
-![Volumes_Snapshot](/operation_guide/basic_admin/Picture/volumes_snapshot1.jpg)
+![Volumes_Snapshot](../Picture/volumes_snapshot1.jpg)
 
  * 创建云硬盘快照，输入快照名称，点击创建云硬盘快照
 
-![Volumes_Snapshot](/operation_guide/basic_admin/Picture/volumes_snapshot2.jpg)
+![Volumes_Snapshot](../Picture/volumes_snapshot2.jpg)
 
 * 创建完成后，云硬盘，云硬盘快照界面显示
 
-![Volumes_Snapshot](/operation_guide/basic_admin/Picture/volumes_snapshot3.jpg)
+![Volumes_Snapshot](../Picture/volumes_snapshot3.jpg)
 
 (可通过云硬盘快照来创建云硬盘，挂载到云主机）
 

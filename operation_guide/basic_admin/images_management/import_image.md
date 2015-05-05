@@ -1,14 +1,14 @@
 # 导入模板
 
-### 通过Web horizo界面导入模版
+### 通过Web horizon界面导入模版
 
 * Web horizo界面点击镜像---创建镜像
 
-![Image-Create](/operation_guide/basic_admin/Picture/image_create1.jpg)
+![Image-Create](../Picture/image_create1.jpg)
 
 * 等待一段时间后，镜像创建完成
 
-![Image-Create](/operation_guide/basic_admin/Picture/image_create2.jpg)
+![Image-Create](../Picture/image_create2.jpg)
 
 
 ### 通过命令导入模版

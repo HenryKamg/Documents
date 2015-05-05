@@ -4,7 +4,7 @@
 
 * 登录Web horizon界面----点击identity-----点击用户----删除用户
 
-![User_Delete](/operation_guide/basic_admin/Picture/user_delete1.jpg)
+![User_Delete](../Picture/user_delete1.jpg)
 
 
 ### 通过命令删除用户

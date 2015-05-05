@@ -4,11 +4,12 @@
 
 * 登录Web horizon界面，点击镜像----选择镜像----删除镜像，来删除快照
 
-![Snapshot_Delete](/operation_guide/basic_admin/Picture/snapshot_delete1.jpg)
+![Snapshot_Delete](../Picture/snapshot_delete1.jpg)
 
-* 确删镜像，点击删除镜像
+* 确认删除镜像，点击删除镜像
 
-![Snapshot_Delete](/operation_guide/basic_admin/Picture/snapshot_delete2.jpg)
+![Snapshot_Delete](../Picture/snapshot_delete2.jpg)
+
 
 * 删除完成后，镜像界面中快照已经删除
 

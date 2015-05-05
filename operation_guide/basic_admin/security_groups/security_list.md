@@ -4,11 +4,11 @@
 
 * 登录Web horizon界面，点击访问/安全，显示安全组信息。默认情况下只有一个安全组
 
-![Security_List](/operation_guide/basic_admin/Picture/security_list1.jpg)
+![Security_List](../Picture/security_list1.jpg)
 
 * 查看安全组详细信息，点击管理规则，即可显示详细信息
 
-![Security_List](/operation_guide/basic_admin/Picture/security_list2.jpg)
+![Security_List](../Picture/security_list2.jpg)
 
 
 ### 通过命令查看安全组

@@ -4,15 +4,15 @@
 
 * 通过Web horizon界面登录，点击identity-----点击项目---点击创建项目
 
-![Project_Create](/operation_guide/basic_admin/Picture/project_create1.jpg)
+![Project_Create](../Picture/project_create1.jpg)
 
 * 填写项目名称、项目成员选择（选择时点击列出成员旁边+号添加）
 
-![Project_Create](/operation_guide/basic_admin/Picture/project_create2.jpg)
+![Project_Create](../Picture/project_create2.jpg)
 
 * 修改配额信息，点击创建项目，开始创建
 
-![Project_Create](/operation_guide/basic_admin/Picture/project_create3.jpg)
+![Project_Create](../Picture/project_create3.jpg)
 
 > (如点击创项目时，提示云硬盘与云快照信息，需根据提示进行修改，修改云硬盘与云快照数大于提示数）
 

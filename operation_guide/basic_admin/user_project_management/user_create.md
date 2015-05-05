@@ -4,11 +4,11 @@
 
 * 登录Web horizon界面----点击identity-----点击用户----创建用户
 
-![User_Create](/operation_guide/basic_admin/Picture/user_create1.jpg)
+![User_Create](../Picture/user_create1.jpg)
 
 * 查看创建用户，用户已经创完成
 
-![User_Create](/operation_guide/basic_admin/Picture/user_create2.jpg)
+![User_Create](../Picture/user_create2.jpg)
 
 ### 通过命令创建用户
 

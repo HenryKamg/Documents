@@ -1,10 +1,11 @@
 # 查看云主机列表
 
 
-### 通过Web horizon查看云主机
-通过登录horzion界查看云主机信息，登录后选择项目----实例，显示实例
+### 通过Web horizon界面查看云主机
 
- ![instance_list](/operation_guide/basic_admin/Picture/instance_list.jpg)
+通过登录horzion查看云主机信息，登录后选择项目----实例，显示实例
+
+ ![instance_list](../Picture/instance_list.jpg)
 
 
 ### 通过命令查看云主机

@@ -5,7 +5,7 @@
 
 * 登录Web horizon界面，点击镜像界面，显示镜像信息，其中类型为snapshot为快照镜像
 
-![Snapshot_List](/operation_guide/basic_admin/Picture/snapshot_list1.jpg)
+![Snapshot_List](../Picture/snapshot_list.jpg)
 
 
 ### 通过命令查看快照

@@ -4,7 +4,7 @@
 
 * 登录Web horizon登录，点击访问/安全，密钥对，显示密钥对
 
-![KeyPairs_List](/operation_guide/basic_admin/Picture/keypairs_list1.jpg)
+![KeyPairs_List](../Picture/keypairs_list1.jpg)
 
 ### 通过命令查看密钥
 

@@ -1,6 +1,7 @@
 # 给云主机分配floating ip
 
 ### 通过Web horizon绑定Floating IP
+
 为云主机分配floating ip提供两种方式分配floating ip地址
 
 * 通过云主机绑定浮动ip地址

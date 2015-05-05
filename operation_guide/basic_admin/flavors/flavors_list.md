@@ -1,10 +1,10 @@
 # 查看已有规格
 
-### 通过We horizon界面查规格
+### 通过We horizon界面查看规格
 
 * 登录Web horizon界面，点击```云主机类型```显示规格信息
 
-![Flavors_List](/operation_guide/basic_admin/Picture/flavors_list.jpg)
+![Flavors_List](../Picture/flavors_list.jpg)
 
 云主机类型```Public 为Yes```表示所有用户都能使用
 

@@ -5,15 +5,15 @@
 * 登录Web horizon登录，点击访问/安全，管理规则
 * 点击添加规则---配置规则---添加
 
-![Security_Add](/operation_guide/basic_admin/Picture/securityrule_add1.jpg)
+![Security_Add](../Picture/securityrule_add1.jpg)
 
 * 删除规则，选择规则，点击删除
 
-![Security_Delete](/operation_guide/basic_admin/Picture/securityrule_delete1.jpg)
+![Security_Delete](../Picture/securityrule_delete1.jpg)
 
 * 查看规则，发现删除的规则已经不存在
 
-![Security_Display](/operation_guide/basic_admin/Picture/security_display1.jpg)
+![Security_Display](../Picture/security_display1.jpg)
 
 
 ### 通过命令管理安全组规则

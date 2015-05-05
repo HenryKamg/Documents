@@ -4,19 +4,19 @@
 
 * 登录Web horizon点击云硬盘，创建云硬盘，填写名称，创建空白云硬盘（云硬盘源自选空白云硬盘），大小根据实际情况填写，点击创建云硬盘
 
-![Volumes_Create](/operation_guide/basic_admin/Picture/volumes_create1.jpg)
+![Volumes_Create](../Picture/volumes_create1.jpg)
 
 * 创建带镜像源云硬盘，点击创建云硬盘，填写名称，云硬盘源自（选择镜像），大小根据实际情况填写，点击创建云硬盘
 
-![Volumes_Create](/operation_guide/basic_admin/Picture/volumes_create2.jpg)
+![Volumes_Create](../Picture/volumes_create2.jpg)
 
 * 通过云主机创建时，选择```从镜像启动创建一个新卷```也能创建一个磁盘卷
 
-![Volumes_Create](/operation_guide/basic_admin/Picture/volumes_create4.jpg)
+![Volumes_Create](../Picture/volumes_create4.jpg)
 
 * 创建完成后，查看云硬盘
 
-![Volumes_Create](/operation_guide/basic_admin/Picture/volumes_create3.jpg)
+![Volumes_Create](../Picture/volumes_create3.jpg)
 
 ### 通过命令创建磁盘卷
 

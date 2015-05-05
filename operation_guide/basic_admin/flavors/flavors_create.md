@@ -1,16 +1,16 @@
 # 创建规格
 
-### 通过Web horizon界创建规格
+### 通过Web horizon界面创建规格
 
  登录Web horizon界面，点击云主机类型----创建云主类型，弹出云主机类型创建界面，配置类型参数，点击创建云主机类型
 
 * 创建规格（创建云主机类）
 
-![Flavors_Create](/operation_guide/basic_admin/Picture/flavors_create.jpg)
+![Flavors_Create](../Picture/flavors_create.jpg)
 
 * 查看已创建规格
 
-![Flavors_Create](/operation_guide/basic_admin/Picture/flavors_create1.jpg)
+![Flavors_Create](../Picture/flavors_create1.jpg)
 
 
 ### 通过命令创建规格

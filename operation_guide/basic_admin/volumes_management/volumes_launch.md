@@ -4,19 +4,19 @@
 
 * 登录Web horizon点击云硬盘，选择云硬盘，点击编辑旁边小三角，编辑挂载
 
-![Volumes_Attach](/operation_guide/basic_admin/Picture/volumes_attach1.jpg)
+![Volumes_Attach](../Picture/volumes_attach1.jpg)
 
 * 在连接到云主机界面，选择云主机，然后点击连接到云硬盘
 
-![Volumes_Attach](/operation_guide/basic_admin/Picture/volumes_attach2.jpg)
+![Volumes_Attach](../Picture/volumes_attach2.jpg)
 
 * 云硬盘连接过程处于attach状态
 
-![Volumes_Attach](/operation_guide/basic_admin/Picture/volumes_attach3.jpg)
+![Volumes_Attach](../Picture/volumes_attach3.jpg)
 
 * 云硬盘完成挂载，状态变为In use
 
-![Volumes_Attach](/operation_guide/basic_admin/Picture/volumes_attach4.jpg)
+![Volumes_Attach](../Picture/volumes_attach4.jpg)
 
 * 挂载到云主机中的磁盘需要通过磁盘管理工具进行磁盘管理后，系统才能正常挂载使用，挂载的云硬盘做为云主机的第二块磁盘
 

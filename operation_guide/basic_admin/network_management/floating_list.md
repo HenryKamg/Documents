@@ -1,6 +1,6 @@
 # 查看当前可用floating ip
 
-floating ip 为云主机提供外部网络访问云主机通讯IP地址，为云主机绑定浮动IP地址后，
+floating ip 为云主机提供外部网络访问云主机通讯IP地址，为云主机绑定浮动IP地址后，外部网络可与云主机进行操作
 
 ### 通过Web horizon查看当前Floating IP
 

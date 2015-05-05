@@ -4,21 +4,21 @@
 
 * 登录Web horizon界面----点击identity-----点击项目
 
-![Project_List](/operation_guide/basic_admin/Picture/project_list1.jpg)
+![Project_List](../Picture/project_list1.jpg)
 
 * 通过编辑项目，查看项目详细信息（项目信息、项目成员、配额）同时可以在编辑配额中进行修改，保存，进行项目信息调整
 
 项目信息
 
-![Project_List](/operation_guide/basic_admin/Picture/project_list2.jpg)
+![Project_List](../Picture/project_list2.jpg)
 
 项目成员
 
-![Project_List](/operation_guide/basic_admin/Picture/project_list3.jpg)
+![Project_List](../Picture/project_list3.jpg)
 
 配额
 
-![Project_List](/operation_guide/basic_admin/Picture/project_list4.jpg)
+![Project_List](../Picture/project_list4.jpg)
 
 ### 通过命令查看项目
 

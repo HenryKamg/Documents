@@ -4,15 +4,15 @@
 
 * 登录Web horizon点击云硬盘，选择云硬盘，点击编辑旁边小三角，编辑挂载
 
-![Volumes_ADelete](/operation_guide/basic_admin/Picture/volumes_attach1.jpg)
+![Volumes_ADelete](../Picture/volumes_attach1.jpg)
 
 * 连接的设备，点击断开云硬盘，断开云硬盘
 
-![Volumes_ADelete](/operation_guide/basic_admin/Picture/volumes_adelete1.jpg)
+![Volumes_ADelete](../Picture/volumes_adelete3.jpg)
 
 * 卸载云硬盘后，该云硬盘处于Available状态，连接到项为空
 
-![Volumes_ADelete](/operation_guide/basic_admin/Picture/volumes_adelete2.jpg)
+![Volumes_ADelete](../Picture/volumes_adelete2.jpg)
 
 ### 通过命令卸载磁盘卷
 
