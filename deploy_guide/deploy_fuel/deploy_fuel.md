@@ -1,0 +1,3 @@
+# Fuel节点部署
+
+EayunStack环境中所有OpenStack节点的部署通过OpenStack自动化部署工具（Fuel）来完成，因此在部署OpenStack节点前首先要部署Fuel节点。

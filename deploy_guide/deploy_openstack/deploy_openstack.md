@@ -1,0 +1,3 @@
+# OpenStack节点部署
+
+OpenStack节点的部署是通过Fuel节点完成的，Fuel节点在部署OpenStack节点时会在OpenStack节点上安装操作系统、安装OpenStack软件包、配置OpenStack组件。
