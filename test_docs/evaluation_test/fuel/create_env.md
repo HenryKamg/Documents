@@ -5,7 +5,7 @@
 * 前提：Fuel 的安装已经完成，能够正常使用。
 
 * 操作：
-  1. 打开浏览器，在地址栏输入 Fuel Master 节点的 IP 地址(如：http://xx.xx.xx.xx)；
+  1. 打开浏览器，在地址栏输入 Fuel Master 节点的 IP 地址 (如：http://xx.xx.xx.xx )；
   1. 打开登录页面后，在 Username 处输入用户名 admin，在 Password 处输入所设置的密码；
   1. 点击 【Log in】 按钮。
 
