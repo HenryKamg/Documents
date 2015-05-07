@@ -2,6 +2,9 @@
 
 * [介绍](README.md)
 * [使用 Fuel 部署 OpenStack 环境](fuel/README.md)
+   * [基本配置](fuel/basic.md)
+   * [网络配置](fuel/network.md)
+   * [部署环境](fuel/deploy.md)
 * [创建租户](tenant/README.md)
 * [创建租户网络](network.md)
 * [创建云主机](create-vm.md)
