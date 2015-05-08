@@ -22,6 +22,12 @@
 
 ## 创建成员用户
 
+* 前提：
+
+  以 **Admin** 身份登录到 OpenStack 管理界面。
+
+* 操作：
+
   1. 点击左侧导航栏的 【Identity】 选项卡，点击 【Users】 子选项卡；
   1. 右侧将显示 Users 列表，点击列表右上方的 【Create User】 按钮；
   1. 在弹出的 【Create User】 窗口中，填写 User Name 为 "eayun_member"，Email 为 "eayun_member@localhost"，Password 设置为需要设置的 eayun_admin 用户的密码，并在 Confirm Password 处再次填写密码；
