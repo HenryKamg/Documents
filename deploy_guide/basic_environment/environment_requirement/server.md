@@ -4,6 +4,7 @@
 
 |数量|节点角色|MEM|NIC|DISK|
 |----|----|----|----|----|
+|1|fuel|64G|1G*1|1T*1|
 |3|controller|64G|1G*4|1T*1|
 |2|compute|64G|1G*4|1T*1|
 |3|ceph-osd|64G|1G*4|1T*8|
