@@ -17,7 +17,7 @@
   |----|----|----|
   |Management/PXE|||
   |Storage|||
-  |Tunnel|||
+  |Private|||
   |Public|||
   |Ceph Cluster|||
 
