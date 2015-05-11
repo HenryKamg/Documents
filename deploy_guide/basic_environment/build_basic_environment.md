@@ -27,6 +27,7 @@
 
   |服务器角色|第一块网卡MAC地址|
   |----|----|
+  |Fuel||
   |Controller||
   |Compute||
   |Mongo||
