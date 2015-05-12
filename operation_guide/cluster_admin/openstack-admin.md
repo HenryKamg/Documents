@@ -60,7 +60,7 @@ keystone只有一个服务：keystone，服务的管理如下:
 glance 有两个服务:
 
 | 服务 | 服务名 | 运行的节点 |
-| -- | -- | -- |
+| ---- | ---- | ---- |
 | glance-api | openstack-glance-api.service | 控制节点 |
 | glanceo-registry | openstack-glance-registry.service | 控制节点 |
 
@@ -76,7 +76,7 @@ glance 有两个服务:
 cinder 有四个服务:
 
 | 服务 | 服务名 | 运行的节点 |
-| -- | -- | -- |
+| ---- | ---- | ---- |
 | cinder-api | openstack-cinder-api.service | 控制节点 |
 | cinder-scheduler | openstack-cinder-scheduler.service | 控制节点 |
 | cinder-volume | openstack-cinder-volume.service | 控制节点 |
@@ -121,7 +121,7 @@ cinder 有四个服务:
 #### nova
 ##### 服务管理
 | 服务 | 服务名 | 运行的节点 |
-| -- | -- | -- |
+| ---- | ---- | ---- |
 | nova-api | openstack-nova-api.service | 控制节点 |
 | nova-cert | openstack-nova-cert.service | 控制节点 |
 | nova-conductor | openstack-nova-conductor.service | 控制节点 |
