@@ -1,7 +1,7 @@
 本章主要对运行在以下节点的 OpenStack 相关的服务的集群和 HA 管理进行说明
 
 | 角色 | 说明 |
-| -- | -- |
+| ---- | ---- |
 | 控制和网络节点 | 运行glance，keystone，mysql等基本组建和网络服务 |
 | 计算节点 | 运行计算服务 |
 | MongoDB 节点 | 为 Ceilmetor 服务运行 MongoDB 服务 |
