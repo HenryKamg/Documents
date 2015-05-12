@@ -25,6 +25,7 @@
    * [发现及增加节点](deploy_openstack/discovery_node.md)
    * [配置节点网卡](deploy_openstack/nic_configuration.md)
    * [配置节点磁盘](deploy_openstack/disk_configuration.md)
+   * [配置Ceph Cluster网络](deploy_openstack/ceph_cluster_network_configuration.md)
    * [验证网络](deploy_openstack/verify_network.md)
    * [部署节点](deploy_openstack/deploy_node.md)
 * [环境变更](change_environment/change_environment.md)
