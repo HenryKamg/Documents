@@ -12,7 +12,7 @@ EayunStack运维工具提供了对EayunStack环境的检测、管理功能。主
    * 删除错误的Cinder卷
    * 上传AMI镜像
 * doctor
-   * 检测所有OpenStack节点基础环境配置
+   * 检测所有OpenStack节点基础环境状态
    * 检测所有OpenStack节点OpenStack组件配置及服务运行状态
    * 检测MySQL/RabbitMQ/Ceph集群状态
 
