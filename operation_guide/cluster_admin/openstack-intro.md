@@ -21,8 +21,8 @@ keystone 运行在控制节点中，集群管理通过 systemctl 实现，服务
 
 glance 服务运行在控制节点中，有两个主要的服务:
 
-* ** glance-api** 接受客户端的所有命令, 分发并响应, 转到 glance-registry 完成具体的IO和数据库工作
-* ** glance-registry** 实现涉及到数据库的操作， V2 版本的 API 简化了流程, 所有的处理都在内部实现, 所以不需要此服务
+* **glance-api** 接受客户端的所有命令, 分发并响应, 转到 glance-registry 完成具体的IO和数据库工作
+* **glance-registry** 实现涉及到数据库的操作， V2 版本的 API 简化了流程, 所有的处理都在内部实现, 所以不需要此服务
 
 上面两个服务的集群管理通过 systemctl 实现，服务名分别是 openstack-glance-api.service 和 openstack-glance-registry.service,
 
@@ -39,7 +39,7 @@ glance 服务运行在控制节点中，有两个主要的服务:
 
 包括运行在控制节点中的 api，vnc等服务和运行在计算节点中的计算服务：
 
-* **nova-api** 接受客户端管理云主机的命令, 分发到其它组建去处理，服务名是 openstack-nova-api.service
+* **nova-api** 接受客户端管理云主机的命令, 分发到其它组件去处理，服务名是 openstack-nova-api.service
 * **nova-cert** 提供 X509 认证服务，只用于 EC2 的API认证，再使用 EC2 的接口的时候，需要 nova-cert 生成对应 tenant 的 cert.pem 和 pk.pem。服务名是 openstack-nova-cert.service。目前没有使用该服务，为了未来的扩展默认开启。
 * **nova-conductor** nova-compute 利用该服务来访问数据库，这样计算节点就不需要连接数据库，从而提高了安全性。服务名是 openstack-nova-conductor.service
 * **nova-consoleauth** 为 nova 其他组件提供认证服务，比如为 nova-novncproxy 的客户端提供身份认证服务。服务名是 openstack-nova-consoleauth.service
