@@ -124,7 +124,8 @@ EayunStack 中的 rabbitmq 只定义了一个策略，即所有的队列在所�
 
 通常情况下启停 rabbitmq 程序请使用 Pacemaker 集群管理工具，以下方法仅限于 debug 时使用。以下命令是独立于 Pacemaker 管理程序来启动/停止 rabbitmq。通过这种方式的时候，Pacemaker 管理程序将察觉不到 rabbitmq 状态的变化。
 
-## 警告：以下命令会导致 rabbitmq 服务中断。
+> ## 警告
+> 以下命令会导致 rabbitmq 服务中断。
 
 停止：
 
