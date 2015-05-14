@@ -42,6 +42,7 @@ def order_case():
         submod_num = 0
         if os.path.isfile(TEST_CASE_DIR + '/' + module_dir):
 #            module_dirs.remove(module_dir)
+            # DO NOT remove dir
             pass
         else:
             module_num += 1
@@ -74,6 +75,7 @@ def order_case():
                             table_line = 0
                         if first_write:
                             with open(TEST_CASE_DIR + '/' + module_dir + '/' + submod_file, 'w') as f:
+                                # clear file and write first line
                                 f.write('%s' % context)
                             first_write = 0
                         else:
@@ -110,6 +112,7 @@ def order_case():
                             table_num += 1
                         if first_write:
                             with open(TEST_CASE_DIR + '/' + module_dir + '/' + submod_file, 'w') as f:
+                                # clear file and write first line
                                 f.write('%s' % context)
                             first_write = 0
                         else:
