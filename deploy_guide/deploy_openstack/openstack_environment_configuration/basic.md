@@ -20,7 +20,7 @@
 
  ![openstack_install_4313](../../images/openstack_install_4313.png)
 
-* 使用KVM作为底层Hypervisor，如下图所示。
+* ***可使用默认配置***，使用KVM作为底层Hypervisor，如下图所示。
 
  ![openstack_install_4314](../../images/openstack_install_4314.png)
 
