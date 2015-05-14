@@ -4,7 +4,7 @@
 
 ## 配置OpenStack帐号
 
-* 设置OpenStack环境管理员帐号/密码，如下图所示。
+* 设置OpenStack环境Dashboard管理员帐号/密码，如下图所示。
 
  ![openstack_install_4311](../../images/openstack_install_4311.png)
 
@@ -38,7 +38,7 @@
 
 ## 配置内核参数
 
-* 配置内核参数，如下图所示。
+* 使用默认值，如下图所示。
 
  ![openstack_install_4318](../../images/openstack_install_4318.png)
 
@@ -47,6 +47,12 @@
 * 使用默认值，如下图所示
 
  ![openstack_install_4319](../../images/openstack_install_4319.png)
+
+## 配置公网
+
+* 为所有节点分配公网IP地址，使用默认配置，如下图所示。
+
+ ![openstack_install_43112](../../images/openstack_install_43112.png)
 
 ## 配置日志服务器
 
@@ -60,29 +66,35 @@
 
  ![openstack_install_43111](../../images/openstack_install_43111.png)
 
-## 配置公网
-
-* 将指定SSH公钥保存到所有节点，环境部署完成后，可使用公钥对应的SSH私钥访问节点，如下图所示。
-
- ![openstack_install_43112](../../images/openstack_install_43112.png)
-
 ## 配置存储
 
 * 配置存储，如下图所示。
 
  ![openstack_install_43113](../../images/openstack_install_43113.png)
 
-## 配置Eqlx存储
+## 配置Neutron LBaaS
 
-* 配置Eqlx服务器相关参数，如下图所示。
-
- ![openstack_install_43114](../../images/openstack_install_43114.png)
-
+ ![截图]()
+ 
 ## 配置Zabbix
 
 * 配置Zabbix帐号，EayunStack未使用Zabbix，此处保持默认值，如下图所示。
 
  ![openstack_install_43115](../../images/openstack_install_43115.png)
+ 
+## 配置Neutron VPNaaS
+
+ ![截图]()
+
+## 配置Eqlx存储
+
+* 配置Eqlx服务器相关参数，如下图所示。
+
+ ![openstack_install_43114](../../images/openstack_install_43114.png)
+ 
+## 配置Neutron FWaas
+
+ ![截图]()
 
 ## 配置Provision方式
 
