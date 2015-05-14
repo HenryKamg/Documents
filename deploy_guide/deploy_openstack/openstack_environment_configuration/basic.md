@@ -74,7 +74,7 @@
 
 ## 配置Neutron LBaaS
 
- ![截图]()
+ ![openstack_install_43120](../../images/openstack_install_43120.png)
  
 ## 配置Zabbix
 
@@ -84,7 +84,7 @@
  
 ## 配置Neutron VPNaaS
 
- ![截图]()
+ ![openstack_install_43121](../../images/openstack_install_43121.png)
 
 ## 配置Eqlx存储
 
@@ -94,7 +94,7 @@
  
 ## 配置Neutron FWaas
 
- ![截图]()
+ ![openstack_install_43122](../../images/openstack_install_43122.png)
 
 ## 配置Provision方式
 
