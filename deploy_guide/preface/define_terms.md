@@ -19,8 +19,8 @@ EayunStack环境中的网络分为以下几种角色。
 |网络角色|简介|
 |----|----|
 |PXE|Fuel部署网络，所有OpenStack节点通过该网络实现网络安装|
-|Management|OpenStack环境管理网络，Controller节点通过该网络管理其它节点|
-|Public|连接公网的网络|
+|Management|承载Controller节点与其它节点之间的管理流量|
+|Public|承载虚拟机与互联网上主机之间通信的网络流量|
 |Private|承载虚拟机之间通信的网络流量|
 |Storage|承载虚拟机与存储服务器之间数据传输的网络流量|
 |Ceph Cluster|承载Ceph-osd节点间数据同步的网络流量|
