@@ -4,6 +4,7 @@
 * [前言](preface/preface.md)
    * [约定](preface/conventions.md)
    * [修订历史](preface/revision_history.md)
+   * [术语定义](preface/define_terms.md)
 * [基本环境搭建](basic_environment/basic_environment.md)
    * [环境需求](basic_environment/environment_requirement/environment_requirement.md)
        * [安装介质](basic_environment/environment_requirement/installation_media.md)
