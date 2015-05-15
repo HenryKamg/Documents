@@ -67,9 +67,12 @@
 
  ![fuel_install_10](../images/fuel_install_10.png)
 
+## 修改root用户密码
 
+> ###### 注意
+> Fuel节点可以通过SSH密钥对验证方式登录后续部署的所有OpenStack节点，因此，对Fuel节点root帐号的进行加固是一项非常重要的工作，因此，在Fuel节点部署完成后，管理员需要登录到Fuel节点，修改root帐号密码。
 
-
+ ![fuel_install_11](../images/fuel_install_11.png)
 
 
 
