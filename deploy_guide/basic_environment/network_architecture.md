@@ -4,7 +4,7 @@
 
 EayunStack网络架构下图所示，共有五个逻辑网络，分别是：
 
-* Management Network：承载Fuel PXE网络流量及OpenStack管理网络流量。
+* PXE+Management Network：承载Fuel PXE网络流量及OpenStack管理网络流量。
 * Storage Network：承载存储网络流量。
 * Private Network：承载虚拟机间通信网络流量。
 * Public Network：承载虚拟机与外部网络通信网络流量。
