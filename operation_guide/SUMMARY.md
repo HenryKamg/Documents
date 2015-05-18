@@ -11,7 +11,7 @@
        * [删除云主机](basic_admin/instance_management/delete_instance.md)
        * [查看云主机详情](basic_admin/instance_management/show_instance_detail.md)
        * [暂停与挂起云主机](basic_admin/instance_management/suspended_instance.md)
-   * [模板管理](basic_admin/images_management/imange.md)
+   * [模板管理](basic_admin/images_management/image.md)
        * [查看已有模板](basic_admin/images_management/show_imange.md)
        * [导入模板](basic_admin/images_management/import_image.md)
        * [删除模板](basic_admin/images_management/delete_image.md)

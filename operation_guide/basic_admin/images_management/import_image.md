@@ -4,6 +4,8 @@
 
 * Web horizo界面点击镜像---创建镜像
 
+具体的参数解释见下面的通过命令行导入模板
+
 ![Image-Create](../Picture/image_create1.jpg)
 
 * 等待一段时间后，镜像创建完成
@@ -27,7 +29,16 @@ glance image-create [--id <IMAGE_ID>] [--name <NAME>] [--store <STORE>]
                            [--progress]
 ```
 
-常用的选项--name，--disk-format，--file，--is-public，--container-format
+常用的选项如下:
+
+* ** --file ** 从该文件导入模板
+* ** --name ** 导入的模板的名字
+* ** --disk-format ** 待导入模板的磁盘格式, 如 qcow2, raw, iso 等, 根据实际情况选择
+* ** --container-format ** 待导入模板的容器格式, 如 ami, bare等, 根据实际情况选择. 一般没有容器的话, 那么此处一般选择 bare
+* ** --is-public ** 该模板是否公有
+* ** --is-public ** 额外的模板属性,比如ami的模板需要设置 aki和ari属性.
+* ** --min-disk ** 启动该模板需要的最小磁盘, 默认没有限制, 根据实际规格定义
+* ** --min-ram ** 启动该模板需要的最小内存, 默认没有限制, 根据实际规格定义
 
 ### 示例
 
