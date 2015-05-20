@@ -12,8 +12,6 @@ EayunStack网络架构下图所示，共有五个逻辑网络，分别是：
 
 ![EayunStack-Network-Architecture](../images/EayunStack-Network-Architecture.png)
 
-## 网络拓扑图
 
-![EayunStack-Network-Topology](../images/EayunStack-Network-Topology.svg)
 
 
