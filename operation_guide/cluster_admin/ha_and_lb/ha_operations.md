@@ -56,7 +56,7 @@
     停止 Corosync + Pacemaker
     # pcs cluster stop [--all]
 
-如果加上 %%--all%% 参数，则是对 HA 集群中所有的节点进行操作。
+如果加上 **--all** 参数，则是对 HA 集群中所有的节点进行操作。
 
 # 临时停用/重新启用某一节点 #
 
@@ -89,7 +89,7 @@
 
     # pcs resource show vip__public
      Resource: vip__public (class=ocf provider=mirantis type=ns_IPaddr2)
-      Attributes: nic=br-ex base_veth=br-ex-hapr ns_veth=hapr-p ip=25.0.0.2 iflabel=ka cidr_netmask=24 ns=haproxy gateway=link gateway_metric=10 other_networks=false iptables_start_rules="iptables -t mangle -I PREROUTING -i br-ex-hapr -j MARK --set-mark 0x2a ; iptables -t nat -I POSTROUTING -m mark --mark 0x2a ! -o br-ex -j MASQUERADE" iptables_stop_rules="iptables -t mangle -D PREROUTING -i br-ex-hapr -j MARK --set-mark 0x2a ; iptables -t nat -D POSTROUTING -m mark --mark 0x2a ! -o br-ex -j MASQUERADE" iptables_comment=masquerade-for-public-net 
+      Attributes: nic=br-ex base_veth=br-ex-hapr ns_veth=hapr-p ip=25.0.0.2 iflabel=ka cidr_netmask=24 ns=haproxy gateway=link gateway_metric=10 other_networks=false iptables_start_rules="iptables -t mangle -I PREROUTING -i br-ex-hapr -j MARK --set-mark 0x2a ; iptables -t nat -I POSTROUTING -m mark --mark 0x2a ! -o br-ex -j MASQUERADE" iptables_stop_rules="iptables -t mangle -D PREROUTING -i br-ex-hapr -j MARK --set-mark 0x2a ; iptables -t nat -D POSTROUTING -m mark --mark 0x2a ! -o br-ex -j MASQUERADE" iptables_comment=masquerade-for-public-net
       Meta Attrs: migration-threshold=3 failure-timeout=60 resource-stickiness=1
       Operations: monitor interval=3 timeout=30 (vip__public-monitor-3)
                   start interval=0 timeout=30 (vip__public-start-0)
@@ -130,26 +130,30 @@
     # pcs resource ban <stateful-resource-id> <node-name> --master
 
 
-注意：
-
-stateful-resource-id 对应于基础资源之上的 stateful 资源，如:
-
+> #### 重要
+> 提醒用户进一步操作之前必须谨慎
+>stateful-resource-id 对应于基础资源之上的 stateful 资源，如:
+>
     # pcs resource show master_p_rabbitmq-server
-     Master: master_p_rabbitmq-server
-      Meta Attrs: notify=true ordered=false interleave=true master-max=1 master-node-max=1 target-role=Started
-      Resource: p_rabbitmq-server (class=ocf provider=mirantis type=rabbitmq-server)
-       Attributes: node_port=5673 command_timeout="-s KILL"
-       Meta Attrs: migration-threshold=INFINITY failure-timeout=180s
-       Operations: monitor interval=30 timeout=60 (p_rabbitmq-server-monitor-30)
-                   monitor interval=27 role=Master timeout=60 (p_rabbitmq-server-monitor-27)
-                   start interval=0 timeout=360 (p_rabbitmq-server-start-0)
-                   stop interval=0 timeout=60 (p_rabbitmq-server-stop-0)
-                   promote interval=0 timeout=120 (p_rabbitmq-server-promote-0)
-                   demote interval=0 timeout=60 (p_rabbitmq-server-demote-0)
-                   notify interval=0 timeout=180 (p_rabbitmq-server-notify-0)
+>     Master: master_p_rabbitmq-server
+>      Meta Attrs: notify=true ordered=false interleave=true master-max=1 master-node-max=1 target-role=Started
+>      Resource: p_rabbitmq-server (class=ocf provider=mirantis type=rabbitmq-server)
+>       Attributes: node_port=5673 command_timeout="-s KILL"
+>       Meta Attrs: migration-threshold=INFINITY failure-timeout=180s
+>       Operations: monitor interval=30 timeout=60 (p_rabbitmq-server-monitor-30)
+>                   monitor interval=27 role=Master timeout=60 (p_rabbitmq-server-monitor-27)
+>                   start interval=0 timeout=360 (p_rabbitmq-server-start-0)
+>                   stop interval=0 timeout=60 (p_rabbitmq-server-stop-0)
+>                   promote interval=0 timeout=120 (p_rabbitmq-server-promote-0)
+>                   demote interval=0 timeout=60 (p_rabbitmq-server-demote-0)
+>                   notify interval=0 timeout=180 (p_rabbitmq-server-notify-0)
 
 
 其中， p\_rabbitmq-server 是基础资源， master\_p\_rabbitmq-server 是 stateful 资源。
+
+> #### 重要
+> 目前 EayunStack 上没有　stateful 资源
+
 
 ## 取消之前 ban 命令产生的资源启动限制 ##
 

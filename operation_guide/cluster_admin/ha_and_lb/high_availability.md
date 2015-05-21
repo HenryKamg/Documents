@@ -52,7 +52,7 @@ CIB （Cluster information base ，集群信息数据库）是整个高可用的
         ...
       </configuration>
       ...
-    </cib> 
+    </cib>
 
 # <a name="eayunstack_ha_resources_list" style="text-decoration: none; color: inherit;" />EayunStack 高可用集群中的资源
 EayunStack 高可用集群中包含以下资源：
@@ -69,6 +69,7 @@ EayunStack 高可用集群中包含以下资源：
 | p\_neutron-dhcp-agent | OpenStack Neutron DHCP Agent 服务 | ocf::mirantis:neutron-agent-dhcp  |
 | p\_neutron-metadata-agent | OpenStack Neutron Metadata Agent 服务 | ocf::mirantis:neutron-agent-metadata |
 | p\_neutron-l3-agent | OpenStack Neutron Layer 3 Agent 服务 | ocf::mirantis:neutron-agent-l3 |
+| p\_neutron-lbaas-agent | OpenStack Neutron LBAAS 服务 | ocf:eayun:neutron-agent-lbaas |
 | p\_mysql | Mariadb（Mysql） 数据库服务 | ocf::mirantis:mysql-wss |
 | p\_rabbitmq-server | RabbitMQ 消息队列服务 | ocf::rabbitmq:rabbitmq-server |
 | p\_haproxy | HAPorxy 服务 | ocf::mirantis:ns\_haproxy |

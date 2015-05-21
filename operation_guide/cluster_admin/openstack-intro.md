@@ -49,6 +49,14 @@ glance 服务运行在控制节点中，有两个主要的服务:
 * **nova-compute** 调用后端的 hypervisor API（e.g. libvirt）进行云主机的管理操作。如创建/删除/查看内存使用等。服务名是 openstack-nova-compute.service。运行在计算节点
 
 #### neutron
+neutron 的所有服务都运行在控制节点,
+* **neutron-qos-agent** neutron 的 qos 组件, 用 systemctl 管理, 服务名是 neutron-qos-agent.service
+* **neutron-server** neutron 的服务端, 用 systemctl 管理, 服务名是 neutron-server.service
+* **neutron-openvswitch-agent** neutron 的openvswitch 插件, 使用 pacemaker 管理, 资源ID是 p_neutron-openvswitch-agent
+* ** neutron-dhcp-agent** 用来提供dhcp服务, 使用 pacemaker 管理, 资源ID是p_neutron-dhcp-agent
+* ** neutron-metadata-agent** 转发云主机的 metadata 请求到 nova-api, 使用 pacemaker 管理, 资源ID是 p_neutron-metadata-agent
+* ** neutron-l3-agent** neutron 的 l3 agent, 提供l3层的网络功能, 使用 pacemaker 管理, 资源ID是 p_neutron-l3-agent
+* ** neutron-lbaas-agent** 负载均衡agent, 提供网络负载均衡, 使用 pacemaker 管理, 资源ID是 p_neutron-lbaas-agent
 
 #### horzion
 

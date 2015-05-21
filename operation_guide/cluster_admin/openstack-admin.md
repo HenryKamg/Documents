@@ -200,6 +200,26 @@ cinder 有四个服务:
 > 如果重启了计算节点的 libvirt，那么需要重启相应的计算节点的 nova-comupte 服务
 
 #### neutron
+##### 服务管理
+| 服务/资源ID | 服务名/资源ID | 管理方式 |
+| ---- | ---- | ---- |
+| neutron-qos-agent | neutron-qos-agent.service | systemctl |
+| neutron-server | neutron-server.service | systemctl |
+| neutron-openvswitch-agent | p_neutron-openvswitch-agent | pacemaker |
+| neutron-dhcp-agent | p_neutron-dhcp-agent | pacemaker |
+| neutron-metadata-agent | p_neutron-metadata-agent | pacemaker |
+| neutron-l3-agent | p_neutron-l3-agent | pacemaker |
+|neutron-lbaas-agent | p_neutron-lbaas-agent | pacemaker |
+
+使用 sytemctl 管理的服务：
+```
+# systemctl start [服务名] #启动服务
+# systemctl stop [服务名] #关闭服务
+# systemctl restart [服务名] #重启服务
+```
+
+使用 pacemaker 管理的服务见: [EayunStack 基础服务集群中的常用操作](../cluster_admin/ha_and_lb/eayunstack_cluster_operations.md)
+
 ##### 查看网络各个 agent 及其状态
 ```
 [root@node-1 ~]# neutron agent-list

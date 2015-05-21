@@ -48,7 +48,7 @@ EayunStack 负载均衡集群中包含的服务有：
 
 | 服务 | 监听地址 | 说明 |
 |------|----------|------|
-| horizon | vip\_\_pulic:80 | |
+| horizon | vip\_\_public:80 | |
 | keystone-1 | vip\_\_public:5000<br />vip\_\_management:5000 | |
 | keystone-2 | vip\_\_public:35357<br />vip\_\_management:35357 | |
 | nova-api-1 | vip\_\_public:8773<br />vip\_\_management:8773 | |
