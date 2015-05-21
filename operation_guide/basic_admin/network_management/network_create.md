@@ -4,6 +4,8 @@
 
 ### 通过Web horizon创建外部网络
 
+  外部网络只能在admin项目下进行创建，因此创建外部网络时需使用admin用户登录操作
+
 * 登录Web horizon点击管理员----系统----网络----创建网络
 
 ![Networkext_Create](../Picture/network_create1.jpg)

@@ -31,6 +31,12 @@
 
 > ``` nova delete INSTANCE```
 
+修改云主机状态
+> ```nova reset-state --active server``` (当云主机状态出现问题时，改变云主机状态）
+
+强制删除云主机
+> ```nova force-delete server``` （当云主机不能正常删除时，可采取强制删除）
+
 
 ### 示例如下
 
