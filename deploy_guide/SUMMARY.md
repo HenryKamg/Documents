@@ -29,6 +29,10 @@
    * [配置Ceph Cluster网络](deploy_openstack/ceph_cluster_network_configuration.md)
    * [验证网络](deploy_openstack/verify_network.md)
    * [部署节点](deploy_openstack/deploy_node.md)
+* [环境备份](env_backup/env_backup.md)
+   * [Fuel节点备份](env_backup/fuel_backup.md)
+   * [OpenStack数据库备份](env_backup/openstack_db_backup.md)
+   * [OpenStack配置文件备份](env_backup/openstack_profile_backup.md)
 * [环境变更](change_environment/change_environment.md)
    * [增加节点](change_environment/add_node.md)
 
