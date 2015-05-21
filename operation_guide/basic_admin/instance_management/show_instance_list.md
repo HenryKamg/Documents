@@ -7,7 +7,7 @@
 
  ![instance_list](../Picture/instance_list.jpg)
 
-查看所有云主机信息，使用admin用户登录平台，点击管理员----系统----实例，将列出所有云主机信息
+查看所有云主机信息，使用admin用户登录平台，点击管理员----系统----实例，将列出所有云主机信息,同时可查看云主机所在宿主机
 
  ![instance_list](../Picture/instances_list1.jpg)
 
