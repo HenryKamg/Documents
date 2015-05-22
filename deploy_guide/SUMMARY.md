@@ -33,7 +33,7 @@
    * [Fuel节点备份](env_backup/fuel_backup.md)
    * [OpenStack数据库备份](env_backup/openstack_db_backup.md)
    * [OpenStack配置文件备份](env_backup/openstack_profile_backup.md)
-* [环境初始化](env_init.md)
+* [环境初始化](env_init/env_init.md)
 * [环境变更](change_environment/change_environment.md)
    * [增加节点](change_environment/add_node.md)
 
