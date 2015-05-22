@@ -97,6 +97,7 @@
        * [配置文件备份与恢复](backup_restore/openstack_backup_restore/profile_backup.md)
 * 故障排除
    * [故障检测工具](troubleshooting/troubleshooting_tools.md)
+   * [常见故障排除示例](troubleshooting/troubleshooting_example.md)
    * 日志分析
        * [简介](troubleshooting/log_analysis/intro.md)
        * [Keystone日志](troubleshooting/log_analysis/keystone_log.md)
