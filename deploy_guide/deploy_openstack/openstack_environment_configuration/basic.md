@@ -17,9 +17,9 @@
 
  ![openstack_install_4312](../../images/openstack_install_4312.png)
 
-## 通用配置(*)
+## 通用配置
 
-* 保存OpenStack各服务的Debug消息，如下图所示。
+* ***可使用默认配置***，保存OpenStack各服务的Debug消息，如下图所示。
 
  ![openstack_install_4313](../../images/openstack_install_4313.png)
 
@@ -69,9 +69,9 @@
 
  ![openstack_install_43111](../../images/openstack_install_43111.png)
 
-## 配置存储(*)
+## 配置存储
 
-* 配置存储，如下图所示。
+* ***可使用默认配置***，配置存储，如下图所示。
 
  ![openstack_install_43113](../../images/openstack_install_43113.png)
 
