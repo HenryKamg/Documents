@@ -18,7 +18,10 @@
 ```
 #!/bin/bash
 backup_dir="/var/lib/backups/profile"
-filename="${backup_dir}/nova-`hostname`-`eval date +%Y%m%d`.tgz"
+if ! [ -e ${backup_dir} ]; then
+    mkdir -p ${backup_dir}
+fi
+filename="${backup_dir}/nova-`hostname`-`eval date +%Y%m%d%H%M`.tgz"
 tar -czf $filename /etc/nova
 ```
 
