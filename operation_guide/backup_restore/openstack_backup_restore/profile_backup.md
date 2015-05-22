@@ -10,6 +10,9 @@
 |cinder|/etc/cinder|controller|
 |neutron|/etc/neutron|controller</br>compute|
 |ceilometer|/etc/ceilometer|controller</br>compute|
+|rabbitmq|/etc/rabbitmq|controller|
+|mysql|/etc/mysql|controller|
+|ceph|/etc/ceph|controller</br>compute</br>ceph-osd|
 
 ## 备份配置文件
 
