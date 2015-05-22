@@ -2,10 +2,13 @@
 
 在EayunStack环境运行过程中，可能会出现一些使用cinder命令无法删除的错误volume，此时就需要使用该命令进行强制删除。
 
+> ###### 注意
+> 该命令只能在**Controller**节点使用
+
 ## 命令格式
 
 ```
-# eayunstack manage volume --help
+[controller]$ eayunstack manage volume --help
 usage: eayunstack manage volume [-h] [-d] [--id ID]
 
 Volume Management
