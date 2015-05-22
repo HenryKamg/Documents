@@ -45,6 +45,7 @@
 > ###### 注意
 > * cinder 备份操作只能通过命令行或者 API 实现, horizon 暂不支持
 > * 由于 eqlx 存储最大管理连接数的限制, 每个 backup服务要占用一个连接session, 影响 cinder-volume 的使用, cinder backup 按需开启, 即需要备份和恢复的时候打开该服务, 完成备份关闭该服务.
+> * 备份时卷状态必须在"available" 无云主机使用
 
 #### 恢复volume
 * 确保 cinder-backup 服务处在运行状态, 如果该服务没有运行, 启动它
@@ -65,5 +66,6 @@
 > ###### 注意
 > * cinder 恢复操作只能通过命令行或者 API 实现, horizon 暂不支持
 > * 恢复时只能指定要恢复之前备份的卷的ID, 通过 ```cinder backup-list``` 获取, 不能指定名字
+> * 恢复时需要注意恢复使用的是cinder backup-list 查询的id恢复
 
 #### 恢复rabbitmq集群
