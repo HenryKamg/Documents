@@ -104,55 +104,46 @@ pcs resource ban p_rabbitmq-server <节点名称>
 pcs resource clear p_rabbitmq-server <节点名称>
 ```
 如果是整个 rabbitmq 集群出现故障，则需要按如下步骤恢复集群：
+
 1. 使用如下命令依次停掉所有节点上的 p_rabbitmq-server 资源。
-```
-pcs resource ban p_rabbitmq-server <节点名称>
-```
+
+    ```
+    pcs resource ban p_rabbitmq-server <节点名称>
+    ```
+
 2. 只启动某一节点上的 p_rabbitmq-server 资源，等启动完成再启动其他节点上的 p_rabbitmq-server 资源。
-```
-pcs resource clear p_rabbitmq-server <第一个节点名称>
-```
-第一个节点启动完成后，再启动其它节点
-```
-pcs resource clear p_rabbitmq-server <其它节点名称>
-```
+
+    ```
+    pcs resource clear p_rabbitmq-server <第一个节点名称>
+    ```
+
+    第一个节点启动完成后，再启动其它节点
+
+    ```
+    pcs resource clear p_rabbitmq-server <其它节点名称>
+    ```
 3. 操作完成以后，再确认一下集群状态
-```
-rabbitmqctl cluster_status
-```
+
+    ```
+    rabbitmqctl cluster_status
+    ```
+
 4. 最后，由于很多 openstack 服务不能及时的断线重连 rabbitmq，故而需要手动重启各 openstack 服务。
-控制节点：
-```
-pcs resource disable/enable clone_p_neutron-lbaas-agent
-pcs resource disable/enable clone_p_neutron-lbaas-agent
-pcs resource disable/enable clone_p_neutron-l3-agent
-pcs resource disable/enable clone_p_neutron-metadata-agent
-pcs resource disable/enable p_neutron-dhcp-agent
-pcs resource disable/enable clone_p_neutron-openvswitch-agent
-pcs resource disable/enable clone_p_openstack-heat-engine
-systemctl restart neutron-server \
-                  openstack-nova-api \
-                  openstack-nova-cert \
-                  openstack-nova-conductor \
-                  openstack-nova-consoleauth \
-                  openstack-nova-novncproxy \
-                  openstack-nova-objectstore \
-                  openstack-nova-scheduler
-                  openstack-cinder-api \
-                  openstack-cinder-volume \
-                  openstack-cinder-scheduler \
-                  openstack-heat-api-cfn \
-                  openstack-heat-api-cloudwatch \
-                  openstack-heat-api \
-                  openstack-keystone \
-                  openstack-glance-api \
-                  openstack-glance-registry \
-```
-计算节点：
-```
-systemctl restart openstack-nova-compute \
-                  neutron-openvswitch-agent
-```
+
+    控制节点：
+
+        pcs resource disable/enable clone_p_neutron-lbaas-agent
+        pcs resource disable/enable clone_p_neutron-lbaas-agent
+        pcs resource disable/enable clone_p_neutron-l3-agent
+        pcs resource disable/enable clone_p_neutron-metadata-agent
+        pcs resource disable/enable p_neutron-dhcp-agent
+        pcs resource disable/enable clone_p_neutron-openvswitch-agent
+        pcs resource disable/enable clone_p_openstack-heat-engine
+        systemctl restart neutron-server openstack-nova-api openstack-nova-cert openstack-nova-conductor openstack-nova-consoleauth openstack-nova-novncproxy openstack-nova-objectstore openstack-nova-scheduler openstack-cinder-api openstack-cinder-volume openstack-cinder-scheduler openstack-heat-api-cfn openstack-heat-api-cloudwatch openstack-heat-api openstack-keystone openstack-glance-api openstack-glance-registry
+
+    计算节点：
+
+        systemctl restart openstack-nova-compute neutron-openvswitch-agent
 
 
 > ###### 注意
