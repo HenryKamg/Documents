@@ -76,7 +76,7 @@
    * [Ceph集群管理](cluster_admin/ceph-intro.md)
        * [简介](cluster_admin/ceph-intro.md)
        * [常用管理命令](cluster_admin/ceph-admin.md)
-* 运维工具
+* [运维工具](operation_tools/introduction.md)
    * [简介](operation_tools/introduction.md)
    * [健康检测命令](operation_tools/health_check/health_check.md)
        * [基础环境检测](operation_tools/health_check/check_environment.md)
@@ -90,12 +90,12 @@
        * [Fuel节点备份](operation_tools/fuel_management/fuel_backup.md)
        * [Fuel节点恢复](operation_tools/fuel_management/fuel_restore.md)
    * [初始化命令](operation_tools/init/init.md)
-* 备份与恢复
+* [备份与恢复](backup_restore/intro.md)
    * [Feul备份与恢复](backup_restore/fuel_backup_restore.md)
    * [OpenStack备份与恢复](backup_restore/openstack_backup_restore/openstack_backup.md)
        * [数据库备份与恢复](backup_restore/openstack_backup_restore/database_backup.md)
        * [配置文件备份与恢复](backup_restore/openstack_backup_restore/profile_backup.md)
-* 故障排除
+* [故障排除](troubleshooting/intro.md)
    * [故障检测工具](troubleshooting/troubleshooting_tools.md)
    * [常见故障排除示例](troubleshooting/troubleshooting_example.md)
    * 日志分析

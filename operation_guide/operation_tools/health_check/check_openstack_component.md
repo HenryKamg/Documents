@@ -322,13 +322,29 @@ optional arguments:
 * Fuel节点执行命令
 
 ```
-
+[fuel]$ eayunstack doctor stack --ceph
+[ INFO  ] =====> start running check_ceph_osd_profile
+[ INFO  ] Checking "Ceph_osd" Component
+          Profile: /etc/ceph/ceph.conf
+[ INFO  ] =====> start running check_ceph_osd_service
+[ INFO  ] Checking "Ceph_osd" Component
+[ INFO  ] -Service Status
+          Service ceph is running ...
+          Service ceph is enabled ...
 ```
 
 * Ceph-osd节点执行命令
 
 ```
-
+[ceph-osd]$ eayunstack doctor stack --ceph
+[ INFO  ] =====> start running check_ceph_osd_profile
+[ INFO  ] Checking "Ceph_osd" Component
+          Profile: /etc/ceph/ceph.conf
+[ INFO  ] =====> start running check_ceph_osd_service
+[ INFO  ] Checking "Ceph_osd" Component
+[ INFO  ] -Service Status
+          Service ceph is running ...
+          Service ceph is enabled ...
 ```
 
 ## 单独检测配置文正确性
