@@ -55,8 +55,12 @@
        * [创建磁盘卷快照](basic_admin/volumes_management/volumes_snapshot.md)
        * [备份磁盘卷](basic_admin/volumes_management/volumes_backup.md)
        * [恢复磁盘卷](basic_admin/volumes_management/volumes_restore.md)
-* 高级管理
-   * Eqlx存储管理
+* [高级管理](.md)
+   * [Eqlx存储管理](eqlx.md)
+   * [FWaaS](fwaas.md)
+   * [LBaaS](lbaas.md)
+   * [vpnaas](vpnaas.md)
+   * [多外网子网时使用固定IP](ip.md)
 * [集群管理](cluster_admin/cluster_admin.md)
    * [高可用和负载均衡集群](cluster_admin/ha_and_lb/introduction.md)
        * [高可用集群](cluster_admin/ha_and_lb/high_availability.md)
