@@ -69,3 +69,92 @@
 > * 恢复时需要注意恢复使用的是cinder backup-list 查询的id恢复
 
 #### 恢复rabbitmq集群
+* 通过 pacemaker 确认 rabbitmq 服务状态
+```
+pcs resource show
+```
+正常情况下命令会显示 p_rabbitmq-server 在各个控制节点上都是 Started 状态，示例：
+
+    [root@node-1 ~]# pcs resource show
+                ... ...
+    Clone Set: clone_p_rabbitmq-server [p_rabbitmq-server]
+        Started: [ node-1.eayun.com node-2.eayun.com node-3.eayun.com ]
+                ... ...
+
+如果有某一控制节点不在 Started 列表中，则相应节点上 rabbitmq 服务状态存在问题。
+* 通过 rabbitmqctl 命令进一步确认 rabbitmq 集群的状态
+```
+rabbitmqctl cluster_status
+```
+正常情况下命令会显示各控制节点名称在 nodes 和 running_nodes 列表中，示例：
+
+    [root@node-1 ~]# rabbitmqctl cluster_status
+    Cluster status of node 'rabbit@node-1' ...
+    [{nodes,[{disc,['rabbit@node-1','rabbit@node-2','rabbit@node-3']}]},
+    {running_nodes,['rabbit@node-2','rabbit@node-3','rabbit@node-1']},
+    {cluster_name,<<"rabbit@node-1.eayun.com">>},
+    {partitions,[]}]
+    ...done.
+如果某一控制节点不在 nodes 或 running_nodes 列表中，则相应节点出现故障；
+另外 partitions 一行列表正常情况为空，如果不为空也意味着集群已故障。
+* 恢复故障节点
+如果只是单一节点 rabbitmq 服务故障，可通过重启节点上的 rabbitmq 来使其恢复。
+```
+pcs resource ban p_rabbitmq-server <节点名称>
+pcs resource clear p_rabbitmq-server <节点名称>
+```
+如果是整个 rabbitmq 集群出现故障，则需要按如下步骤恢复集群：
+1. 使用如下命令依次停掉所有节点上的 p_rabbitmq-server 资源。
+```
+pcs resource ban p_rabbitmq-server <节点名称>
+```
+2. 只启动某一节点上的 p_rabbitmq-server 资源，等启动完成再启动其他节点上的 p_rabbitmq-server 资源。
+```
+pcs resource clear p_rabbitmq-server <第一个节点名称>
+```
+第一个节点启动完成后，再启动其它节点
+```
+pcs resource clear p_rabbitmq-server <其它节点名称>
+```
+3. 操作完成以后，再确认一下集群状态
+```
+rabbitmqctl cluster_status
+```
+4. 最后，由于很多 openstack 服务不能及时的断线重连 rabbitmq，故而需要手动重启各 openstack 服务。
+控制节点：
+```
+pcs resource disable/enable clone_p_neutron-lbaas-agent
+pcs resource disable/enable clone_p_neutron-lbaas-agent
+pcs resource disable/enable clone_p_neutron-l3-agent
+pcs resource disable/enable clone_p_neutron-metadata-agent
+pcs resource disable/enable p_neutron-dhcp-agent
+pcs resource disable/enable clone_p_neutron-openvswitch-agent
+pcs resource disable/enable clone_p_openstack-heat-engine
+systemctl restart neutron-server \
+                  openstack-nova-api \
+                  openstack-nova-cert \
+                  openstack-nova-conductor \
+                  openstack-nova-consoleauth \
+                  openstack-nova-novncproxy \
+                  openstack-nova-objectstore \
+                  openstack-nova-scheduler
+                  openstack-cinder-api \
+                  openstack-cinder-volume \
+                  openstack-cinder-scheduler \
+                  openstack-heat-api-cfn \
+                  openstack-heat-api-cloudwatch \
+                  openstack-heat-api \
+                  openstack-keystone \
+                  openstack-glance-api \
+                  openstack-glance-registry \
+```
+计算节点：
+```
+systemctl restart openstack-nova-compute \
+                  neutron-openvswitch-agent
+```
+
+
+> ###### 注意
+> * pcs resource clear/ban 命令，一条命令只接受一个节点名称，多个节点须使用多条命令。
+> * 除非整个 rabbitmq 集群故障，否则不要重启所有 openstack 服务。
