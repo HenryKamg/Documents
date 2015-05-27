@@ -64,24 +64,37 @@ Created a new subnet:
 示例：
 
 ```
-neutron router-gateway-set 32dafff3-0d36-497c-8c99-c2c170d4419c efff48ea-d2d9-4194-9e6e-02b692b3c159 10.1.101.81
-Set gateway for router 32dafff3-0d36-497c-8c99-c2c170d4419c
+neutron router-gateway-set d712c0c0-4301-45c0-9d40-cb9e6d5a0c08 efff48ea-d2d9-4194-9e6e-02b692b3c159 --external-fixed-ip 10.1.101.85
+Set gateway for router d712c0c0-4301-45c0-9d40-cb9e6d5a0c08
 ```
+
+执行`neutron router-list'
+```
+| d712c0c0-4301-45c0-9d40-cb9e6d5a0c08 | router02      | {"network_id": "efff48ea-d2d9-4194-9e6e-02b692b3c159", "enable_snat": true, "external_fixed_ips": [{"subnet_id": "8d10696f-215c-430c-8789-6e3c8407f628", "ip_address": "10.1.101.85"}]} | False       | False |
+
+```
+
+可以看到已经绑定成功
 
 3.
 将浮动IP绑定到对应的实例上
 
+命令：neutron floatingip-create --port-id ID --fixed-ip-address IP --floating-ip-address IP NETWORK_ID
+
+示例：
+
 ```
- neutron floatingip-create --port-id fd056691-831a-4446-85f0-c28dbdbd7a07 efff48ea-d2d9-4194-9e6e-02b692b3c159Created a new floatingip:
+ neutron floatingip-create --port-id 799fb795-27ed-4e30-8a4c-f82c204cf995 --fixed-ip-address 192.168.201.108 --floating-ip-address 10.1.101.83 efff48ea-d2d9-4194-9e6e-02b692b3c159
+Created a new floatingip:
 +---------------------+--------------------------------------+
 | Field               | Value                                |
 +---------------------+--------------------------------------+
-| fixed_ip_address    | 192.168.202.5                        |
-| floating_ip_address | 10.1.101.81                          |
+| fixed_ip_address    | 192.168.201.108                      |
+| floating_ip_address | 10.1.101.83                          |
 | floating_network_id | efff48ea-d2d9-4194-9e6e-02b692b3c159 |
-| id                  | 4fccdea2-0dd8-40c8-88b4-ffc287b7b9c3 |
-| port_id             | fd056691-831a-4446-85f0-c28dbdbd7a07 |
-| router_id           | 32dafff3-0d36-497c-8c99-c2c170d4419c |
+| id                  | 64f2717f-37b7-4ad5-9376-9e9313065036 |
+| port_id             | 799fb795-27ed-4e30-8a4c-f82c204cf995 |
+| router_id           | 4bafb176-fcea-4512-9813-a302569c23fb |
 | status              | DOWN                                 |
 | tenant_id           | b2b0b598549d4231a501664ea7495d7c     |
 +---------------------+--------------------------------------+
