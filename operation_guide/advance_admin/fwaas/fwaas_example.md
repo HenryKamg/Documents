@@ -50,7 +50,8 @@ Created a new firewall_rule:
 2.
 创建防火墙策略
 ```
- neutron firewall-policy-create --firewall-rules "9d5cd686-c429-4d2b-9e27-3eb15c87dcd7" policy1Created a new firewall_policy:
+ neutron firewall-policy-create --firewall-rules "9d5cd686-c429-4d2b-9e27-3eb15c87dcd7" policy1
+ Created a new firewall_policy:
 +----------------+--------------------------------------+
 | Field          | Value                                |
 +----------------+--------------------------------------+
