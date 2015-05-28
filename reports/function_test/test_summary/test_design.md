@@ -2,15 +2,15 @@
 
 由于 EayunStack 的系统特性，对功能的测试以模块进行划分，如下：
 
-|模块名称|测试内容|
-|--------|--------|
-|Authenticate|各个模块的 token|
-|Keystone|keystone 模块的功能|
-|Glance|glance 模块的功能|
-|Neutron|neutron 模块的功能|
-|Nova|nova 模块的功能|
-|Cinder|Cinder 模块的功能|
-|Quota|各个模块的 quota 功能|
+|模块名称|测试内容|用例总数|
+|--------|--------|--------|
+|Authenticate|各个模块的 token|5|
+|Keystone|keystone 模块的功能|15|
+|Glance|glance 模块的功能|13|
+|Neutron|neutron 模块的功能|20|
+|Nova|nova 模块的功能|42|
+|Cinder|cinder 模块的功能|42|
+|Quota|各个模块的 quota 功能|5|
 
 ## 模块测试内容
 
@@ -32,48 +32,49 @@
 
 |测试内容|用例数目|
 |--------|--------|
-|tenant||
-|user||
-|entity||
-|service||
+|tenant|4|
+|user|7|
+|entity|1|
+|service|3|
 
 ### Glance
 
 |测试内容|用例数目|
 |--------|--------|
-|image||
+|image|13|
 
 ### Neutron
 
 |测试内容|用例数目|
 |--------|--------|
-|network||
-|subnet||
-|port||
-|router||
+|network|4|
+|subnet|8|
+|port|3|
+|router|5|
 
 ### Nova
 
 |测试内容|用例数目|
 |--------|--------|
-|server||
-|keypair||
-|secgroup||
+|server|30|
+|flavor|7|
+|keypair|2|
+|secgroup|3|
 
 ### Cinder
 
 |测试内容|用例数目|
 |--------|--------|
-|volume||
-|snapshot||
+|volume|33|
+|snapshot|9|
 
 ### Quota
 
 |测试内容|用例数目|
 |--------|--------|
-|nova quota||
-|cinder quota||
-|neutron quota||
+|nova quota|2|
+|cinder quota|2|
+|neutron quota|1|
 
 ## 测试范围
 
