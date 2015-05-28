@@ -4,13 +4,13 @@
 
 |模块名称|用例个数|执行数|覆盖率(%)|未/漏测试分析和原因|
 |--------|--------|------|---------|-------------------|
-|Authenticate|||||
-|Keystone||||
-|Glance||||
-|Cinder||||
-|Neutron||||
-|Nova||||
-|Quota||||
+|Authenticate|5||||
+|Keystone|15||||
+|Glance|13||||
+|Cinder|42||||
+|Neutron|20||||
+|Nova|42||||
+|Quota|5||||
 
 > ###### 覆盖率计算：
 > 

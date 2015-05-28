@@ -133,7 +133,8 @@ Created a new member:
 创建监控：
 
 ```
-neutron lb-healthmonitor-create --delay 3 --type PING --max-retries 3 --timeout 3Created a new health_monitor:
+neutron lb-healthmonitor-create --delay 3 --type PING --max-retries 3 --timeout 3
+Created a new health_monitor:
 +----------------+--------------------------------------+
 | Field          | Value                                |
 +----------------+--------------------------------------+
