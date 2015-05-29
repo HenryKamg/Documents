@@ -11,6 +11,7 @@
 |Nova|nova 模块的功能|42|
 |Cinder|cinder 模块的功能|42|
 |Quota|各个模块的 quota 功能|5|
+|总计||142|
 
 ## 模块测试内容
 
