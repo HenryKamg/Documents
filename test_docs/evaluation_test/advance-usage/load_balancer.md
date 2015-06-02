@@ -50,4 +50,88 @@
   * 使用浏览器打开地址 "25.0.0.253"，可以访问 server-1 的 httpd 主页，显示 "I am server-1"；
   * 刷新页面，访问到 server-2 的 httpd 主页，显示 "I am server-2"。
 
+## 为云主机的负载均衡添加 Monitor
 
+* 前提：
+
+  * 已经为云主机配置好负载均衡服务 (本实验使用上述所配置的负载均衡服务)；
+  * 安全组策略允许 HTTP 连接；
+  * 防火墙规则允许 HTTP 连接；
+  * 登录到 EayunStack 管理界面。
+
+* 操作：
+
+  1. 点击左侧导航栏的 【Project】 选项，点击 【Network】 子选项，点击其中的 【Load Balancers】；
+  1. 在右侧列表中，点击 【Monitors】 标签，点击列表上方的 【Add Monitor】 按钮；
+  1. 在弹出的 【Add Monitor】 窗口中，选择 Type 为 "HTTP"，Delay 填写为 "60"，Timeout 填写为 "15"，Max Retries 填写为 "2"；
+  1. 其他保持默认配置，点击窗口下方的 【Add】 按钮；
+  1. 点击 【Pools】 标签，选择 "server-pool"，点击 【Actions】 中的 【Associate Monitor】；
+  1. 在弹出的 【Associate Monitor】 窗口中，选择 Monitor 为上述所创建的 monitor，点击窗口下方的 【Associate】 按钮。
+
+* 预期结果：
+
+  * 为云主机的负载均衡添加 Monitor 成功；
+  * 登录到 Controller 节点，执行命令：
+
+      ```
+      neutron lb-pool-stats 09a7c3f2-3057-4e9c-bfbf-9b1ab7f2a0b1
+      +--------------------+-------+
+      | Field              | Value |
+      +--------------------+-------+
+      | active_connections | 0     |
+      | bytes_in           | 0     |
+      | bytes_out          | 0     |
+      | total_connections  | 0     |
+      +--------------------+-------+ 
+      ```
+
+  * 使用浏览器打开地址 "25.0.0.253"，刷新几次，再次执行命令：
+
+      ```
+      neutron lb-pool-stats 09a7c3f2-3057-4e9c-bfbf-9b1ab7f2a0b1
+      +--------------------+-------+
+      | Field              | Value |
+      +--------------------+-------+
+      | active_connections | 0     |
+      | bytes_in           | 4430  |
+      | bytes_out          | 2540  |
+      | total_connections  | 10    |
+      +--------------------+-------+ 
+      ```
+
+  * 看到数据更新，对 HTTP 的数据进行监控。
+
+
+## 删除云主机的负载均衡的 Monitor
+
+* 前提：
+
+  * 已经为云主机配置好负载均衡服务 (本实验使用上述所配置的负载均衡服务) 并添加了 Monitor；
+  * 安全组策略允许 HTTP 连接；
+  * 防火墙规则允许 HTTP 连接；
+  * 登录到 EayunStack 管理界面。
+
+* 操作：
+
+  1. 点击左侧导航栏的 【Project】 选项，点击 【Network】 子选项，点击其中的 【Load Balancers】；
+  1. 在右侧列表中点击 【Pools】 标签，选择 "server-pool"，点击 【Actions】 中的 【Disassociate Monitor】；
+  1. 在弹出的 【Disassociate Monitor】 窗口中，选择要取消分配的 Monitor，即上述所添加的 Monitor，点击窗口下方的 【Disassociate】 按钮。
+
+* 预期结果：
+
+  * 云主机负载均衡服务的 Monitor 成功被删除；
+  * 使用浏览器打开地址 "25.0.0.253"，刷新几次后，执行命令：
+
+      ```
+      neutron lb-pool-stats 09a7c3f2-3057-4e9c-bfbf-9b1ab7f2a0b1
+      +--------------------+-------+
+      | Field              | Value |
+      +--------------------+-------+
+      | active_connections | 0     |
+      | bytes_in           | 0     |
+      | bytes_out          | 0     |
+      | total_connections  | 0     |
+      +--------------------+-------+ 
+      ```
+
+  * 看到数据被清除，不再监控 HTTP 的数据。
