@@ -13,4 +13,6 @@
 
 * 预期结果：
 
-  。。。
+  * 所选主机上的所有云主机全部迁移到其他主机上；
+  * 需要对每台云主机进行 Confirm Resize/Migrate 操作来确认迁移；
+  * 或可以点击 Revert Resize/Migrate 取消迁移。
