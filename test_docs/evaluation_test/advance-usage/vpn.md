@@ -90,7 +90,7 @@
     * 选择 IPSec Policy associated with this connection 为 "ipsec-policy1"；
     * Peer gateway public IPv4/IPv6 Address or FQDN 中填写 **router-C** 的外网地址 "25.0.0.202"；
     * Peer router identity for authentication (Peer ID) 中填写 **router-C** 的外网地址 "25.0.0.202"；
-    * Remote peer subnet(s) 中填写 **server-B** 的子网地址段 "172.16.104.0/24"；
+    * Remote peer subnet(s) 中填写 **server-C** 的子网地址段 "172.16.104.0/24"；
     * Pre-Shared Key (PSK) string 中填写密码 "abc123"；
 
   1. 其他保持默认配置，点击窗口下方的 【Add】 按钮，创建 server-A 所在子网到 server-C 所在子网的 VPN 连接；
