@@ -37,7 +37,7 @@
    * [迁移所有云主机](migration/migrate_all.md)
 * [物理机高可用](ha/README.md)
 * [高级使用功能](advance-usage/readmemd.md)
-   * [限速](advance-usage/network_limit.md)
-   * [防火墙](advance-usage/firewall.md)
-   * [VPN](advance-usage/vpn.md)
+   * [负载均衡](advance-usage/load_balancer.md)
+   * [防火墙服务](advance-usage/firewall.md)
+   * [VPN 服务](advance-usage/vpn.md)
 
