@@ -74,7 +74,7 @@
   * 登录到 Controller 节点，执行命令：
 
       ```
-      neutron lb-pool-stats 09a7c3f2-3057-4e9c-bfbf-9b1ab7f2a0b1
+      neutron lb-pool-stats <pool-id>
       +--------------------+-------+
       | Field              | Value |
       +--------------------+-------+
@@ -88,7 +88,7 @@
   * 使用浏览器打开地址 "25.0.0.253"，刷新几次，再次执行命令：
 
       ```
-      neutron lb-pool-stats 09a7c3f2-3057-4e9c-bfbf-9b1ab7f2a0b1
+      neutron lb-pool-stats <pool-id>
       +--------------------+-------+
       | Field              | Value |
       +--------------------+-------+
@@ -123,7 +123,7 @@
   * 使用浏览器打开地址 "25.0.0.253"，刷新几次后，执行命令：
 
       ```
-      neutron lb-pool-stats 09a7c3f2-3057-4e9c-bfbf-9b1ab7f2a0b1
+      neutron lb-pool-stats <pool-id>
       +--------------------+-------+
       | Field              | Value |
       +--------------------+-------+
