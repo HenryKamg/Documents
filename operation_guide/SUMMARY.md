@@ -4,6 +4,7 @@
 * [前言](preface/preface.md)
    * [约定](preface/conventions.md)
    * [修订历史](preface/revision_history.md)
+   * [术语定义](preface/define_terms.md)
 * [基本管理](basic_admin/basic_admin.md)
    * [云主机管理](basic_admin/instance_management/instance_management.md)
        * [查看云主机列表](basic_admin/instance_management/show_instance_list.md)
