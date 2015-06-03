@@ -112,8 +112,7 @@
 * [故障排除](troubleshooting/intro.md)
    * [故障检测工具](troubleshooting/troubleshooting_tools.md)
    * [常见故障排除示例](troubleshooting/troubleshooting_example.md)
-   * 日志分析
-       * [简介](troubleshooting/log_analysis/intro.md)
+   * [日志分析](troubleshooting/log_analysis/intro.md)
        * [openstack组件日志](troubleshooting/log_analysis/openstack_component_log.md)
        * [集群服务日志](troubleshooting/log_analysis/cluster_log.md)
        * [其它日志](troubleshooting/log_analysis/etc.md)
