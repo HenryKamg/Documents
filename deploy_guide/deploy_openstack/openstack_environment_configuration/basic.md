@@ -27,7 +27,7 @@
 
  ![openstack_install_4314](../../images/openstack_install_4314.png)
 
-* ***使用默认配置***，scheduler driver，如下图所示。
+* ***使用默认配置***，调度驱动，如下图所示。
 
  ![openstack_install_4315](../../images/openstack_install_4315.png)
 
@@ -35,7 +35,7 @@
 
  ![openstack_install_4316](../../images/openstack_install_4316.png)
 
-* ***使用默认配置***，Disable generic offload on physical nics，如下图所示。
+* ***使用默认配置***，禁用物理网卡generic offload，如下图所示。
 
  ![openstack_install_4317](../../images/openstack_install_4317.png)
 
@@ -45,7 +45,7 @@
 
  ![openstack_install_4318](../../images/openstack_install_4318.png)
 
-## mellanox neutron components
+## mellanox neutron组件
 
 * ***使用默认配置***，如下图所示
 
