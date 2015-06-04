@@ -45,7 +45,7 @@
 
  ![openstack_install_4318](../../images/openstack_install_4318.png)
 
-## Mellanox Neutron组件
+## 配置Mellanox Neutron组件
 
 * ***使用默认配置***，如下图所示
 
