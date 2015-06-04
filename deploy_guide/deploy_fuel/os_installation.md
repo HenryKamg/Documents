@@ -11,3 +11,5 @@
 
  ![fuel_install_01](../images/fuel_install_01.png)
 
+> ###### 注意
+> 系统安装完成后，请将关盘从光驱中取出
