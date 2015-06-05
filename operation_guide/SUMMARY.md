@@ -57,7 +57,6 @@
        * [备份磁盘卷](basic_admin/volumes_management/volumes_backup.md)
        * [恢复磁盘卷](basic_admin/volumes_management/volumes_restore.md)
 * [高级管理](advance_admin/advance_admin.md)
-   * [Eqlx存储管理](advance_admin/eqlx.md)
    * [FWaaS](advance_admin/fwaas.md)
        * [FWaaS基本知识与部署](advance_admin/fwaas/file_name_should_be_unique.md)
        * [FWaaS使用例子](advance_admin/fwaas/fwaas_example.md)
