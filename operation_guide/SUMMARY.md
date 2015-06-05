@@ -81,9 +81,6 @@
    * [OpenStack集群](cluster_admin/openstack-intro.md)
        * [简介（实现OpenStack各组件API HA的集群）](cluster_admin/openstack-intro.md)
        * [常用管理命令](cluster_admin/openstack-admin.md)
-   * MySQL集群管理
-       * 简介
-       * 常用管理命令
    * [RabbitMQ集群管理](cluster_admin/rabbitmq/rabbitmq_cluster.md)
        * [简介](cluster_admin/rabbitmq/rabbitmq_intro.md)
        * [常用管理命令](cluster_admin/rabbitmq/rabbitmq_operations.md)
