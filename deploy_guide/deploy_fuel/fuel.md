@@ -12,6 +12,7 @@ id | name           | version | package_version
 2  | neutron-fwaas  | 1.0.0   | 1.0.0          
 3  | neutron-lbaas  | 1.0.0   | 1.0.0          
 4  | neutron-vpnaas | 1.0.0   | 1.0.0
+5  | neutron-qos    | 1.0.0   | 1.0.0
 ```
 
 如某个插件未成功安装，使用以下命令尝试重新安装对应插件。
@@ -46,4 +47,12 @@ id | name           | version | package_version
 
  ```
 # fuel plugins --install /opt/eayunstack/neutron-vpnaas-1.0.0.fp
+```
+
+## 安装Neutron QOS插件
+
+* 登录Fuel节点，执行以下命令，安装Neutron QOS插件。
+
+ ```
+# fuel plugins --install /opt/eayunstack/neutron-qos-1.0.0.fp
 ```
