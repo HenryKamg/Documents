@@ -9,9 +9,9 @@
 |3|2015-05-27|-|-|-|-|未进行测试|
 |4|2015-05-28|85|66|19|77.65%||
 
-![测试通过与失败趋势对比](/reports/function_test/pictures/passed_failed.png)
+![测试通过与失败趋势对比](../pictures/passed_failed.png)
 
-![测试通过率](/reports/function_test/pictures/pass_rate.png)
+![测试通过率](../pictures/pass_rate.png)
 
 ## 手工测试
 
@@ -36,7 +36,7 @@
 |环境配置|5|
 |缺陷|47|
 
-![缺陷类型分布](/reports/function_test/pictures/bug_distribution.png)
+![缺陷类型分布](../pictures/bug_distribution.png)
 
 > 2015-05-25 失败结果说明：
 
