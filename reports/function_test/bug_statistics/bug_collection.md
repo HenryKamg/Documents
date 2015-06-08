@@ -27,4 +27,4 @@
 
 ## 版本变更日志
 
-* 请参考 GitHub [版本变更日志](https://github.com/eayunstack/EayunStack-building/blob/master/EayunStack-ISO-ChangeLog)。
+* 请参考 [Eayunstack 版本变更日志](https://github.com/eayunstack/EayunStack-building/blob/master/EayunStack-ISO-ChangeLog)。
