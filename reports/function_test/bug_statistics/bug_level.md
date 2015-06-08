@@ -20,4 +20,4 @@
 > * **P2**: 一般，有相应的出现条件，在使用过程中不一定遇到；
 > * **P4**: 不严重，不会影响功能的使用。
 
-![缺陷级别分布](/reports/function_test/pictures/bug_level.png)
+![缺陷级别分布](../pictures/bug_level.png)
