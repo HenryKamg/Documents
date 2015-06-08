@@ -21,7 +21,7 @@
 
 ## 缺陷趋势
 
-![缺陷趋势](/reports/function_test/pictures/bug_trend.png)
+![缺陷趋势](../pictures/bug_trend.png)
 
 通过缺陷趋势图可以看到，随着版本的变更，出现和发现的缺陷呈减少的趋势。
 
