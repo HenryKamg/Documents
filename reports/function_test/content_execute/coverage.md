@@ -16,7 +16,7 @@
 > ###### 覆盖率计算：
 > 覆盖率 = 执行数/用例个数 * 100%
 
-![用例覆盖](../pictures/bug_coverage.png)
+![用例覆盖](../pictures/case_coverage.png)
 
 此次功能测试能够基本覆盖 EayunStack 的功能。没有覆盖的功能如下：
 
