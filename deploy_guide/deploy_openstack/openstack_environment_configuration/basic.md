@@ -78,6 +78,10 @@
 ## 配置Neutron LBaaS(*)
 
  ![openstack_install_43120](../../images/openstack_install_43120.png)
+
+## 配置Neutron QoS(*)
+
+ ![openstack_install_43123](../../images/openstack_install_43123.png)
  
 ## 配置Zabbix
 
