@@ -24,11 +24,11 @@ optional arguments:
 该命令用于检测当前节点NTP服务运行状态及与上游NTP服务器的同步状态，当执行该命令输出类似如下信息时，当前节点NTP服务运行状态及与上游NTP服务器同步状态正常。
 
 ```
-$ eayunstack doctor env -n ntp
-[ INFO  ] ========== start running check_ntp ==========
-[ INFO  ]    Service ntpd is running ...
-[ INFO  ]    Service ntpd is enabled ...
-[ INFO  ] ntpserver is 172.16.100.2
+$ eayunstack -d doctor env -n ntp
+[ DEBUG ] =====> start running check_ntp 
+          Service ntpd is running ...
+          Service ntpd is enabled ...
+          ntpserver is 172.16.100.2
 ```
 
 ## SELinux检测
@@ -36,10 +36,10 @@ $ eayunstack doctor env -n ntp
 该命令用于检测当前节点SELinux模式及配置文件中所配置的模式，当执行该命令输出类似如下信息时当前节点SELinux模式配置正常。
 
 ```
-$ eayunstack doctor env -n selinux
-[ INFO  ] ========== start running check_selinux ==========
-[ INFO  ] SELinux current state is: Disabled
-[ INFO  ] SELinux current conf in profile is: disabled
+$ eayunstack -d doctor env -n selinux
+[ DEBUG ] =====> start running check_selinux 
+          SELinux current state is: Disabled
+          SELinux current conf in profile is: disabled
 ```
 
 ## Disk检测
@@ -47,9 +47,9 @@ $ eayunstack doctor env -n selinux
 该命令用于检测当前节点“/”文件系统的空间使用率。当“/”文件系统空间使用率大于85%时，执行该命令会发出警告。
 
 ```
-$ eayunstack doctor env -n disk
-[ INFO  ] ========== start running check_disk ==========
-[ INFO  ] The "/" filesystem used 32% space !
+$ eayunstack -d doctor env -n disk
+[ DEBUG ] =====> start running check_disk 
+          The "/" filesystem used 33% space !
 ```
 
 ## Network检测
@@ -57,13 +57,56 @@ $ eayunstack doctor env -n disk
 该命令用于检测当前节点的网卡状态。执行该命令后可查看该节点对应网卡的连接状态。
 
 ```
-$ eayunstack doctor env -n network
-[ INFO  ] ========== start running check_network ==========
-[ INFO  ] Network card information:
-          eth3                                    : yes
-          eth2                                    : yes
-          eth1                                    : yes
-          eth0                                    : yes
+$ eayunstack -d doctor env -n network
+[ DEBUG ] =====> start running check_network 
+[ DEBUG ] Network card eno1(br-mgmt) connected
+[ DEBUG ] Network card eno2(br-ex) connected
+[ DEBUG ] Network card enp5s0f0(br-storage) connected
+[ DEBUG ] Network card enp5s0f1(br-prv) connected
+[ DEBUG ] =====> start ping internal_address of node-1.eayun.com(controller):
+[ DEBUG ] 172.16.101.3 reached
+[ DEBUG ] =====> start ping storage_address of node-1.eayun.com(controller):
+[ DEBUG ] 172.16.102.2 reached
+[ DEBUG ] =====> start ping public_address of node-1.eayun.com(controller):
+[ DEBUG ] 25.0.0.3 reached
+[ DEBUG ] =====> start ping internal_address of node-2.eayun.com(controller):
+[ DEBUG ] 172.16.101.4 reached
+[ DEBUG ] =====> start ping storage_address of node-2.eayun.com(controller):
+[ DEBUG ] 172.16.102.3 reached
+[ DEBUG ] =====> start ping public_address of node-2.eayun.com(controller):
+[ DEBUG ] 25.0.0.4 reached
+[ DEBUG ] =====> start ping internal_address of node-3.eayun.com(controller):
+[ DEBUG ] 172.16.101.5 reached
+[ DEBUG ] =====> start ping storage_address of node-3.eayun.com(controller):
+[ DEBUG ] 172.16.102.4 reached
+[ DEBUG ] =====> start ping public_address of node-3.eayun.com(controller):
+[ DEBUG ] 25.0.0.5 reached
+[ DEBUG ] =====> start ping internal_address of node-4.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.101.6 reached
+[ DEBUG ] =====> start ping storage_address of node-4.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.102.5 reached
+[ DEBUG ] =====> start ping internal_address of node-5.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.101.7 reached
+[ DEBUG ] =====> start ping storage_address of node-5.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.102.6 reached
+[ DEBUG ] =====> start ping internal_address of node-6.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.101.8 reached
+[ DEBUG ] =====> start ping storage_address of node-6.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.102.7 reached
+[ DEBUG ] =====> start ping internal_address of node-7.eayun.com(primary-mongo):
+[ DEBUG ] 172.16.101.9 reached
+[ DEBUG ] =====> start ping internal_address of node-8.eayun.com(compute):
+[ DEBUG ] 172.16.101.10 reached
+[ DEBUG ] =====> start ping storage_address of node-8.eayun.com(compute):
+[ DEBUG ] 172.16.102.9 reached
+[ DEBUG ] =====> start ping internal_address of node-10.eayun.com(compute):
+[ DEBUG ] 172.16.101.11 reached
+[ DEBUG ] =====> start ping storage_address of node-10.eayun.com(compute):
+[ DEBUG ] 172.16.102.10 reached
+[ DEBUG ] =====> start ping internal_address of node-12.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.101.12 reached
+[ DEBUG ] =====> start ping storage_address of node-12.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.102.11 reached
 ```
 
 ## 检测所有检测对象
@@ -71,28 +114,65 @@ $ eayunstack doctor env -n network
 该命令用于同时检测env子命令的所有检测对象。
 
 ```
-$ eayunstack doctor env -a
-[ DEBUG ] This option will do following things:
-          --check_ntp
-          --check_selinux
-          --check_disk
-          --check_network
-[ INFO  ] ========== start running check_ntp ==========
-[ INFO  ]    Service ntpd is running ...
-[ INFO  ]    Service ntpd is enabled ...
-[ INFO  ] ntpserver is 172.16.100.2
-[ INFO  ] ========== start running check_selinux ==========
-[ INFO  ] SELinux current state is: Disabled
-[ INFO  ] SELinux current conf in profile is: disabled
-[ INFO  ] ========== start running check_disk ==========
-[ INFO  ] The "/" filesystem used 32% space !
-[ INFO  ] ========== start running check_network ==========
-[ INFO  ] Network card information:
-          eth3                                    : yes
-          eth2                                    : yes
-          eth1                                    : yes
-          eth0                                    : yes
-
+$ eayunstack -d doctor env -a
+[ DEBUG ] =====> start running check_ntp 
+          Service ntpd is running ...
+          Service ntpd is enabled ...
+          ntpserver is 172.16.100.2
+[ DEBUG ] =====> start running check_selinux 
+          SELinux current state is: Disabled
+          SELinux current conf in profile is: disabled
+[ DEBUG ] =====> start running check_disk 
+          The "/" filesystem used 33% space !
+[ DEBUG ] =====> start running check_network 
+[ DEBUG ] Network card eno1(br-mgmt) connected
+[ DEBUG ] Network card eno2(br-ex) connected
+[ DEBUG ] Network card enp5s0f0(br-storage) connected
+[ DEBUG ] Network card enp5s0f1(br-prv) connected
+[ DEBUG ] =====> start ping internal_address of node-1.eayun.com(controller):
+[ DEBUG ] 172.16.101.3 reached
+[ DEBUG ] =====> start ping storage_address of node-1.eayun.com(controller):
+[ DEBUG ] 172.16.102.2 reached
+[ DEBUG ] =====> start ping public_address of node-1.eayun.com(controller):
+[ DEBUG ] 25.0.0.3 reached
+[ DEBUG ] =====> start ping internal_address of node-2.eayun.com(controller):
+[ DEBUG ] 172.16.101.4 reached
+[ DEBUG ] =====> start ping storage_address of node-2.eayun.com(controller):
+[ DEBUG ] 172.16.102.3 reached
+[ DEBUG ] =====> start ping public_address of node-2.eayun.com(controller):
+[ DEBUG ] 25.0.0.4 reached
+[ DEBUG ] =====> start ping internal_address of node-3.eayun.com(controller):
+[ DEBUG ] 172.16.101.5 reached
+[ DEBUG ] =====> start ping storage_address of node-3.eayun.com(controller):
+[ DEBUG ] 172.16.102.4 reached
+[ DEBUG ] =====> start ping public_address of node-3.eayun.com(controller):
+[ DEBUG ] 25.0.0.5 reached
+[ DEBUG ] =====> start ping internal_address of node-4.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.101.6 reached
+[ DEBUG ] =====> start ping storage_address of node-4.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.102.5 reached
+[ DEBUG ] =====> start ping internal_address of node-5.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.101.7 reached
+[ DEBUG ] =====> start ping storage_address of node-5.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.102.6 reached
+[ DEBUG ] =====> start ping internal_address of node-6.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.101.8 reached
+[ DEBUG ] =====> start ping storage_address of node-6.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.102.7 reached
+[ DEBUG ] =====> start ping internal_address of node-7.eayun.com(primary-mongo):
+[ DEBUG ] 172.16.101.9 reached
+[ DEBUG ] =====> start ping internal_address of node-8.eayun.com(compute):
+[ DEBUG ] 172.16.101.10 reached
+[ DEBUG ] =====> start ping storage_address of node-8.eayun.com(compute):
+[ DEBUG ] 172.16.102.9 reached
+[ DEBUG ] =====> start ping internal_address of node-10.eayun.com(compute):
+[ DEBUG ] 172.16.101.11 reached
+[ DEBUG ] =====> start ping storage_address of node-10.eayun.com(compute):
+[ DEBUG ] 172.16.102.10 reached
+[ DEBUG ] =====> start ping internal_address of node-12.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.101.12 reached
+[ DEBUG ] =====> start ping storage_address of node-12.eayun.com(ceph-osd):
+[ DEBUG ] 172.16.102.11 reached
 ```
 
 

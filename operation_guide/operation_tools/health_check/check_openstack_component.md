@@ -4,7 +4,7 @@
 
 |节点角色|检测组件|检测内容|
 |----|----|----|
-|controller|Keystone</br>Glance</br>Nova</br>Cinder|配置文件正确性检测</br>服务运行状态检测</br>服务与数据库的连通性检测</br>服务可用性检测|
+|controller|Keystone</br>Glance</br>Nova</br>Neutron</br>Cinder|配置文件正确性检测</br>服务运行状态检测</br>服务与数据库的连通性检测</br>服务可用性检测|
 |compute|Nova|配置文件正确性检测</br>服务运行状态检测|
 |mongo|Mongo|配置文件正确性检测</br>服务运行状态检测|
 |ceph-osd|Ceph|配置文件正确性检测</br>服务运行状态检测|
@@ -40,149 +40,206 @@ optional arguments:
 
 ```
 [fuel]$ eayunstack doctor stack --controller
-[ INFO  ] *************** Role: controller Node: 172.16.100.5  ***************
-[ INFO  ] ========== start running check_controller_profile ==========
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ]  -Profile: /etc/keystone/keystone.conf
-[ INFO  ] Checking "Glance" Component
-[ INFO  ]  -Profile: /etc/glance/glance-api.conf
-[ INFO  ]  -Profile: /etc/glance/glance-registry.conf
-[ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ] ========== start running check_controller_service ==========
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-keystone is running ...
-[ INFO  ]    Service openstack-keystone is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
-[ INFO  ] Checking "Glance" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-glance-api is running ...
-[ INFO  ]    Service openstack-glance-api is enabled ...
-[ INFO  ]    Service openstack-glance-registry is running ...
-[ INFO  ]    Service openstack-glance-registry is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
-[ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-nova-api is running ...
-[ INFO  ]    Service openstack-nova-api is enabled ...
-[ INFO  ]    Service openstack-nova-conductor is running ...
-[ INFO  ]    Service openstack-nova-conductor is enabled ...
-[ INFO  ]    Service openstack-nova-scheduler is running ...
-[ INFO  ]    Service openstack-nova-scheduler is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ]  -Service Status
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
-
-[ INFO  ] *************** Role: controller Node: 172.16.100.6  ***************
-[ INFO  ] ========== start running check_controller_profile ==========
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ]  -Profile: /etc/keystone/keystone.conf
-[ INFO  ] Checking "Glance" Component
-[ INFO  ]  -Profile: /etc/glance/glance-api.conf
-[ INFO  ]  -Profile: /etc/glance/glance-registry.conf
-[ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ] ========== start running check_controller_service ==========
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-keystone is running ...
-[ INFO  ]    Service openstack-keystone is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
-[ INFO  ] Checking "Glance" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-glance-api is running ...
-[ INFO  ]    Service openstack-glance-api is enabled ...
-[ INFO  ]    Service openstack-glance-registry is running ...
-[ INFO  ]    Service openstack-glance-registry is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
-[ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-nova-api is running ...
-[ INFO  ]    Service openstack-nova-api is enabled ...
-[ INFO  ]    Service openstack-nova-conductor is running ...
-[ INFO  ]    Service openstack-nova-conductor is enabled ...
-[ INFO  ]    Service openstack-nova-scheduler is running ...
-[ INFO  ]    Service openstack-nova-scheduler is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ]  -Service Status
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
-
 [ INFO  ] *************** Role: controller Node: 172.16.100.7  ***************
-[ INFO  ] ========== start running check_controller_profile ==========
 [ INFO  ] Checking "Keystone" Component
-[ INFO  ]  -Profile: /etc/keystone/keystone.conf
+          Profile: /etc/keystone/keystone.conf
 [ INFO  ] Checking "Glance" Component
-[ INFO  ]  -Profile: /etc/glance/glance-api.conf
-[ INFO  ]  -Profile: /etc/glance/glance-registry.conf
+          Profile: /etc/glance/glance-api.conf
+          Profile: /etc/glance/glance-registry.conf
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Profile: /etc/nova/nova.conf
+          Profile: /etc/nova/nova.conf
+[ INFO  ] Checking "Neutron" Component
+          Profile: /etc/neutron/neutron.conf
 [ INFO  ] Checking "Cinder" Component
-[ INFO  ] ========== start running check_controller_service ==========
+          Profile: /etc/cinder/cinder.conf
 [ INFO  ] Checking "Keystone" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-keystone is running ...
-[ INFO  ]    Service openstack-keystone is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-keystone is running ...
+          Service openstack-keystone is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 [ INFO  ] Checking "Glance" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-glance-api is running ...
-[ INFO  ]    Service openstack-glance-api is enabled ...
-[ INFO  ]    Service openstack-glance-registry is running ...
-[ INFO  ]    Service openstack-glance-registry is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-glance-api is running ...
+          Service openstack-glance-api is enabled ...
+          Service openstack-glance-registry is running ...
+          Service openstack-glance-registry is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-nova-api is running ...
-[ INFO  ]    Service openstack-nova-api is enabled ...
-[ INFO  ]    Service openstack-nova-conductor is running ...
-[ INFO  ]    Service openstack-nova-conductor is enabled ...
-[ INFO  ]    Service openstack-nova-scheduler is running ...
-[ INFO  ]    Service openstack-nova-scheduler is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-nova-api is running ...
+          Service openstack-nova-api is enabled ...
+          Service openstack-nova-conductor is running ...
+          Service openstack-nova-conductor is enabled ...
+          Service openstack-nova-scheduler is running ...
+          Service openstack-nova-scheduler is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Neutron" Component
+[ INFO  ] -Service Status
+          Service neutron-server is running ...
+          Service neutron-server is enabled ...
+          Service neutron-ovs-cleanup is running ...
+          Service neutron-ovs-cleanup is enabled ...
+          Service openvswitch is running ...
+          Service openvswitch is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 [ INFO  ] Checking "Cinder" Component
-[ INFO  ]  -Service Status
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-cinder-api is running ...
+          Service openstack-cinder-api is enabled ...
+          Service openstack-cinder-scheduler is running ...
+          Service openstack-cinder-scheduler is enabled ...
+          Service openstack-cinder-volume is running ...
+          Service openstack-cinder-volume is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+
+[ INFO  ] *************** Role: controller Node: 172.16.100.5  ***************
+[ INFO  ] Checking "Keystone" Component
+          Profile: /etc/keystone/keystone.conf
+[ INFO  ] Checking "Glance" Component
+          Profile: /etc/glance/glance-api.conf
+          Profile: /etc/glance/glance-registry.conf
+[ INFO  ] Checking "Nova" Component
+          Profile: /etc/nova/nova.conf
+[ INFO  ] Checking "Neutron" Component
+          Profile: /etc/neutron/neutron.conf
+[ INFO  ] Checking "Cinder" Component
+          Profile: /etc/cinder/cinder.conf
+[ INFO  ] Checking "Keystone" Component
+[ INFO  ] -Service Status
+          Service openstack-keystone is running ...
+          Service openstack-keystone is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Glance" Component
+[ INFO  ] -Service Status
+          Service openstack-glance-api is running ...
+          Service openstack-glance-api is enabled ...
+          Service openstack-glance-registry is running ...
+          Service openstack-glance-registry is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Nova" Component
+[ INFO  ] -Service Status
+          Service openstack-nova-api is running ...
+          Service openstack-nova-api is enabled ...
+          Service openstack-nova-conductor is running ...
+          Service openstack-nova-conductor is enabled ...
+          Service openstack-nova-scheduler is running ...
+          Service openstack-nova-scheduler is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Neutron" Component
+[ INFO  ] -Service Status
+          Service neutron-server is running ...
+          Service neutron-server is enabled ...
+          Service neutron-ovs-cleanup is running ...
+          Service neutron-ovs-cleanup is enabled ...
+          Service openvswitch is running ...
+          Service openvswitch is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Cinder" Component
+[ INFO  ] -Service Status
+          Service openstack-cinder-api is running ...
+          Service openstack-cinder-api is enabled ...
+          Service openstack-cinder-scheduler is running ...
+          Service openstack-cinder-scheduler is enabled ...
+          Service openstack-cinder-volume is running ...
+          Service openstack-cinder-volume is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+
+[ INFO  ] *************** Role: controller Node: 172.16.100.4  ***************
+[ INFO  ] Checking "Keystone" Component
+          Profile: /etc/keystone/keystone.conf
+[ INFO  ] Checking "Glance" Component
+          Profile: /etc/glance/glance-api.conf
+          Profile: /etc/glance/glance-registry.conf
+[ INFO  ] Checking "Nova" Component
+          Profile: /etc/nova/nova.conf
+[ INFO  ] Checking "Neutron" Component
+          Profile: /etc/neutron/neutron.conf
+[ INFO  ] Checking "Cinder" Component
+          Profile: /etc/cinder/cinder.conf
+[ INFO  ] Checking "Keystone" Component
+[ INFO  ] -Service Status
+          Service openstack-keystone is running ...
+          Service openstack-keystone is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Glance" Component
+[ INFO  ] -Service Status
+          Service openstack-glance-api is running ...
+          Service openstack-glance-api is enabled ...
+          Service openstack-glance-registry is running ...
+          Service openstack-glance-registry is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Nova" Component
+[ INFO  ] -Service Status
+          Service openstack-nova-api is running ...
+          Service openstack-nova-api is enabled ...
+          Service openstack-nova-conductor is running ...
+          Service openstack-nova-conductor is enabled ...
+          Service openstack-nova-scheduler is running ...
+          Service openstack-nova-scheduler is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Neutron" Component
+[ INFO  ] -Service Status
+          Service neutron-server is running ...
+          Service neutron-server is enabled ...
+          Service neutron-ovs-cleanup is running ...
+          Service neutron-ovs-cleanup is enabled ...
+          Service openvswitch is running ...
+          Service openvswitch is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Cinder" Component
+[ INFO  ] -Service Status
+          Service openstack-cinder-api is running ...
+          Service openstack-cinder-api is enabled ...
+          Service openstack-cinder-scheduler is running ...
+          Service openstack-cinder-scheduler is enabled ...
+          Service openstack-cinder-volume is running ...
+          Service openstack-cinder-volume is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 
 ```
 
@@ -190,52 +247,71 @@ optional arguments:
 
 ```
 [controller]$ eayunstack doctor stack --controller
-[ INFO  ] ========== start running check_controller_profile ==========
 [ INFO  ] Checking "Keystone" Component
-[ INFO  ]  -Profile: /etc/keystone/keystone.conf
+          Profile: /etc/keystone/keystone.conf
 [ INFO  ] Checking "Glance" Component
-[ INFO  ]  -Profile: /etc/glance/glance-api.conf
-[ INFO  ]  -Profile: /etc/glance/glance-registry.conf
+          Profile: /etc/glance/glance-api.conf
+          Profile: /etc/glance/glance-registry.conf
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Profile: /etc/nova/nova.conf
+          Profile: /etc/nova/nova.conf
+[ INFO  ] Checking "Neutron" Component
+          Profile: /etc/neutron/neutron.conf
 [ INFO  ] Checking "Cinder" Component
-[ INFO  ] ========== start running check_controller_service ==========
+          Profile: /etc/cinder/cinder.conf
 [ INFO  ] Checking "Keystone" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-keystone is running ...
-[ INFO  ]    Service openstack-keystone is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-keystone is running ...
+          Service openstack-keystone is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 [ INFO  ] Checking "Glance" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-glance-api is running ...
-[ INFO  ]    Service openstack-glance-api is enabled ...
-[ INFO  ]    Service openstack-glance-registry is running ...
-[ INFO  ]    Service openstack-glance-registry is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-glance-api is running ...
+          Service openstack-glance-api is enabled ...
+          Service openstack-glance-registry is running ...
+          Service openstack-glance-registry is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-nova-api is running ...
-[ INFO  ]    Service openstack-nova-api is enabled ...
-[ INFO  ]    Service openstack-nova-conductor is running ...
-[ INFO  ]    Service openstack-nova-conductor is enabled ...
-[ INFO  ]    Service openstack-nova-scheduler is running ...
-[ INFO  ]    Service openstack-nova-scheduler is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-nova-api is running ...
+          Service openstack-nova-api is enabled ...
+          Service openstack-nova-conductor is running ...
+          Service openstack-nova-conductor is enabled ...
+          Service openstack-nova-scheduler is running ...
+          Service openstack-nova-scheduler is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Neutron" Component
+[ INFO  ] -Service Status
+          Service neutron-server is running ...
+          Service neutron-server is enabled ...
+          Service neutron-ovs-cleanup is running ...
+          Service neutron-ovs-cleanup is enabled ...
+          Service openvswitch is running ...
+          Service openvswitch is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 [ INFO  ] Checking "Cinder" Component
-[ INFO  ]  -Service Status
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-cinder-api is running ...
+          Service openstack-cinder-api is enabled ...
+          Service openstack-cinder-scheduler is running ...
+          Service openstack-cinder-scheduler is enabled ...
+          Service openstack-cinder-volume is running ...
+          Service openstack-cinder-volume is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 ```
 
 ## Compute节点检测
@@ -247,39 +323,34 @@ optional arguments:
 
 ```
 [fuel]$ eayunstack doctor stack --compute
-[ INFO  ] *************** Role: compute    Node: 172.16.100.9  ***************
-[ INFO  ] ========== start running check_compute_profile ==========
+[ INFO  ] *************** Role: compute    Node: 172.16.100.12 ***************
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Profile: /etc/nova/nova.conf
-[ INFO  ] ========== start running check_compute_service ==========
+          Profile: /etc/nova/nova.conf
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-nova-compute is running ...
-[ INFO  ]    Service openstack-nova-compute is enabled ...
+[ INFO  ] -Service Status
+          Service openstack-nova-compute is running ...
+          Service openstack-nova-compute is enabled ...
 
-[ INFO  ] *************** Role: compute    Node: 172.16.100.13 ***************
-[ INFO  ] ========== start running check_compute_profile ==========
+[ INFO  ] *************** Role: compute    Node: 172.16.100.6  ***************
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Profile: /etc/nova/nova.conf
-[ INFO  ] ========== start running check_compute_service ==========
+          Profile: /etc/nova/nova.conf
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-nova-compute is running ...
-[ INFO  ]    Service openstack-nova-compute is enabled ...
+[ INFO  ] -Service Status
+          Service openstack-nova-compute is running ...
+          Service openstack-nova-compute is enabled ...
+
 ```
 
 * Compute节点执行命令
 
 ```
 [compute]$ eayunstack doctor stack --compute
-[ INFO  ] ========== start running check_compute_profile ==========
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Profile: /etc/nova/nova.conf
-[ INFO  ] ========== start running check_compute_service ==========
+          Profile: /etc/nova/nova.conf
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-nova-compute is running ...
-[ INFO  ]    Service openstack-nova-compute is enabled ...
+[ INFO  ] -Service Status
+          Service openstack-nova-compute is running ...
+          Service openstack-nova-compute is enabled ...
 ```
 
 ## Mongo节点检测
@@ -291,27 +362,26 @@ optional arguments:
 
 ```
 [fuel]$ eayunstack doctor stack --mongo
-[ INFO  ] *************** Role: mongo      Node: 172.16.100.8  ***************
-[ INFO  ] ========== start running check_mongo_profile ==========
+[ INFO  ] *************** Role: mongo      Node: 172.16.100.11 ***************
 [ INFO  ] Checking "Mongo" Component
-[ INFO  ] ========== start running check_mongo_service ==========
+          Profile: /etc/mongodb.conf
 [ INFO  ] Checking "Mongo" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service mongod is running ...
-[ INFO  ]    Service mongod is enabled ...
+[ INFO  ] -Service Status
+          Service mongod is running ...
+          Service mongod is enabled ...
+
 ```
 
 * Mongo节点执行命令
 
 ```
 [mongo]$ eayunstack doctor stack --mongo
-[ INFO  ] ========== start running check_mongo_profile ==========
 [ INFO  ] Checking "Mongo" Component
-[ INFO  ] ========== start running check_mongo_service ==========
+          Profile: /etc/mongodb.conf
 [ INFO  ] Checking "Mongo" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service mongod is running ...
-[ INFO  ]    Service mongod is enabled ...
+[ INFO  ] -Service Status
+          Service mongod is running ...
+          Service mongod is enabled ...
 ```
 
 ## Ceph-osd节点检测
@@ -323,24 +393,46 @@ optional arguments:
 
 ```
 [fuel]$ eayunstack doctor stack --ceph
-[ INFO  ] =====> start running check_ceph_osd_profile
+[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.10 ***************
 [ INFO  ] Checking "Ceph_osd" Component
           Profile: /etc/ceph/ceph.conf
-[ INFO  ] =====> start running check_ceph_osd_service
 [ INFO  ] Checking "Ceph_osd" Component
 [ INFO  ] -Service Status
           Service ceph is running ...
           Service ceph is enabled ...
+
+[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.9  ***************
+[ INFO  ] Checking "Ceph_osd" Component
+          Profile: /etc/ceph/ceph.conf
+[ INFO  ] Checking "Ceph_osd" Component
+[ INFO  ] -Service Status
+          Service ceph is running ...
+          Service ceph is enabled ...
+
+[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.8  ***************
+[ INFO  ] Checking "Ceph_osd" Component
+          Profile: /etc/ceph/ceph.conf
+[ INFO  ] Checking "Ceph_osd" Component
+[ INFO  ] -Service Status
+          Service ceph is running ...
+          Service ceph is enabled ...
+
+[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.13 ***************
+[ INFO  ] Checking "Ceph_osd" Component
+          Profile: /etc/ceph/ceph.conf
+[ INFO  ] Checking "Ceph_osd" Component
+[ INFO  ] -Service Status
+          Service ceph is running ...
+          Service ceph is enabled ...
+
 ```
 
 * Ceph-osd节点执行命令
 
 ```
 [ceph-osd]$ eayunstack doctor stack --ceph
-[ INFO  ] =====> start running check_ceph_osd_profile
 [ INFO  ] Checking "Ceph_osd" Component
           Profile: /etc/ceph/ceph.conf
-[ INFO  ] =====> start running check_ceph_osd_service
 [ INFO  ] Checking "Ceph_osd" Component
 [ INFO  ] -Service Status
           Service ceph is running ...
@@ -353,15 +445,18 @@ optional arguments:
 
 ```
 [controller]$ eayunstack doctor stack --controller --profile
-[ INFO  ] ========== start running check_controller_profile ==========
 [ INFO  ] Checking "Keystone" Component
-[ INFO  ]  -Profile: /etc/keystone/keystone.conf
+          Profile: /etc/keystone/keystone.conf
 [ INFO  ] Checking "Glance" Component
-[ INFO  ]  -Profile: /etc/glance/glance-api.conf
-[ INFO  ]  -Profile: /etc/glance/glance-registry.conf
+          Profile: /etc/glance/glance-api.conf
+          Profile: /etc/glance/glance-registry.conf
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Profile: /etc/nova/nova.conf
+          Profile: /etc/nova/nova.conf
+[ INFO  ] Checking "Neutron" Component
+          Profile: /etc/neutron/neutron.conf
 [ INFO  ] Checking "Cinder" Component
+          Profile: /etc/cinder/cinder.conf
+
 ```
 
 ## 单独检测服务运行状态
@@ -370,43 +465,60 @@ optional arguments:
 
 ```
 [controller]$ eayunstack doctor stack --controller --service
-[ INFO  ] ========== start running check_controller_service ==========
 [ INFO  ] Checking "Keystone" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-keystone is running ...
-[ INFO  ]    Service openstack-keystone is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-keystone is running ...
+          Service openstack-keystone is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 [ INFO  ] Checking "Glance" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-glance-api is running ...
-[ INFO  ]    Service openstack-glance-api is enabled ...
-[ INFO  ]    Service openstack-glance-registry is running ...
-[ INFO  ]    Service openstack-glance-registry is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-glance-api is running ...
+          Service openstack-glance-api is enabled ...
+          Service openstack-glance-registry is running ...
+          Service openstack-glance-registry is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 [ INFO  ] Checking "Nova" Component
-[ INFO  ]  -Service Status
-[ INFO  ]    Service openstack-nova-api is running ...
-[ INFO  ]    Service openstack-nova-api is enabled ...
-[ INFO  ]    Service openstack-nova-conductor is running ...
-[ INFO  ]    Service openstack-nova-conductor is enabled ...
-[ INFO  ]    Service openstack-nova-scheduler is running ...
-[ INFO  ]    Service openstack-nova-scheduler is enabled ...
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-nova-api is running ...
+          Service openstack-nova-api is enabled ...
+          Service openstack-nova-conductor is running ...
+          Service openstack-nova-conductor is enabled ...
+          Service openstack-nova-scheduler is running ...
+          Service openstack-nova-scheduler is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Neutron" Component
+[ INFO  ] -Service Status
+          Service neutron-server is running ...
+          Service neutron-server is enabled ...
+          Service neutron-ovs-cleanup is running ...
+          Service neutron-ovs-cleanup is enabled ...
+          Service openvswitch is running ...
+          Service openvswitch is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 [ INFO  ] Checking "Cinder" Component
-[ INFO  ]  -Service Status
-[ INFO  ]  -DB Connectivity
-[ INFO  ]    Check Sucessfully.
-[ INFO  ]  -Service Availability
-[ INFO  ]    Check Successfully.
+[ INFO  ] -Service Status
+          Service openstack-cinder-api is running ...
+          Service openstack-cinder-api is enabled ...
+          Service openstack-cinder-scheduler is running ...
+          Service openstack-cinder-scheduler is enabled ...
+          Service openstack-cinder-volume is running ...
+          Service openstack-cinder-volume is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 ```
 
 ## 检测所有检测对象
@@ -415,45 +527,264 @@ optional arguments:
 > 该命令需要在Fuel节点上执行
 
 ```
-# eayunstack doctor stack -a
-[ INFO  ] *************** Role: controller Node: 172.16.100.5  ***************
-[ INFO  ] ========== start running check_controller_profile ==========
-                             .   .   .
-[ INFO  ] ========== start running check_controller_service ==========
-                             .   .   .
-
-[ INFO  ] *************** Role: controller Node: 172.16.100.6  ***************
-[ INFO  ] ========== start running check_controller_profile ==========
-                             .   .   .
-[ INFO  ] ========== start running check_controller_service ==========
-                             .   .   .
-
+[fuel]# eayunstack doctor stack -a
 [ INFO  ] *************** Role: controller Node: 172.16.100.7  ***************
-[ INFO  ] ========== start running check_controller_profile ==========
-                             .   .   .
-[ INFO  ] ========== start running check_controller_service ==========
-                             .   .   .
+[ INFO  ] Checking "Keystone" Component
+          Profile: /etc/keystone/keystone.conf
+[ INFO  ] Checking "Glance" Component
+          Profile: /etc/glance/glance-api.conf
+          Profile: /etc/glance/glance-registry.conf
+[ INFO  ] Checking "Nova" Component
+          Profile: /etc/nova/nova.conf
+[ INFO  ] Checking "Neutron" Component
+          Profile: /etc/neutron/neutron.conf
+[ INFO  ] Checking "Cinder" Component
+          Profile: /etc/cinder/cinder.conf
+[ INFO  ] Checking "Keystone" Component
+[ INFO  ] -Service Status
+          Service openstack-keystone is running ...
+          Service openstack-keystone is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Glance" Component
+[ INFO  ] -Service Status
+          Service openstack-glance-api is running ...
+          Service openstack-glance-api is enabled ...
+          Service openstack-glance-registry is running ...
+          Service openstack-glance-registry is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Nova" Component
+[ INFO  ] -Service Status
+          Service openstack-nova-api is running ...
+          Service openstack-nova-api is enabled ...
+          Service openstack-nova-conductor is running ...
+          Service openstack-nova-conductor is enabled ...
+          Service openstack-nova-scheduler is running ...
+          Service openstack-nova-scheduler is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Neutron" Component
+[ INFO  ] -Service Status
+          Service neutron-server is running ...
+          Service neutron-server is enabled ...
+          Service neutron-ovs-cleanup is running ...
+          Service neutron-ovs-cleanup is enabled ...
+          Service openvswitch is running ...
+          Service openvswitch is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Cinder" Component
+[ INFO  ] -Service Status
+          Service openstack-cinder-api is running ...
+          Service openstack-cinder-api is enabled ...
+          Service openstack-cinder-scheduler is running ...
+          Service openstack-cinder-scheduler is enabled ...
+          Service openstack-cinder-volume is running ...
+          Service openstack-cinder-volume is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 
-[ INFO  ] *************** Role: compute    Node: 172.16.100.9  ***************
+[ INFO  ] *************** Role: controller Node: 172.16.100.5  ***************
+[ INFO  ] Checking "Keystone" Component
+          Profile: /etc/keystone/keystone.conf
+[ INFO  ] Checking "Glance" Component
+          Profile: /etc/glance/glance-api.conf
+          Profile: /etc/glance/glance-registry.conf
+[ INFO  ] Checking "Nova" Component
+          Profile: /etc/nova/nova.conf
+[ INFO  ] Checking "Neutron" Component
+          Profile: /etc/neutron/neutron.conf
+[ INFO  ] Checking "Cinder" Component
+          Profile: /etc/cinder/cinder.conf
+[ INFO  ] Checking "Keystone" Component
+[ INFO  ] -Service Status
+          Service openstack-keystone is running ...
+          Service openstack-keystone is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Glance" Component
+[ INFO  ] -Service Status
+          Service openstack-glance-api is running ...
+          Service openstack-glance-api is enabled ...
+          Service openstack-glance-registry is running ...
+          Service openstack-glance-registry is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Nova" Component
+[ INFO  ] -Service Status
+          Service openstack-nova-api is running ...
+          Service openstack-nova-api is enabled ...
+          Service openstack-nova-conductor is running ...
+          Service openstack-nova-conductor is enabled ...
+          Service openstack-nova-scheduler is running ...
+          Service openstack-nova-scheduler is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Neutron" Component
+[ INFO  ] -Service Status
+          Service neutron-server is running ...
+          Service neutron-server is enabled ...
+          Service neutron-ovs-cleanup is running ...
+          Service neutron-ovs-cleanup is enabled ...
+          Service openvswitch is running ...
+          Service openvswitch is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Cinder" Component
+[ INFO  ] -Service Status
+          Service openstack-cinder-api is running ...
+          Service openstack-cinder-api is enabled ...
+          Service openstack-cinder-scheduler is running ...
+          Service openstack-cinder-scheduler is enabled ...
+          Service openstack-cinder-volume is running ...
+          Service openstack-cinder-volume is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 
-[ INFO  ] *************** Role: compute    Node: 172.16.100.13 ***************
-[ INFO  ] ========== start running check_compute_profile ==========
-                             .   .   .
-[ INFO  ] ========== start running check_compute_service ==========
-                             .   .   .
+[ INFO  ] *************** Role: controller Node: 172.16.100.4  ***************
+[ INFO  ] Checking "Keystone" Component
+          Profile: /etc/keystone/keystone.conf
+[ INFO  ] Checking "Glance" Component
+          Profile: /etc/glance/glance-api.conf
+          Profile: /etc/glance/glance-registry.conf
+[ INFO  ] Checking "Nova" Component
+          Profile: /etc/nova/nova.conf
+[ INFO  ] Checking "Neutron" Component
+          Profile: /etc/neutron/neutron.conf
+[ INFO  ] Checking "Cinder" Component
+          Profile: /etc/cinder/cinder.conf
+[ INFO  ] Checking "Keystone" Component
+[ INFO  ] -Service Status
+          Service openstack-keystone is running ...
+          Service openstack-keystone is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Glance" Component
+[ INFO  ] -Service Status
+          Service openstack-glance-api is running ...
+          Service openstack-glance-api is enabled ...
+          Service openstack-glance-registry is running ...
+          Service openstack-glance-registry is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Nova" Component
+[ INFO  ] -Service Status
+          Service openstack-nova-api is running ...
+          Service openstack-nova-api is enabled ...
+          Service openstack-nova-conductor is running ...
+          Service openstack-nova-conductor is enabled ...
+          Service openstack-nova-scheduler is running ...
+          Service openstack-nova-scheduler is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Neutron" Component
+[ INFO  ] -Service Status
+          Service neutron-server is running ...
+          Service neutron-server is enabled ...
+          Service neutron-ovs-cleanup is running ...
+          Service neutron-ovs-cleanup is enabled ...
+          Service openvswitch is running ...
+          Service openvswitch is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
+[ INFO  ] Checking "Cinder" Component
+[ INFO  ] -Service Status
+          Service openstack-cinder-api is running ...
+          Service openstack-cinder-api is enabled ...
+          Service openstack-cinder-scheduler is running ...
+          Service openstack-cinder-scheduler is enabled ...
+          Service openstack-cinder-volume is running ...
+          Service openstack-cinder-volume is enabled ...
+[ INFO  ] -DB Connectivity
+          Check Sucessfully.
+[ INFO  ] -Service Availability
+          Check Successfully.
 
-[ INFO  ] *************** Role: mongo      Node: 172.16.100.8  ***************
-                             .   .   .
-[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.11 ***************
-[ INFO  ] ========== start running check_ceph_osd_profile ==========
-                             .   .   .
-[ INFO  ] ========== start running check_ceph_osd_service ==========
-                             .   .   .
+[ INFO  ] *************** Role: compute    Node: 172.16.100.12 ***************
+[ INFO  ] Checking "Nova" Component
+          Profile: /etc/nova/nova.conf
+[ INFO  ] Checking "Nova" Component
+[ INFO  ] -Service Status
+          Service openstack-nova-compute is running ...
+          Service openstack-nova-compute is enabled ...
 
-[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.12 ***************
-                             .   .   .
-[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.14 ***************
-                             .   .   .
+[ INFO  ] *************** Role: compute    Node: 172.16.100.6  ***************
+[ INFO  ] Checking "Nova" Component
+          Profile: /etc/nova/nova.conf
+[ INFO  ] Checking "Nova" Component
+[ INFO  ] -Service Status
+          Service openstack-nova-compute is running ...
+          Service openstack-nova-compute is enabled ...
+
+[ INFO  ] *************** Role: mongo      Node: 172.16.100.11 ***************
+[ INFO  ] Checking "Mongo" Component
+          Profile: /etc/mongodb.conf
+[ INFO  ] Checking "Mongo" Component
+[ INFO  ] -Service Status
+          Service mongod is running ...
+          Service mongod is enabled ...
+
+[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.10 ***************
+[ INFO  ] Checking "Ceph_osd" Component
+          Profile: /etc/ceph/ceph.conf
+[ INFO  ] Checking "Ceph_osd" Component
+[ INFO  ] -Service Status
+          Service ceph is running ...
+          Service ceph is enabled ...
+
+[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.9  ***************
+[ INFO  ] Checking "Ceph_osd" Component
+          Profile: /etc/ceph/ceph.conf
+[ INFO  ] Checking "Ceph_osd" Component
+[ INFO  ] -Service Status
+          Service ceph is running ...
+          Service ceph is enabled ...
+
+[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.8  ***************
+[ INFO  ] Checking "Ceph_osd" Component
+          Profile: /etc/ceph/ceph.conf
+[ INFO  ] Checking "Ceph_osd" Component
+[ INFO  ] -Service Status
+          Service ceph is running ...
+          Service ceph is enabled ...
+
+[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.13 ***************
+[ INFO  ] Checking "Ceph_osd" Component
+          Profile: /etc/ceph/ceph.conf
+[ INFO  ] Checking "Ceph_osd" Component
+[ INFO  ] -Service Status
+          Service ceph is running ...
+          Service ceph is enabled ...
+
 ```
 
 

@@ -8,7 +8,7 @@
 
   ![openstack_install_451](../images/openstack_install_451.png)
 
-* 配置磁盘分区，如下图所示。
+* 配置磁盘分区，如下图所示，**无特殊需求建议使用默认分区方案**。
 
   ![openstack_install_462](../images/openstack_install_462.png)
 
@@ -18,7 +18,7 @@
 
   ![openstack_install_453](../images/openstack_install_453.png)
 
-* 配置磁盘分区，如下图所示。
+* 配置磁盘分区，如下图所示，**无特殊需求建议使用默认分区方案**。
 
   ![openstack_install_464](../images/openstack_install_464.png)
 
@@ -28,7 +28,7 @@
 
   ![openstack_install_455](../images/openstack_install_455.png)
 
-* 配置磁盘分区，如下图所示。
+* 配置磁盘分区，如下图所示，**无特殊需求建议使用默认分区方案**。
 
   ![openstack_install_466](../images/openstack_install_466.png)
 
@@ -38,6 +38,6 @@
 
   ![openstack_install_457](../images/openstack_install_457.png)
 
-* 配置磁盘分区，如下图所示。
+* 配置磁盘分区，如下图所示，**无特殊需求建议使用默认分区方案**。
 
   ![openstack_install_468](../images/openstack_install_468.png)
