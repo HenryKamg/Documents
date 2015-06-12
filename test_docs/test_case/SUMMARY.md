@@ -27,6 +27,7 @@
    * [LBaaS](neutron/lbaas.md)
    * [VPNaaS](neutron/vpnaas.md)
    * [floating-ip](neutron/floating-ip.md)
+   * [QoS](neutron/qos.md)
 * [Nova 模块](nova/nova.md)
    * [Keypair](nova/keypair.md)
    * [安全组](nova/secgroup.md)
