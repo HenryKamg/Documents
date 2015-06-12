@@ -49,7 +49,8 @@ a、
 创建父队列：
 
 ```
-neutron eayun-qos-queue-create 25ed775a-e1c5-4a7a-ad58-11cc90534898 20480 --prio 0Created a new qos_queue:
+neutron eayun-qos-queue-create 25ed775a-e1c5-4a7a-ad58-11cc90534898 20480 --prio 0
+Created a new qos_queue:
 +------------------+--------------------------------------+
 | Field            | Value                                |
 +------------------+--------------------------------------+
@@ -71,7 +72,8 @@ b、
 创建子队列
 
 ```
- neutron eayun-qos-queue-create --parent 87301017-9f16-4d18-815b-6e1434dc6455 --prio 1 25ed775a-e1c5-4a7a-ad58-11cc90534898 10240Created a new qos_queue:
+ neutron eayun-qos-queue-create --parent 87301017-9f16-4d18-815b-6e1434dc6455 --prio 1 25ed775a-e1c5-4a7a-ad58-11cc90534898 10240
+ Created a new qos_queue:
 +------------------+--------------------------------------+
 | Field            | Value                                |
 +------------------+--------------------------------------+
