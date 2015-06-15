@@ -10,7 +10,7 @@
 |01010703|QoS脱离绑定设备|<ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-unbind QOS-ID</code>。|<ul><li>CLI:QoS成功脱离设备||||
 |01010704|在公网环境下删除一条QoS|<ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令，删除：<code>neutron eayun-qos-delete QOS-ID</code>。|<ul><li>CLI:QoS删除成功||||
 |01010705|在QoS中添加队列|<ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-queue-create QOS-ID 20480 --prio 0</code>。|<ul><li>CLI:队列创建成功||要创建子队列只需添加参数<code>--parent PARENT-ID</code>||
-|01010706|队列更新|<ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-queue-update --rate 51200 QOS_QUEUE-ID</code>。|<ul><li>CLI:队列更新成功||可以修改的队列参数还有优先级等||
+|01010706|队列更新|<ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-queue-update --rate 51200 QOS_QUEUE-ID</code>。|<ul><li>CLI:队列更新成功||可以修改的队列参数还有优先级等且默认队列不能更新||
 |01010707|队列删除|<ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-queue-delete QOS_QUEUE-ID</code>。|<ul><li>CLI:队列删除成功||||
 |01010708|在公网环境下创建过滤器|<ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-filter-create --queue QOS_QUEUE-ID --protocol 6 --src-port 23 --dst-port 23 --src-addr 172.168.200.4/24 --dst-addr 172.168.200.2/24 QOS-ID 104</code>。|<ul><li>CLI:过滤器创建成功||过滤器只能创建在没有子队列的队列中||
 |01010709|更新过滤器|<ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-filter-update --prio 200 QOS_FILTER-ID</code>。|<ul><li>CLI:过滤器更新成功||过滤器可以修改的参数还有协议，匹配端口等||
