@@ -73,6 +73,7 @@
    * [QoS](advance_admin/qos.md)
        * [QoS功能介绍](advance_admin/qos/qos_basic.md)
        * [QoS简单示例](advance_admin/qos/qos_use.md)
+       * [QoS测试](advance_admin/qos/qos_test.md)
 * [集群管理](cluster_admin/cluster_admin.md)
    * [高可用和负载均衡集群](cluster_admin/ha_and_lb/introduction.md)
        * [高可用集群](cluster_admin/ha_and_lb/high_availability.md)
