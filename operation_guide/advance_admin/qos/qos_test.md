@@ -42,10 +42,13 @@ iperf -c 172.168.200.27 -i 1 -t 10 -p 5001
 4.
 得到测试结果为：
 服务端：
+
 ![server_result](../Picture/server.png)
 
 客户端：
+
 ![client_result](../Picture/client.png)
+
 
 可以看到已经成匹配了过滤器，测试成功
 
