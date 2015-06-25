@@ -1,4 +1,4 @@
-# Summary
+# EayunStack 性能测试方案
 
 * [介绍](README.md)
 * [测试概要](test_summary/README.md)
@@ -14,8 +14,6 @@
          * [Neutron](content/neutron.md)
          * [Keystone](content/keystone.md)
    * [EayunStack 云主机性能](content/vm.md)
-      * [CPU 的使用性能](content/vm_cpu.md)
-      * [内存的使用性能](content/vm_ram.md)
       * [虚拟存储的使用性能](content/vm_storage.md)
       * [虚拟网络的工作性能](content/vm_network.md)
 * [测试结果](result/README.md)
