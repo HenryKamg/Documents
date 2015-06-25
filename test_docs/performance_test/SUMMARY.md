@@ -16,5 +16,3 @@
    * [EayunStack 云主机性能](content/vm.md)
       * [虚拟存储的使用性能](content/vm_storage.md)
       * [虚拟网络的工作性能](content/vm_network.md)
-* [测试结果](result/README.md)
-* [测试分析](analysis/README.md)
