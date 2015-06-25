@@ -11,28 +11,28 @@
 
     在云主机中分别执行：
 
-      ```
-      # TCP 测试服务器：
-      $ iperf -s -i 5
+    ```
+    # TCP 测试服务器：
+    $ iperf -s -i 5
 
-      # UDP 测试服务器：
-      $ iperf -u -s -i 5
+    # UDP 测试服务器：
+    $ iperf -u -s -i 5
       ```
 
 ## 执行测试：
 
   1. 登录到 Rally 测试服务器；
-  1. 使用 Rally 测试文件 [test_iperf.yaml]()，测试文件中已指定对应的测试脚本；
+  1. 使用 Rally 测试文件 [test_iperf.yaml](https://github.com/eayunstack/rally/blob/EayunStack_v1.0/use_rally/scenarions_with_args/vm/test_iperf.yaml)，测试文件中已指定对应的测试脚本；
   1. 执行测试命令：`rally -d task start test_iperf.yaml`；
   1. 测试执行结束后，执行以下命令获取测试结果：
 
-      ```
-      # 获取 html 格式的测试结果：
-      # rally task report <task_uuid> --out /var/www/html/rally_report/vm/success/<file_name>.html
+    ```
+    # 获取 html 格式的测试结果：
+    # rally task report <task_uuid> --out /var/www/html/rally_report/vm/success/<file_name>.html
 
-      # 获取 json 格式的测试结果：
-      # rally task results <task_uuid> >> /var/www/html/rally_report/vm/success/<file_name>.json
-      ```
+    # 获取 json 格式的测试结果：
+    # rally task results <task_uuid> >> /var/www/html/rally_report/vm/success/<file_name>.json
+    ```
 
   1. 在云主机中执行脚本的直接输出将在 Rally 测试执行完成后保存在 Rally 服务器的 /tmp/ 目录下，文件名为 `/tmp/iperf_*`。
 
