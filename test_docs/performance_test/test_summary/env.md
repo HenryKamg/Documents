@@ -4,7 +4,7 @@
 
 ## 硬件环境
 
-![硬件需求](pictures/EayunStack-Hardware-Architecture.png)
+![硬件需求](../pictures/EayunStack-Hardware-Architecture.png)
 
 ### 硬件需求
 
@@ -41,7 +41,7 @@
 
 ## 网络环境
 
-![网络架构](pictures/Network-Topology.png)
+![网络架构](../pictures/Network-Topology.png)
 
 整体的物理节点网络连接如上图，在 EayunStack 环境中，部署前，我们最少要定义四个物理网段：
 
