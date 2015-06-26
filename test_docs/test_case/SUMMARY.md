@@ -2,12 +2,6 @@
 
 * [介绍](README.md)
 * [验证模块的 Token](authenticate/authenticate.md)
-* [Ceilometer 模块](ceilometer/ceilometer.md)
-   * [Alarms](ceilometer/alarms.md)
-   * [Meters](ceilometer/meters.md)
-   * [Queries](ceilometer/queries.md)
-   * [Resource](ceilometer/resource.md)
-   * [Stats](ceilometer/stats.md)
 * [Cinder 模块](cinder/cinder.md)
    * [卷](cinder/volume.md)
    * [快照](cinder/snapshot.md)
@@ -37,4 +31,9 @@
    * [Cinder 配额](quotas/cinder.md)
    * [Neutron 配额](quotas/neutron.md)
    * [Nova 配额](quotas/nova.md)
-
+* [Ceilometer 模块](ceilometer/ceilometer.md)
+   * [Alarms](ceilometer/alarms.md)
+   * [Meters](ceilometer/meters.md)
+   * [Queries](ceilometer/queries.md)
+   * [Resource](ceilometer/resource.md)
+   * [Stats](ceilometer/stats.md)
