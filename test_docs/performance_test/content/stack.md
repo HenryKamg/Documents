@@ -6,8 +6,8 @@
 
   * [硬件测试](hardware.md)
   * [组件测试](component.md)
-     * [Nova](nova.md)
-     * [Cinder](cinder.md)
-     * [Glance](glance.md)
-     * [Neutron](neutron.md)
-     * [Keystone](keystone.md)
+     * [Nova](component.md#nova)
+     * [Cinder](component.md#cinder)
+     * [Glance](component.md#glance)
+     * [Neutron](component.md#neutron)
+     * [Keystone](component.md#keystone)
