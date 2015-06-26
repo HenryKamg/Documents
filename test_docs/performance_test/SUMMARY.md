@@ -1,6 +1,9 @@
 # EayunStack 性能测试方案
 
 * [介绍](README.md)
+* [前言](preface/README.md)
+   * [文档约定](preface/conventions.md)
+   * [修订历史](preface/revision_history.md)
 * [测试概要](test_summary/README.md)
    * [测试环境](test_summary/env.md)
    * [测试方法](test_summary/method.md)
