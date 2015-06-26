@@ -1,6 +1,6 @@
 # 硬件环境
 
-![硬件需求](pictures/EayunStack-Hardware-Architecture.png)
+![硬件需求](../pictures/EayunStack-Hardware-Architecture.png)
 
 ## 硬件需求
 目前测试环境的硬件架构如下:
