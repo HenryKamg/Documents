@@ -44,7 +44,7 @@ $ fio -ioengine=libaio -bs=4k -direct=1 -thread -rw=randwrite \
 
 对于云主机的测试，则借助 Rally 的 VMTask 标准场景，完成自动化测试。
 
-测试方法详情请参考 [EayunStack 性能测试方案]()。
+测试方法详情请参考 [EayunStack 性能测试方案](http://docs.eayun.cn/zh-CN/EayunStack/1.0/html/performance_test/content/vm_storage.html)。
 
 ## 网络性能测试工具
 
@@ -113,4 +113,4 @@ $ iperf -u -c <udp_server_ip> -5 -b 1000M -t 120
 
 对于云主机的测试，则借助 Rally 的 VMTask 标准场景，完成自动化测试。
 
-测试方法详情请参考 [EayunStack 性能测试方案]()。
+测试方法详情请参考 [EayunStack 性能测试方案](http://docs.eayun.cn/zh-CN/EayunStack/1.0/html/performance_test/content/vm_network.html)。
