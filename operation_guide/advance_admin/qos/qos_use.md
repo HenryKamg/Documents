@@ -1,24 +1,10 @@
-# QoS简单示例
-测试场景：
+# QoS简单创建
 
-1、新增QoS,带宽为100KB/s，默认队列带宽为20KB/s，方向为进；
-
-
-2、新增父队列，带宽设置为20KB/s，优先级设为最高“0”；
-
-
-3、新增两个子队列，带宽分别设置为10KB/S，优先级设置为“1”；
-
-
-4、在其中一个队列里设置过滤器，匹配上instance A 从instance B出来的TCP流量。
-
-
-测试步骤：
 
 1、新建QoS
 
 ```
-neutron eayun-qos-create --name chenyan-qos --target-type port --target-id f3ab7c9f-6182-43f4-ba3e-5662b396137f ingress 102400 20480
+neutron eayun-qos-create --name chenyan-qos --target-type port --target-id f3ab7c9f-6182-43f4-ba3e-5662b396137f egress 102400 20480
 Created a new qos:
 +--------------------+--------------------------------------+
 | Field              | Value                                |
@@ -27,7 +13,7 @@ Created a new qos:
 | cburst             |                                      |
 | default_queue_id   | 9d891bd0-9868-4aa7-92b6-bdd731ab4a69 |
 | description        |                                      |
-| direction          | ingress                              |
+| direction          | egress                              |
 | id                 | 25ed775a-e1c5-4a7a-ad58-11cc90534898 |
 | name               | chenyan-qos                          |
 | qos_queues         | 9d891bd0-9868-4aa7-92b6-bdd731ab4a69 |
@@ -41,7 +27,7 @@ Created a new qos:
 ```
 
 
-新建的qos匹配上了port
+新建的qos匹配上了虚拟机的neutron port
 
 2、建立一个父队列与两个子队列
 
@@ -115,4 +101,3 @@ Created a new qos_filter:
 ```
 
 
-在环境中启动两个相同子网的两台虚拟机，使用网络性能测试工具测试
