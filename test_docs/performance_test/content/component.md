@@ -1,59 +1,66 @@
 # EayunStack 模块测试
 
-EayunStack 的组件性能测试可以通过 Tempest 来执行。
+EayunStack 的组件性能测试可以通过 Rally 来执行。
 
-而 Rally 对 Tempest 进行了一定的封装，可以直接通过 Rally 执行 Tempest 测试，并生成易于理解的测试结果。
+测试时，需要修改参数。
 
 ## Nova 模块
+
+对 Nova 模块的性能测试主要关注同时启动 N 台云主机所需要的时间。
 
 测试步骤如下：
 
 1. 登录到 Rally 测试服务器；
-1. 执行测试命令：`rally -d verify start --set compute`；
+1. 执行测试命令：`rally -d task start boot.yaml`；
 1. 测试结束后，输出测试结果：
 
   ```
   # html 格式的测试结果
-  # rally verify results <UUID> --html --ouput-file /var/www/html/tempest_report/compute/<file_name>.html
+  # rally task report <UUID> --out /var/www/html/rally_report/nova/<file_name>.html
 
   # json 格式的测试结果
-  # rally verify results <UUID> --json --ouput-file /var/www/html/tempest_report/compute/<file_name>.json
+  # rally task results <UUID> >> /var/www/html/rally_report/nova/<file_name>.json
   ```
 
 1. 可以通过浏览器打开 Rally 服务器地址查看测试结果。
 
 ## Cinder 模块
 
+对 Cinder 模块的性能测试主要关注创建卷所需要的时间。
+
 测试步骤如下：
 
 1. 登录到 Rally 测试服务器；
-1. 执行测试命令：`rally -d verify start --set volume`；
+1. 执行测试命令：`rally -d task start create-volume_rbd.yaml`；
+1. 执行测试命令：`rally -d task start create-volume_eqlx.yaml`；
 1. 测试结束后，输出测试结果：
 
   ```
   # html 格式的测试结果
-  # rally verify results <UUID> --html --ouput-file /var/www/html/tempest_report/volume/<file_name>.html
+  # rally task report <UUID> --out /var/www/html/tempest_report/cinder/<file_name>.html
 
   # json 格式的测试结果
-  # rally verify results <UUID> --json --ouput-file /var/www/html/tempest_report/volume/<file_name>.json
+  # rally task results <UUID> --json --ouput-file /var/www/html/rally_report/cinder/<file_name>.json
   ```
 
 1. 可以通过浏览器打开 Rally 服务器地址查看测试结果。
 
 ## Glance 模块
 
+对 Glance 模块的性能测试主要关注上传镜像所需要的时间。
+
 测试步骤如下：
 
 1. 登录到 Rally 测试服务器；
-1. 执行测试命令：`rally -d verify start --set image`；
+1. 执行测试命令：`rally -d task start xxxx.yaml`；
 1. 测试结束后，输出测试结果：
 
   ```
   # html 格式的测试结果
-  # rally verify results <UUID> --html --ouput-file /var/www/html/tempest_report/image/<file_name>.html
+  # rally task report <UUID> --out /var/www/html/rally_report/glance/<file_name>.html
 
   # json 格式的测试结果
-  # rally verify results <UUID> --json --ouput-file /var/www/html/tempest_report/image/<file_name>.json
+  # rally task results <UUID> >> /var/www/html/rally_report/glance/<file_name>.json
   ```
 
 1. 可以通过浏览器打开 Rally 服务器地址查看测试结果。
