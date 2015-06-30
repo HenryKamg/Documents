@@ -16,51 +16,30 @@ EayunStack 允许云主机使用两种类型的存储：Ceph 和 Eqlx。
 
 ### 测试 Ceph 类型存储的性能
 
-* 不同 IO 下性能的变化：
+1. 登录到 Rally 测试服务器；
+1. 使用测试文件 [test_fio_rbd.yaml](https://github.com/eayunstack/rally/blob/EayunStack_v1.0/use_rally/scenarions_with_args/vm/test_fio_rbd.yaml)，测试文件中已指定对应的测试脚本；
+1. 执行测试命令：`rally -d task start test_fio_rbd.yaml`；
 
-  1. 登录到 Rally 测试服务器；
-  1. 使用测试文件 [test_fio_bs_rbd.yaml](https://github.com/eayunstack/rally/blob/EayunStack_v1.0/use_rally/scenarions_with_args/vm/test_fio_bs_rbd.yaml)，测试文件中已指定对应的测试脚本；
-  1. 执行测试命令：`rally -d task start test_fio_bs_rbd.yaml`；
-  
-      ```
-      # 获取 html 格式的测试结果：
-      # rally task report <task_uuid> --out /var/www/html/rally_report/vm/success/<file_name>.html
+    ```
+    # 获取 html 格式的测试结果：
+    # rally task report <task_uuid> --out /var/www/html/rally_report/vm/success/<file_name>.html
 
-      # 获取 json 格式的测试结果：
-      # rally task results <task_uuid> >> /var/www/html/rally_report/vm/success/<file_name>.json
-      ```
+    # 获取 json 格式的测试结果：
+    # rally task results <task_uuid> >> /var/www/html/rally_report/vm/success/<file_name>.json
+    ```
 
-  1. 在云主机中执行脚本的直接输出将在 Rally 测试执行完成后保存在 Rally 服务器的 /tmp/ 目录下，文件名为 `/tmp/fio_bs_*`；
+1. 在云主机中执行脚本的直接输出将在 Rally 测试执行完成后保存在 Rally 服务器的 /tmp/ 目录下，文件名为 `/tmp/fio_bs_*`；
 
-  > ###### 说明：
-  > 测试不同 IO 时，所设置的队列深度为 4，所测试的 IO 大小为：4k, 8k, 16k, 512k, 1M, 2M, 4M, 8M。
-
-* 不同队列深度下性能的变化：
-
-  1. 登录到 Rally 测试服务器；
-  1. 使用测试文件 [test_fio_iodepth_rbd.yaml](https://github.com/eayunstack/rally/blob/EayunStack_v1.0/use_rally/scenarions_with_args/vm/test_fio_iodepth_rbd.yaml)，测试文件中已指定对应的测试脚本；
-  1. 执行测试命令：`rally -d task start test_fio_iodepth_rbd.yaml`；
-  
-      ```
-      # 获取 html 格式的测试结果：
-      # rally task report <task_uuid> --out /var/www/html/rally_report/vm/success/<file_name>.html
-
-      # 获取 json 格式的测试结果：
-      # rally task results <task_uuid> >> /var/www/html/rally_report/vm/success/<file_name>.json
-      ```
-
-  1. 在云主机中执行脚本的直接输出将在 Rally 测试执行完成后保存在 Rally 服务器的 /tmp/ 目录下，文件名为 `/tmp/fio_iodepth_*`；
-
-  > ###### 说明：
-  > 测试不同队列深度时，设置 bs=512k，所测试的队列深度为：1, 2, 4, 8, 16, 32, 64, 128, 256。
+> ###### 说明：
+> * 测试不同模式：顺序写、顺序读、随机写、随机读；
+> * 测试不同队列深度：1, 2, 4, 8, 16, 32, 64, 128, 256；
+> * 测试不同 IO 大小：4k, 8k, 16k, 64k, 512k, 1M, 2M, 4M, 8M。
 
 ### 测试 Eqlx 类型存储的性能
 
-* 不同 IO 下性能的变化：
-
   1. 登录到 Rally 测试服务器；
-  1. 使用测试文件 [test_fio_bs_eqlx.yaml](https://github.com/eayunstack/rally/blob/EayunStack_v1.0/use_rally/scenarions_with_args/vm/test_fio_bs_eqlx.yaml)，测试文件中已指定对应的测试脚本；
-  1. 执行测试命令：`rally -d task start test_fio_bs_eqlx.yaml`；
+  1. 使用测试文件 [test_fio_eqlx.yaml](https://github.com/eayunstack/rally/blob/EayunStack_v1.0/use_rally/scenarions_with_args/vm/test_fio_eqlx.yaml)，测试文件中已指定对应的测试脚本；
+  1. 执行测试命令：`rally -d task start test_fio_eqlx.yaml`；
   
       ```
       # 获取 html 格式的测试结果：
@@ -72,27 +51,11 @@ EayunStack 允许云主机使用两种类型的存储：Ceph 和 Eqlx。
 
   1. 在云主机中执行脚本的直接输出将在 Rally 测试执行完成后保存在 Rally 服务器的 /tmp/ 目录下，文件名为 `/tmp/fio_bs_*`；
 
-  > ###### 说明：
-  > 测试不同 IO 时，所设置的队列深度为 4，所测试的 IO 大小为：4k, 8k, 16k, 512k, 1M, 2M, 4M, 8M。
 
-* 不同队列深度下性能的变化：
-
-  1. 登录到 Rally 测试服务器；
-  1. 使用测试文件 [test_fio_iodepth_eqlx.yaml](https://github.com/eayunstack/rally/blob/EayunStack_v1.0/use_rally/scenarions_with_args/vm/test_fio_iodepth_eqlx.yaml)，测试文件中已指定对应的测试脚本；
-  1. 执行测试命令：`rally -d task start test_fio_iodepth_eqlx.yaml`；
-  
-      ```
-      # 获取 html 格式的测试结果：
-      # rally task report <task_uuid> --out /var/www/html/rally_report/vm/success/<file_name>.html
-
-      # 获取 json 格式的测试结果：
-      # rally task results <task_uuid> >> /var/www/html/rally_report/vm/success/<file_name>.json
-      ```
-
-  1. 在云主机中执行脚本的直接输出将在 Rally 测试执行完成后保存在 Rally 服务器的 /tmp/ 目录下，文件名为 `/tmp/fio_iodepth_*`；
-
-  > ###### 说明：
-  > 测试不同队列深度时，设置 bs=512k，所测试的队列深度为：1, 2, 4, 8, 16, 32, 64, 128, 256。
+> ###### 说明：
+> * 测试不同模式：顺序写、顺序读、随机写、随机读；
+> * 测试不同队列深度：1, 2, 4, 8, 16, 32, 64, 128, 256；
+> * 测试不同 IO 大小：4k, 8k, 16k, 64k, 512k, 1M, 2M, 4M, 8M。
 
 > ###### 注：
 > Rally 的测试结果输出到 /var/www/html/ 目录下后，可以直接通过浏览器输入 Rally 服务器 IP 地址，以打开测试结果。
