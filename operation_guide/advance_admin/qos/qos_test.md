@@ -161,12 +161,47 @@ a)
 iperf -s -i 1 -t 10 -p 5001
 ```
 
+参数说明
+
+1)
+<code>-s</code>表示开启服务端服务
+
+2)
+<code>-i</code>缩短报告时间
+
+3)
+<code>-t</code>拉长时长
+
+4)
+<code>-p</code>指定监听端口
+
+其他参数请参考wiki[(https://oa.eayun.cn/wiki/doku.php?id=eayunstack:neutron:%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7)]
+
 b)
 
 在iperf客户端执行命令：
 ```
 iperf -c 172.168.200.27 -i 1 -t 10 -p 5001
 ```
+
+参时说明：
+
+1)
+<code>-c</code>表示客户端
+
+2)
+<code>HOST</code>，表示服务端的IP地址
+
+3）
+<code>-i</code>缩短报告时间
+
+4)
+<code>-t</code>拉长时长
+
+5)
+<code>-p</code>指定监听端口
+
+其他参数请参考wiki[(https://oa.eayun.cn/wiki/doku.php?id=eayunstack:neutron:%E7%BD%91%E7%BB%9C%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7)]
 
 c)
 
