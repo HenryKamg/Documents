@@ -119,7 +119,7 @@
 * [灾难应对措施](disaster_recovery/disaster_recovery.md)
    * [术语描述](disaster_recovery/glossary.md)
    * [人员和时间安排](disaster_recovery/arrangement.md)
-   * [硬件环境准备](disaster_recovery/env.md)
+   * [硬件环境](disaster_recovery/env.md)
    * [灾难场景](disaster_recovery/disaster_scenarios.md)
 * [FAQ](FAQ/faq.md)
 * [获取帮助](help/help.md)
