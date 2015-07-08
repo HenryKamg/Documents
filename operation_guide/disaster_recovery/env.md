@@ -57,3 +57,4 @@
 
 根据下图所示架构进行环境搭建
 
+ ![eayunstack_hw_arch](../images/eayunstack_hw_arch.png)
