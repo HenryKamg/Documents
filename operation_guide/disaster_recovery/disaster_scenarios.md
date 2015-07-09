@@ -71,11 +71,19 @@
 
 #### 场景：Controller 节点宕机
 
-* 场景描述：
+* 场景 No.1：router 未自动迁移到其它 Controller 节点 
 
-  一台 Controller 节点宕机。
+  * 场景描述：
+    
+    一台 Controller 节点宕机，运行在该节点上的 router 未自动迁移到其它 Controller 节点。
 
-* 恢复方案：
+  * 恢复方案：
+  
+* 场景 No.2：
+
+  * 场景描述：
+  
+  * 恢复方案：
 
 
 ===
