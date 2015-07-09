@@ -71,7 +71,7 @@
 
 #### 场景：Controller 节点宕机
 
-* *场景 No.1：router 未自动迁移到其它 Controller 节点 **
+* 场景 No.1：**router 未自动迁移到其它 Controller 节点**
 
   * 场景描述：
     
