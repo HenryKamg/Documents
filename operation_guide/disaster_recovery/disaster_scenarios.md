@@ -90,11 +90,13 @@
 
 #### 场景：Compute 节点宕机
 
-* 场景描述：
+* 场景 No.1：instance 未在其它 Compute 节点重新启动
 
-  一台 Compute 节点宕机。
+  * 场景描述：
+    
+    一台 Compute 节点宕机，运行在该节点上的 instance 未在其它 Compute 节点重新启动
 
-* 恢复方案：
+  * 恢复方案：
 
 
 ===
