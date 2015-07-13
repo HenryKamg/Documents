@@ -1,5 +1,4 @@
 # QoS简单创建
-<<<<<<< HEAD
 #####精确匹配的QoS创建的流程为：
 
 QoS创建----->QoS队列创建------>QoS过滤器创建
@@ -7,13 +6,7 @@ QoS创建----->QoS队列创建------>QoS过滤器创建
 注意：以上的过程是需要精确匹配的时候采用的过程，一般不需要太精细化只需要使用QoS匹配即可。
 
 使用QoS即可所有流量进行控制未分类的流量就是在QoS的默认队列中的，但是QoS没有规则的概念所以不能进行更加精细的匹配，才有队列和过滤器进行更加精确的匹配，且过滤器不仅可以创建在队列上也可以创建在QoS上
-=======
-#####QoS创建的流程为：
 
-QoS创建----->QoS队列创建------>QoS过滤器创建
-
-最终流量包在过滤器的规则中匹配
->>>>>>> 2cad0fd01e787e6095759b1a9c378cf476ffc1ba
 
 #####流量包实际匹配的流程为：
 例如这样一个QoS
@@ -29,17 +22,11 @@ QoS创建----->QoS队列创建------>QoS过滤器创建
 QoS的限速功能只能针对路由器或者虚拟机限速，即流量包会通过的地方
 
 
-<<<<<<< HEAD
 |QoS绑定类型  | target-type参数 | target-id参数 | 测试环境 | 使用环境 |
 | ----------- | --------------- | ------------- | -------- | -------- |
 | 路由器 | router | 执行命令<code>neutron router-show ROUTE-NAME</code>找到对应的路由器id | 不在同一个宿主机上的两台虚拟机之间做测试 |当你需要控制的流量会走路由器时，例如外网访问内网服务|
 | 虚拟机 | neutron-port | 执行命令<code>neutron port-list</code>找到对应的虚拟机的neutron id | 在同一个内网的两台虚拟机之间测试 |需要控制的流量只会在一个内网之间进行传递，例如同一内网之间访问|
-=======
-|QoS绑定类型  | target-type参数 | target-id参数 | 测试环境 |
-| ----------- | --------------- | ------------- | -------- |
-| 路由器 | router | 执行命令<code>neutron router-show ROUTE-NAME</code>找到对应的路由器id | 不在同一个宿主机上的两台虚拟机之间做测试 |
-| 虚拟机 | port | 执行命令<code>neutron port-list</code>找到对应的虚拟机的neutron id | 在同一个内网的两台虚拟机之间测试 |
->>>>>>> 2cad0fd01e787e6095759b1a9c378cf476ffc1ba
+
 
 
 
@@ -94,6 +81,7 @@ Created a new qos:
 注意其他可选选项使用命令查看<code>neutron eayun-qos-create -h</code>
 
 
+
 ###二、绑定路由器
 
 实例：
@@ -121,41 +109,7 @@ Created a new qos:
 <code>neutron eayun-qos-create --name test-qos-router --target-type router --target-id 721a68b0-19ee-46d6-9b52-3ff1452fa8af egress(DIRECTION:egress or ingress) 1024000(RATE) 102400(DEFAULT_RATE)</code>
 
 ####参数说明：
-
 <code>neutron eayun-qos-create --name test-qos-router --target-type router --target-id 721a68b0-19ee-46d6-9b52-3ff1452fa8af egress(DIRECTION:egress or ingress) 1024000(RATE) 102400(DEFAULT_RATE)</code>
-
-<<<<<<< HEAD
-=======
-
-
-###二、绑定路由器
-
-实例：
-```
-neutron eayun-qos-create --name test-qos-router --target-type router --target-id 721a68b0-19ee-46d6-9b52-3ff1452fa8af egress 1024000 102400
-Created a new qos:
-+--------------------+--------------------------------------+
-| Field              | Value                                |
-+--------------------+--------------------------------------+
-| burst              |                                      |
-| cburst             |                                      |
-| default_queue_id   | 582b0632-9bc0-48b4-ad5f-774c239e4da3 |
-| description        |                                      |
-| direction          | egress                               |
-| id                 | 6f1d370d-f54b-4eb8-8337-1604b11b06b3 |
-| name               | test-qos-router                      |
-| qos_queues         | 582b0632-9bc0-48b4-ad5f-774c239e4da3 |
-| rate               | 1024000                              |
-| target_id          | 721a68b0-19ee-46d6-9b52-3ff1452fa8af |
-| target_type        | router                               |
-| tenant_id          | 3846bfe69b4a49948b8056d5f9c76859     |
-| unattached_filters |                                      |
-+--------------------+--------------------------------------+
-```
-
-
-####参数说明：
->>>>>>> 2cad0fd01e787e6095759b1a9c378cf476ffc1ba
 
 1)<code>--name</code>是可选选项，填写你需要名字
 
@@ -213,11 +167,9 @@ Created a new qos_queue:
 
 ####参数说明：
 
-<<<<<<< HEAD
+
 <code>neutron eayun-qos-queue-create 25ed775a-e1c5-4a7a-ad58-11cc90534898(QOS-ID) 20480(RATE) --prio 0</code>
-=======
-####参数说明：
->>>>>>> 2cad0fd01e787e6095759b1a9c378cf476ffc1ba
+
 
 1)<code>--prio</code>可选选项，指定队列优先级，优先级只能从0到7，数字越小越优先，不设置默认优先级为7
 
@@ -255,11 +207,10 @@ neutron eayun-qos-queue-create -h</code>查看
 
 ```
 
-<<<<<<< HEAD
 <code>neutron eayun-qos-queue-create --parent 87301017-9f16-4d18-815b-6e1434dc6455(PARENT) --prio 1 25ed775a-e1c5-4a7a-ad58-11cc90534898(QOS-ID) 10240(RATE)</code>
-=======
->>>>>>> 2cad0fd01e787e6095759b1a9c378cf476ffc1ba
+
 ####参数说明：
+<code>neutron eayun-qos-queue-create --parent 87301017-9f16-4d18-815b-6e1434dc6455(PARENT) --prio 1 25ed775a-e1c5-4a7a-ad58-11cc90534898(QOS-ID) 10240(RATE)</code>
 
 1)<code>--parent</code>，指定该子队列之上的父队列的ID
 
@@ -273,12 +224,11 @@ neutron eayun-qos-queue-create -h</code>查看
 其他可选选项使用命令<code>
 neutron eayun-qos-queue-create -h</code>查看
 
-<<<<<<< HEAD
-=======
+
 
 ##创建过滤器：
 过滤器的创建与QoS绑定的是路由还是虚拟机无关都是相同的创建及应用方式
->>>>>>> 2cad0fd01e787e6095759b1a9c378cf476ffc1ba
+
 
 ##创建过滤器：
 
@@ -328,8 +278,12 @@ Created a new qos_filter:
 
 
 ```
+<code>neutron eayun-qos-filter-create --queue ba4fe297-89dd-48f1-9de0-c2ef6433f40c --protocol 6 --dst-port 5001 --dst-addr 172.168.200.27/22 36bbd6f7-0682-4bb5-a9a4-39978b78be6b(QOS-ID) 202(PRIO)</code>
+
 
 ####参数说明：
+
+<code>neutron eayun-qos-filter-create --queue ba4fe297-89dd-48f1-9de0-c2ef6433f40c --protocol 6 --dst-port 5001 --dst-addr 172.168.200.27/22 36bbd6f7-0682-4bb5-a9a4-39978b78be6b(QOS-ID) 202(PRIO)</code>
 
 1)<code>--queue</code>，指向该过滤器要绑定的队列的ID
 
@@ -352,7 +306,7 @@ Created a new qos_filter:
 其他参数获取使用命令查看<code>neutron eayun-qos-filter-create -h</code>
 
 
-<<<<<<< HEAD
+
 ##测试场景
 
 ###绑定路由器的时候的场景：
@@ -457,40 +411,3 @@ Created a new qos_filter:
 创建Filter
 
 <code>neutron eayun-qos-filter-create --queue QUEUE-A-ID --protocol 6 -src-port 21 --src-addr A-IP QOS-ID 100</code>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> 2cad0fd01e787e6095759b1a9c378cf476ffc1ba
