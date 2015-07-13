@@ -390,6 +390,7 @@ Created a new qos_filter:
 ####具体实现
 
 以下是三的具体方式：
+
 1、新增QoS，带宽100KB/s，默认队列带宽为10KB/s，方向上传，连接目标为instance A 的neutron 端口
 
 执行命令：
@@ -407,7 +408,9 @@ Created a new qos_filter:
 <code>neutron eayun-qos-queue-create QOS-ID 5120</code>
 
 3、新增QoS Filter，匹配从instance A 向外的FTP流量，指向Queue A
+
 执行命令：
+
 创建Filter
 
 <code>neutron eayun-qos-filter-create --queue QUEUE-A-ID --protocol 6 -src-port 21 --src-addr A-IP QOS-ID 100</code>
