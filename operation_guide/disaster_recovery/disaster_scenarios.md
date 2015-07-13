@@ -383,7 +383,7 @@ N）
 
 * 现象描述：
 
-  * 任意 OpenStack 组件连接数据库失败。
+  * 任意 OpenStack 组件连接数据库失败，日志中报数据库连接错误。
 
 * 故障原因：
 
@@ -409,7 +409,7 @@ N）
 
 * 现象描述：
 
-  * 任意 OpenStack 组件连接 RabbitMQ 失败。
+  * 任意 OpenStack 组件连接 RabbitMQ 失败，日志中报 rabbitmq 连接错误。
 
 * 故障原因：
 
