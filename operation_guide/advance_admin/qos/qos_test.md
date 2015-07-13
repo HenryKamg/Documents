@@ -4,6 +4,9 @@
 
 ##测试场景说明
 
+以将QoS绑定在虚拟机的neutron 端口，测试同一个内网之间的两台虚拟机为例
+
+
 加在同一个内网的两虚拟机，一个作为server，一个作为client进行测试。将QoS绑定在server端，使QoS在server端的进方向发挥作用，及整个的测试过程client端对server发出测试，在流量包进入server的过程进行QoS匹配，匹配成功的filter按照指定流量传输。测试过程，将filter的匹配为server端的tcp
 协议的5001端口，匹配成功后子队列给出的带宽大约为800kbp/s，即本场景中的测试结果会在server端显现。
 
