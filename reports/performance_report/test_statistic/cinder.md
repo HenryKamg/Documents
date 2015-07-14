@@ -10,29 +10,37 @@
 
 卷类型分为 Ceph 和 Eqlx。
 
+> ###### 说明：
+> * 参数的不同组合作为测试的内容；
+> * 每个测试执行 10 次；
+> * 测试总数目为：4 \* 2 \* 10 = 80。
+
 ## 从镜像创建卷
 
-测试从镜像创建卷，使用常用镜像进行测试，如下：
+测试从镜像创建卷，使用常用镜像进行测试，镜像信息如下：
 
 |镜像|镜像大小|镜像格式|
 |----|--------|--------|
-|cirros-0.3.4-x86_64-raw||RAW|
-|centos-6.5-x86_64-raw||RAW|
-|centos-7.0-x86_64-raw||RAW|
-|ubuntu-10.04-i386-raw||RAW|
-|ubuntu-10.04-x86_64-raw||RAW|
-|ubuntu-12.04-i386-raw||RAW|
-|ubuntu-12.04-x86_64-raw||RAW|
-|ubuntu-14.04-i386-raw||RAW|
-|ubuntu-14.04-x86_64-raw||RAW|
-|fedora-20-i386-raw||RAW|
-|fedora-20-x86_64-raw||RAW|
-|fedora-21-i386-raw||RAW|
-|fedora-21-x86_64-raw||RAW|
-|rhel-6.5-x86_64-raw||RAW|
-|rhel-6.6-x86_64-raw||RAW|
-|rhel-7.0-x86_64-raw||RAW|
-|rhel-7.1-x86_64-raw||RAW|
+|centos-6.5-x86_64-raw  |8.0G|RAW|
+|centos-7.0-x86_64-raw  |8.0G|RAW|
+|ubuntu-10.04-i386-raw  |2.2G|RAW|
+|ubuntu-10.04-x86_64-raw|2.2G|RAW|
+|ubuntu-12.04-i386-raw  |2.2G|RAW|
+|ubuntu-12.04-x86_64-raw|2.2G|RAW|
+|ubuntu-14.04-i386-raw  |2.2G|RAW|
+|ubuntu-14.04-x86_64-raw|2.2G|RAW|
+|fedora-20-i386-raw     |2.0G|RAW|
+|fedora-20-x86_64-raw   |2.0G|RAW|
+|fedora-21-i386-raw     |3.0G|RAW|
+|fedora-21-x86_64-raw   |3.0G|RAW|
+|rhel-6.5-x86_64-raw    |16G |RAW|
+|rhel-6.6-x86_64-raw    |16G |RAW|
+|rhel-7.0-x86_64-raw    |10G |RAW|
+|rhel-7.1-x86_64-raw    |10G |RAW|
 
-卷类型分为 Ceph 和 Eqlx。
+卷类型分为 Ceph 和 Eqlx，并以不同大小创建了卷：10G、50G、100G。
 
+> ###### 说明：
+> * 上述参数的不同组合作为测试的内容；
+> * 每个测试执行 10 次；
+> * 测试总数目为：16 \* 2 \* 4 \* 10 = 1280。
