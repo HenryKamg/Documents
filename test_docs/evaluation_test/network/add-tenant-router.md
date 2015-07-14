@@ -3,7 +3,7 @@
 * 前提：
 
   - 以 **eayun_member** 身份登录到 OpenStack 管理界面。
-  - **eayun-pri** 和 ** eayun-pri-sub 存在
+  - **eayun-pri** 和 **eayun-pri-sub** 存在
 
 * 操作：
 

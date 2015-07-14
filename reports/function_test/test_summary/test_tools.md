@@ -14,7 +14,7 @@ EayunStack 功能测试所使用的方式有 3 种，如下：
   > * 少数使用手工测试。
 
   > ###### 注：
-  > 关于 Rally 的使用，请参考 [wiki](https://oa.eayun.cn/wiki/doku.php?id=rally_%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8)。
+  > 关于 Rally 的使用，请参考 [wiki](https://oa.eayun.cn/wiki/doku.php?id=eayunstack:rally:基本使用)。
 
 > **各模块测试方法统计：**
 
