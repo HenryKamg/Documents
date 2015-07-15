@@ -461,21 +461,21 @@ N）
 
 * 故障模拟方案：
 
-
+通过人为切断某些 Controller 节点的管理网络来破坏 RabbitMQ 集群内部通讯，从而打乱集群。
 
 * 故障原因：
 
-  * 
+  * RabbitMQ 集群各节点间无法正常通讯。
 
 * 恢复方案：
 
   * 排查方法
     
-    * 
+    * 在 Controller 节点查看 RabbitMQ 集群状态。
     
   * 解决方法
 
-    * 
+    * 判断哪台 Controller 节点故障，恢复故障节点的网络环境后，重启其上的 RabbitMQ 服务以及所有 OpenStack 服务。
 
 * 预计故障恢复时间
 
