@@ -272,7 +272,7 @@ N）
     
   * 解决方法
 
-    * 
+    * 参考wiki：https://oa.eayun.cn/wiki/doku.php?id=eayunstack:nova:evacuation
 
 * 预计故障恢复时间
 
