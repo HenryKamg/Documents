@@ -41,4 +41,7 @@
    * [负载均衡](advance-usage/load_balancer.md)
    * [防火墙服务](advance-usage/firewall.md)
    * [VPN 服务](advance-usage/vpn.md)
-
+* [灾难恢复](disaster_recovery/README.md)
+   * [术语说明](disaster_recovery/glossary.md)
+   * [环境准备](disaster_recovery/env.md)
+   * [灾难场景](disaster_recovery/scenarios.md)
