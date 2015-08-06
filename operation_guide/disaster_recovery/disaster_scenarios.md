@@ -164,7 +164,7 @@ N）
 
 ===
 
-##### 场景 No.6：DashBoard无法访问，监控系统发现大于或等于 N/2 台 Controller 节点宕机（N为Controller节点总数）
+##### 场景 No.6(已测试通过)：DashBoard无法访问，监控系统发现大于或等于 N/2 台 Controller 节点宕机（N为Controller节点总数）
 
 * 故障等级：
 
