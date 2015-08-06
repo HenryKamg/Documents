@@ -314,7 +314,7 @@ N）
 
 ===
 
-##### 场景 No.10：所有 OpenStack 节点NTP同步失败
+##### 场景 No.10（已测试通过）：所有 OpenStack 节点NTP同步失败
 
 * 故障等级：
 
@@ -324,21 +324,21 @@ N）
 
 * 故障模拟方案:
 
-  切断 Fuel 节点电源
+  停止 Fuel 节点 NTP 服务```# systemctl stop ntpd```
 
 * 故障原因：
 
-  * Fuel 节点宕机，无法向 OpenStack 节点提供 NTP 服务
+  * Fuel 节点 NTP 服务停止，无法向 OpenStack 节点提供 NTP 服务
 
 * 恢复方案：
 
   * 排查方法
     
-    * 通过监控系统确认 Fuel 节点宕机
+    * 登陆 Fuel 节点，查看 NTP 服务状态```systemctl status ntpd```
     
   * 解决方法
 
-    * 重启 Fuel 节点
+    * 重启 NTP 服务，使 NTP 服务恢复 active (running) 状态。
 
 * 预计故障恢复时间
 
