@@ -189,7 +189,7 @@ N）
   * 解决方法
 
     * 重新启动所有宕机的 Controller 节点
-    * 在任意一台 Controller 节点上使用 ```# pcs resource```命令确认 pacemaker 集群中所有资源处于 Started 状态。如下所示：
+    * 等待大约5分钟后，在任意一台 Controller 节点上使用 ```# pcs resource```命令确认 pacemaker 集群中所有资源处于 Started 状态。如下所示：
     ```
     # pcs resource
  vip__public	(ocf::mirantis:ns_IPaddr2):	Started 
