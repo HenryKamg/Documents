@@ -196,8 +196,7 @@ N）
 
 * 现象描述：
 
-  * MySQL 集群故障
-  * RabbitMQ 集群故障
+  * DashBoard无法访问
 
 * 故障模拟方案：
 
@@ -211,11 +210,40 @@ N）
 
   * 排查方法
     
-    * 
+    * 根据监控系统确认当前运行的 Controller 节点数量是否小于 N/2 台（N为Controller节点总数）
     
   * 解决方法
 
-    * 
+    * 重新启动所有宕机的 Controller 节点
+    * 在任意一台 Controller 节点上使用 ```# pcs resource```命令确认 pacemaker 集群中所有资源处于 Started 状态。如下所示：
+    ```
+    # pcs resource
+ vip__public	(ocf::mirantis:ns_IPaddr2):	Started 
+ Clone Set: clone_ping_vip__public [ping_vip__public]
+     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+ vip__management	(ocf::mirantis:ns_IPaddr2):	Started 
+ Clone Set: clone_p_openstack-heat-engine [p_openstack-heat-engine]
+     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+ p_openstack-ceilometer-central	(ocf::mirantis:ceilometer-agent-central):	Started 
+ p_openstack-ceilometer-alarm-evaluator	(ocf::mirantis:ceilometer-alarm-evaluator):	Started 
+ Clone Set: clone_p_neutron-openvswitch-agent [p_neutron-openvswitch-agent]
+     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+ p_neutron-dhcp-agent	(ocf::mirantis:neutron-agent-dhcp):	Started 
+ Clone Set: clone_p_neutron-metadata-agent [p_neutron-metadata-agent]
+     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+ Clone Set: clone_p_neutron-l3-agent [p_neutron-l3-agent]
+     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+ Clone Set: clone_p_mysql [p_mysql]
+     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+ Clone Set: clone_p_rabbitmq-server [p_rabbitmq-server]
+     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+ Clone Set: clone_p_haproxy [p_haproxy]
+     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+ Clone Set: clone_p_neutron-lbaas-agent [p_neutron-lbaas-agent]
+     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    ```
+    * 如有某些资源在某个节点处于 Stoped 状态，可使用```pcs resource ban 资源名 节点主机名```及```pcs resource clear 资源名 节点主机名```尝试启动该资源。
+    * 如果某些资源在某个节点处于 unmanaged 状态，可登陆该节点，使用```pcs resource cleanup 资源名```尝试重新启动该资源。
 
 * 预计故障恢复时间
 
@@ -247,17 +275,17 @@ N）
 
 ===
 
-##### 场景 No.9：Compute 节点宕机，环境中可用资源可满足该节点上的虚拟机重启
+##### 场景 No.9：环境中多台云主机同时宕机
 
 * 故障等级：
 
 * 现象描述：
 
-  * Compute 节点宕机，运行在该节点上的虚拟机宕机，环境中可用资源满足宕掉的虚拟机重启
+  * 环境中多台云主机宕机
 
 * 故障模拟方案
 
-  切断一台 Compute 节点电源，保证环境中可用资源满足将该 Compute 节点上运行的虚拟机重启。
+  切断一台 Compute 节点电源。
 
 * 故障原因：
 
@@ -267,16 +295,17 @@ N）
 
   * 排查方法
     
-    * 确认 Compute 节点宕机前，运行在该节点上的虚拟机列表
-    * 确认环境中可用资源可以满足宕掉的虚拟机的重启需求
+    * 通过监控系统确认 Compute 节点已经宕机
+    
     
   * 解决方法
-
-    * 参考wiki：https://oa.eayun.cn/wiki/doku.php?id=eayunstack:nova:evacuation
+ 
+    * 执行命令，将运行在宕机的 Compute 节点上的所有云主机迁移到其他节点```nova host-evacuate 计算节点主机名```
+    * 确认所有虚拟机已迁移成功
 
 * 预计故障恢复时间
 
-##### 场景 No.10：Compute 节点宕机，环境中可用资源不能满足该节点上的虚拟机重启
+##### 场景 No.10：Compute 节点宕机，环境中可用资源不能满足该节点上的虚拟机重启（在现象上与场景9重复，讨论去掉该场景）
 
 * 故障等级：
 
@@ -383,11 +412,11 @@ N）
 
   * 排查方法
     
-    * 
+    * 通过监控系统确认 Mongo 节点已经宕机
     
   * 解决方法
 
-    * 
+    * 重启 Mongo 节点
 
 * 预计故障恢复时间
 
@@ -407,17 +436,17 @@ N）
 
 * 故障原因：
 
-  * Fuel 节点宕机
+  * Fuel 节点宕机，无法向 OpenStack 节点提供 NTP 服务
 
 * 恢复方案：
 
   * 排查方法
     
-    * 
+    * 通过监控系统确认 Fuel 节点宕机
     
   * 解决方法
 
-    * 
+    * 重启 Fuel 节点
 
 * 预计故障恢复时间
 
