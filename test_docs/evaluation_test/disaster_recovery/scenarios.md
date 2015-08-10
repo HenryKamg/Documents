@@ -62,24 +62,21 @@
 
 * 测试准备：
 
-  1. 登录 Controller 节点，执行命令：
-
-    ```
-    # pcs resource ...
-
-    ```
+  1. 登录 Controller 节点，执行命令 `pcs resource disable p_neutron-dhcp-agent`；
   1. 创建一台云主机，通过 DHCP 方式为云主机分配 IP 地址；
   1. 打开云主机的控制台，执行 `ip addr` 查看 IP 地址信息，看到没有分配 IP 地址。
 
-
 * 测试步骤：
 
-  1. 登录到 Controller 节点，查看 dhcp-agent 状态。。。
-  1. 恢复 dhcp-agent。。。。
+  1. 登录到 Controller 节点，查看 dhcp-agent 状态，执行命令 `pcs resource`，查看 p_neutron-dhcp-agent 服务的状态；
+  1. 恢复 dhcp-agent，执行命令 `pcs resource enable p_neutron-dhcp-agent`，重启 dhcp-agent 服务；
+  1. 打开云主机控制台，重启网络或通过 DHCP 获取 IP 后，执行 `ip addr` 查看 IP 地址信息。
 
 * 预期结果：
 
-  * 
+  * 查看 dhcp-agent 状态时，看到其状态为 "Stopped"；
+  * 重启 dhcp-agent 后，状态变为 "Started"；
+  * 云主机成功通过 DHCP 获取 IP 地址，查看网络信息看到网络已经正确配置。
 
 ##### 场景 No.3: 所有租户的所有虚拟机无法连接外网
 
@@ -95,6 +92,10 @@
 
 * 预期结果：
 
+* **备注**：
+
+  * 目前环境中只有 1 个交换机，测试影响较大，暂时不进行测试。
+
 ##### 场景 No.4: 同一租户下两台虚拟机网络流量很高，导致所有租户的网络受到影响
 
 * 故障描述：
@@ -102,6 +103,8 @@
   登录任意一台虚拟机，ping 其它节点或外网延迟非常大，丢包率非常高。
 
 * 测试准备：
+
+  暂时无法模拟
 
 * 测试步骤：
 
@@ -114,6 +117,8 @@
   登录任意一台虚拟机，ping 其它节点或外网延迟非常大，丢包率非常高。
 
 * 测试准备：
+
+  暂时无法模拟
 
 * 测试步骤：
 
@@ -295,11 +300,7 @@
 * 测试准备：
 
   1. 登录到 Ceph-osd 节点；
-  1. 关闭 osd 实例(即实例对应的后台服务)：
-
-    ```
-    xxx
-    ```
+  1. 关闭 osd 实例(即实例对应的后台服务)，执行命令 `/etc/init.d/ceph stop osd.0`；
 
 * 测试步骤：
 
