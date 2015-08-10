@@ -62,7 +62,12 @@
 
 * 测试准备：
 
-  1. 登录 Controller 节点，。。。
+  1. 登录 Controller 节点，执行命令：
+
+    ```
+    # pcs resource ...
+
+    ```
   1. 创建一台云主机，通过 DHCP 方式为云主机分配 IP 地址；
   1. 打开云主机的控制台，执行 `ip addr` 查看 IP 地址信息，看到没有分配 IP 地址。
 
@@ -83,6 +88,8 @@
   登录所有租户的任意一台虚拟机，ping 公网任意一个 IP 地址，ping 不通。
 
 * 测试准备：
+
+  1. 切断外网
 
 * 测试步骤：
 
@@ -112,18 +119,61 @@
 
 * 预期结果：
 
-##### 场景 No.6: 大于或等于 N/2 台 Controller 节点宕机（N为Controller节点总数）
+##### 场景 No.6: 大于或等于 N/2 台 Controller 节点宕机( N 为 Controller 节点总数)
 
 * 故障描述：
 
   * MySQL 集群故障
-  * MySQL 集群故障
+  * Dashboard 无法访问
 
 * 测试准备：
 
+  1. 切断 2 台 Controller 节点的电源；
+
 * 测试步骤：
 
+  1. 重启所有宕机的 Controller 节点；
+  1. 等待大约 5 分钟，在任意一台 Controller 节点上执行命令 `pcs resource`；
+  1. 查看输出的信息，确认 pacemaker 集群中所有资源处于 "Started" 状态；
+  1. 如果某些资源在某个节点处于 "Stop" 状态，可以使用 `pcs resource ban <resource_name> <node_name>` 及 `pcs resource clear <resource_name> <node_name>` 尝试重启该资源；
+  1. 如果某些资源在某个节点处于 "unmanaged" 状态，可登录该节点，使用 `pcs resource cleanup <resource_name>` 尝试重启该资源。
+
 * 预期结果：
+
+  * 节点重启后，如果没问题，所有资源的状态应为 "Started"，执行 `pcs resource` 结果如下：
+
+    ```
+    # pcs resource
+    vip__public    (ocf::mirantis:ns_IPaddr2): Started 
+    Clone Set: clone_ping_vip__public [ping_vip__public]
+    Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    vip__management    (ocf::mirantis:ns_IPaddr2): Started 
+    Clone Set: clone_p_openstack-heat-engine [p_openstack-heat-engine]
+    Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    p_openstack-ceilometer-central (ocf::mirantis:ceilometer-agent-central):   Started 
+    p_openstack-ceilometer-alarm-evaluator (ocf::mirantis:ceilometer-alarm-evaluator): Started 
+    Clone Set: clone_p_neutron-openvswitch-agent [p_neutron-openvswitch-agent]
+    Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    p_neutron-dhcp-agent   (ocf::mirantis:neutron-agent-dhcp): Started 
+    Clone Set: clone_p_neutron-metadata-agent [p_neutron-metadata-agent]
+    Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    Clone Set: clone_p_neutron-l3-agent [p_neutron-l3-agent]
+    Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    Clone Set: clone_p_mysql [p_mysql]
+    Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    Clone Set: clone_p_rabbitmq-server [p_rabbitmq-server]
+    Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    Clone Set: clone_p_haproxy [p_haproxy]
+    Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    Clone Set: clone_p_neutron-lbaas-agent [p_neutron-lbaas-agent]
+    Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    ```
+  * 如果某些资源在某个节点处于 "Stop" 状态，使用 `pcs resource ban <resource_name> <node_name>` 及 `pcs resource clear <resource_name> <node_name>` 尝试重启该资源后，该资源将重启，状态为 "Started"；
+  * 如果某些资源在某个节点处于 "unmanaged" 状态，登录该节点，使用 `pcs resource cleanup <resource_name>` 尝试重启该资源后，该资源将重启，状态为 "Started"。
+
+* **备注**：
+
+  * 本次测试针对 EayunStack 现有的测试环境进行测试，架构为 3 台 Controller 节点，因此测试准备中切断 2 台 Controller 节点的电源。
 
 ##### 场景 No.7: Compute 节点宕机，环境中可用资源可满足该节点上的虚拟机重启
 
@@ -187,15 +237,28 @@
 
 * 故障描述：
 
-  所有 OpenStack 节点 NTP 同步失败。
+  所有 OpenStack 节点 NTP 同步失败，Fuel Master 节点宕机或 NTP 服务停止。
 
 * 测试准备：
 
-  1. 切断 Fuel Master 节点的电源。
+  1. 停止 Fuel Master 节点的 NTP 服务，执行命令 `systemctl stop ntpd`。
 
 * 测试步骤：
 
+  1. 登录 Fuel Master 节点；
+  1. 执行命令 `systemctl status ntpd` 查看 NTP 服务的状态，看到状态为 "Inactive"；
+  1. 重启 NTP 服务，执行命令 `systemctl restart ntpd`。
+
 * 预期结果：
+
+  * NTP 服务恢复；
+  * 执行命令 `systemctl status ntpd` 查看 NTP 服务的状态，看到状态为 "Active"；
+  * OpenStack 节点 NTP 同步成功。
+
+* **备注**：
+
+  * 如果故障原因为 Fuel Master 节点宕机，重启 Fuel Master 节点，并确认 NTP 服务状态为 "Active" 即可；
+  * 若重启后 NTP 服务异常，可根据测试步骤中的操作恢复 NTP 服务。
 
 ##### 场景 No.12: MySQL 集群故障
 
@@ -217,6 +280,8 @@
 
 * 测试准备：
 
+  1. 切断 1 台 Controller 节点的管理网络；
+
 * 测试步骤：
 
 * 预期结果：
@@ -228,6 +293,13 @@
   Ceph 集群故障，数据未丢失。
 
 * 测试准备：
+
+  1. 登录到 Ceph-osd 节点；
+  1. 关闭 osd 实例(即实例对应的后台服务)：
+
+    ```
+    xxx
+    ```
 
 * 测试步骤：
 
