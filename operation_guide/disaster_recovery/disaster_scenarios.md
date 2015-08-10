@@ -284,7 +284,7 @@ N）
 
 ===
 
-##### 场景 No.9：Ceilometer 服务不可用，报数据库连接错误。
+##### 场景 No.9（已测试通过）：Ceilometer 服务不可用，报数据库连接错误。
 
 * 故障等级：
 
@@ -305,10 +305,44 @@ N）
   * 排查方法
     
     * 通过监控系统确认 Mongo 节点已经宕机
+    * 登陆任意 Controller 节点，在 /var/log/ceilometer/api.log 日志中，发现类似如下错误日志：
+    ```
+    2015-08-10 10:07:30.347 2816 ERROR wsme.api [-] Server-side error: "could not connect to 172.16.101.11:27017: [Errno 113] EHOSTUNREACH". Detail: 
+Traceback (most recent call last):
+
+  File "/usr/lib/python2.7/site-packages/wsmeext/pecan.py", line 77, in callfunction
+    result = f(self, *args, **kwargs)
+
+  File "/usr/lib/python2.7/site-packages/ceilometer/api/controllers/v2.py", line 2226, in get_all
+    for m in pecan.request.alarm_storage_conn.get_alarms(**kwargs)]
+
+  File "/usr/lib/python2.7/site-packages/ceilometer/alarm/storage/pymongo_base.py", line 200, in _retrieve_alarms
+    for alarm in alarms:
+
+  File "/usr/lib64/python2.7/site-packages/pymongo/cursor.py", line 814, in next
+    if len(self.__data) or self._refresh():
+
+  File "/usr/lib64/python2.7/site-packages/pymongo/cursor.py", line 763, in _refresh
+    self.__uuid_subtype))
+
+  File "/usr/lib64/python2.7/site-packages/pymongo/cursor.py", line 700, in __send_message
+    **kwargs)
+
+  File "/usr/lib64/python2.7/site-packages/pymongo/mongo_client.py", line 985, in _send_message_with_response
+    sock_info = self.__socket()
+
+  File "/usr/lib64/python2.7/site-packages/pymongo/mongo_client.py", line 720, in __socket
+    host, port = self.__find_node()
+
+  File "/usr/lib64/python2.7/site-packages/pymongo/mongo_client.py", line 713, in __find_node
+    raise AutoReconnect(', '.join(errors))
+
+AutoReconnect: could not connect to 172.16.101.11:27017: [Errno 113] EHOSTUNREACH
+    ```
     
   * 解决方法
 
-    * 重启 Mongo 节点
+    * 重启 Mongo 节点，确认 mongod 服务正常运行
 
 * 预计故障恢复时间
 
