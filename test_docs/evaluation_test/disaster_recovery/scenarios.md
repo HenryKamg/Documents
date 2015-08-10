@@ -232,11 +232,49 @@
 
 * 测试准备：
 
-  1. 切断 Mongo 节点的电源。
+  1. 切断 Mongo 节点的电源；
+  1. 登录任意 Controller 节点，在 /var/log/ceilometer/api.log 日志中看到如下错误信息：
+
+    ```
+    2015-08-10 10:07:30.347 2816 ERROR wsme.api [-] Server-side error: "could not connect to 172.16.101.11:27017: [Errno 113] EHOSTUNREACH". Detail:
+    Traceback (most recent call last):
+    File "/usr/lib/python2.7/site-packages/wsmeext/pecan.py", line 77, in callfunction
+    result = f(self, *args, **kwargs)
+    File "/usr/lib/python2.7/site-packages/ceilometer/api/controllers/v2.py", line 2226, in get_all
+    for m in pecan.request.alarm_storage_conn.get_alarms(**kwargs)]
+    File "/usr/lib/python2.7/site-packages/ceilometer/alarm/storage/pymongo_base.py", line 200, in _retrieve_alarms
+    for alarm in alarms:
+    File "/usr/lib64/python2.7/site-packages/pymongo/cursor.py", line 814, in next
+    if len(self.__data) or self._refresh():
+    File "/usr/lib64/python2.7/site-packages/pymongo/cursor.py", line 763, in _refresh
+    self.__uuid_subtype))
+    File "/usr/lib64/python2.7/site-packages/pymongo/cursor.py", line 700, in __send_message
+    **kwargs)
+    File "/usr/lib64/python2.7/site-packages/pymongo/mongo_client.py", line 985, in _send_message_with_response
+    sock_info = self.__socket()
+    File "/usr/lib64/python2.7/site-packages/pymongo/mongo_client.py", line 720, in __socket
+    host, port = self.__find_node()
+    File "/usr/lib64/python2.7/site-packages/pymongo/mongo_client.py", line 713, in __find_node
+    raise AutoReconnect(', '.join(errors))
+    AutoReconnect: could not connect to 172.16.101.11:27017: [Errno 113] EHOSTUNREACH
+    ```
 
 * 测试步骤：
 
+  1. 确认 Mongo 节点已经宕机；
+  1. 重启 Mongo 节点，重启后，登录到 Mongo 节点，确认 mongod 服务的状态，执行命令 `systemctl status mongod`；
+  1. 登录到 Controller 节点，确认 Ceilometer 代理的状态，执行命令 `pcs resource`。
+
 * 预期结果：
+
+  * Mongo 节点启动后，mongod 服务状态为 "active"；
+  * Ceilometer 代理的状态为 "Started"；
+  * Ceilometer 服务恢复正常，可以使用。
+
+* **备注**：
+
+  * 如果登录到 Controller 节点进行确认，Ceilometer 代理没有正常启动，请使用相关命令重启该服务；
+  * Ceilometer 在 Controller 节点上的代理没有启动不会影响 Ceilometer 的正常**使用**，但会影响**数据的收集**。
 
 ##### 场景 No.11: 所有 OpenStack 节点 NTP 同步失败
 
