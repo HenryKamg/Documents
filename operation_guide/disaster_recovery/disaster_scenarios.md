@@ -264,21 +264,22 @@ N）
 
 * 故障模拟方案：
 
-  同时切断三台或三台以上 Ceph-osd 节点的电源。
+  备份某个rbd，然后找到这个 rbd 对应的 object 列表，删除（或者 mv）其中一个 object （包括这个 object 的所有镜像）。同时切断三台或三台以上 Ceph-osd 节点的电源。
 
 * 故障原因：
 
-  * 大于或等于三台 Ceph-osd 节点宕机。
+  * 大于或等于三台 Ceph-osd 节点宕机，rbd中有object丢失或损坏。
 
 * 恢复方案：
 
   * 排查方法
     
-    * 在 Controller 节点查看 Ceph 集群状态。
+    * 通过监控系统确认大于或等于三台 Ceph-osd 节点宕机
     
   * 解决方法
 
-    * 将 Ceph-osd 节点重启，OSD 节点恢复之后还要确认是否有 object 无法恢复，然后再作相应处理。
+    * 将 Ceph-osd 节点重启
+    * 确认是否有 object 无法恢复，如有 object 无法恢复，恢复无法恢复的 object。
 
 * 预计故障恢复时间
 
