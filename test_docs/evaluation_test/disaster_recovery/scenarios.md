@@ -321,13 +321,87 @@
 
   任意 OpenStack 组件连接 RabbitMQ 失败，日志中报 rabbitmq 连接错误。
 
+####### RabbitMQ 集群的单个节点故障
+
 * 测试准备：
 
   1. 切断 1 台 Controller 节点的管理网络；
 
 * 测试步骤：
 
+  1. 登录到 Controller 节点，确认 RabbitMQ 集群服务状态，执行命令 `pcs resource`；
+  1. 进一步确认集群中节点的状态，执行命令 `rabbitmqctl cluster_status`；
+  1. 找到故障节点后，恢复该节点，执行命令 `pcs resource ban p_rabbitmq-server <node_name>` 及 `pcs resource clear p_rabbitmq-server <node_name>`；
+  1. 登录刚恢复的故障节点，重启 OpenStack 的各服务：
+
+    ```
+    pcs resource disable/enable clone_p_neutron-lbaas-agent
+    pcs resource disable/enable clone_p_neutron-lbaas-agent
+    pcs resource disable/enable clone_p_neutron-l3-agent
+    pcs resource disable/enable clone_p_neutron-metadata-agent
+    pcs resource disable/enable p_neutron-dhcp-agent
+    pcs resource disable/enable clone_p_neutron-openvswitch-agent
+    pcs resource disable/enable clone_p_openstack-heat-engine
+    systemctl restart neutron-server openstack-nova-api openstack-nova-cert\
+    openstack-nova-conductor openstack-nova-consoleauth openstack-nova-novncproxy\
+    openstack-nova-objectstore openstack-nova-scheduler openstack-cinder-api\
+    openstack-cinder-volume openstack-cinder-scheduler openstack-heat-api-cfn\
+    openstack-heat-api-cloudwatch openstack-heat-api openstack-keystone\
+    openstack-glance-api openstack-glance-registry
+    ```
+
 * 预期结果：
+
+  * 确认集群状态时，发现有 1 台节点不在 Started 列表中；
+  * 节点恢复后，执行命令 `pcs resource`，看到 p_rabbitmq-server 的 Started 列表中包含了所有 Controller 节点；
+  * 集群恢复并重启服务后，组件连接 RabbitMQ 正常，日志中不出现报错现象。
+
+* **备注**：
+
+  * 导致 RabbitMQ 集群故障的可能有很多种，在此仅模拟了其中一种情况；
+  * 无论故障原因为何，对于 RabbitMQ 集群故障的恢复方法是一样的。
+
+####### RabbitMQ 集群的多个节点故障
+
+* 测试准备：
+
+  1. 切断大于 1 台数目的 Controller 节点的管理网络。
+
+* 测试步骤：
+
+  1. 登录到 Controller 节点，确认 RabbitMQ 集群服务状态，执行命令 `pcs resource`；
+  1. 进一步确认集群中节点的状态，执行命令 `rabbitmqctl cluster_status`；
+  1. 找到故障节点后，依次停止所有故障节点上的 RabbitMQ 资源，执行命令 `pcs resource ban p_rabbitmq-server <node_name>`，将其中的 \<node_name\> 替换为各个故障节点的名称；
+  1. **首先恢复其中一台节点**，执行命令 `pcs resource clear p_rabbitmq-server <first_node_name>`；
+  1. 执行命令 `pcs resource`，确认第一台节点是否恢复，确认恢复后，继续执行命令 `pcs resource clear p_rabbitmq-server <node_name>`，恢复其他故障节点；
+  1. 恢复完成后，确认集群状态，执行命令 `rabbitmqctl cluster_status`；
+  1. 登录恢复的故障节点，重启 OpenStack 的各服务：
+
+    ```
+    pcs resource disable/enable clone_p_neutron-lbaas-agent
+    pcs resource disable/enable clone_p_neutron-lbaas-agent
+    pcs resource disable/enable clone_p_neutron-l3-agent
+    pcs resource disable/enable clone_p_neutron-metadata-agent
+    pcs resource disable/enable p_neutron-dhcp-agent
+    pcs resource disable/enable clone_p_neutron-openvswitch-agent
+    pcs resource disable/enable clone_p_openstack-heat-engine
+    systemctl restart neutron-server openstack-nova-api openstack-nova-cert\
+    openstack-nova-conductor openstack-nova-consoleauth openstack-nova-novncproxy\
+    openstack-nova-objectstore openstack-nova-scheduler openstack-cinder-api\
+    openstack-cinder-volume openstack-cinder-scheduler openstack-heat-api-cfn\
+    openstack-heat-api-cloudwatch openstack-heat-api openstack-keystone\
+    openstack-glance-api openstack-glance-registry
+    ```
+
+* 预期结果：
+
+  * 确认集群状态时，发现有 N 台节点不在 Started 列表中；
+  * 所有节点恢复后，执行命令 `pcs resource`，看到 p_rabbitmq-server 的 Started 列表中包含了所有 Controller 节点；
+  * 集群恢复并重启服务后，组件连接 RabbitMQ 正常，日志中不出现报错现象。
+
+* **注意**：
+
+  * 多台 RabbitMQ 节点故障的情况中，由于选举机制，必需先恢复 1 台节点后，再恢复其他故障节点，否则可能导致集群故障。
 
 ##### 场景 No.14: Ceph 集群故障，数据未丢失
 
