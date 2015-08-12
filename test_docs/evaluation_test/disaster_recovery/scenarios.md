@@ -1,10 +1,10 @@
 # 灾难恢复模拟场景
 
-##### 场景 No.1: 某个租户所有虚拟机无法连接外网
+##### 场景 No.1: 某个租户所有云主机无法连接外网
 
 * 故障描述：
 
-  登录某个租户的任意一台虚拟机，ping 公网任意一个 IP 地址，ping 不通。
+  登录某个租户的任意一台云主机，ping 公网任意一个 IP 地址，ping 不通。
 
 * 测试准备：
 
@@ -30,7 +30,7 @@
 
     # ip netns exec qrouter-1b569ef2-4e11-40d6-bbb1-a326ad152a4e ip link del qg-da206956-01
     ```
-  1. 打开该租户中其中一台虚拟机的控制台，ping 外网地址，提示："Destination Net Unreachable"。
+  1. 打开该租户中其中一台云主机的控制台，ping 外网地址，提示："Destination Net Unreachable"。
 
 * 测试步骤：
 
@@ -54,11 +54,11 @@
   1. 内网、外网的端口状态是否都为 "ACTIVE"？如果不是，将状态 update 为 ACTIVE 即可；
   1. 如果以上均没有问题，则问题与平台本身无关。
 
-##### 场景 No.2: 虚拟机无法通过 DHCP 方式获取 IP 地址
+##### 场景 No.2: 云主机无法通过 DHCP 方式获取 IP 地址
 
 * 故障描述：
 
-  登录虚拟机，查看 IP 地址等网络信息，处于未配置状态。
+  登录云主机，查看 IP 地址等网络信息，处于未配置状态。
 
 * 测试准备：
 
@@ -68,7 +68,7 @@
 
 * 测试步骤：
 
-  1. 登录到 Controller 节点，查看 dhcp-agent 状态，执行命令 `pcs resource`，查看 p_neutron-dhcp-agent 服务的状态；
+  1. 登录到 Controller 节点，查看 dhcp-agent 状态，执行命令 `pcs resource`，查看 p\_neutron-dhcp-agent 服务的状态；
   1. 恢复 dhcp-agent，执行命令 `pcs resource enable p_neutron-dhcp-agent`，重启 dhcp-agent 服务；
   1. 打开云主机控制台，重启网络或通过 DHCP 获取 IP 后，执行 `ip addr` 查看 IP 地址信息。
 
@@ -78,11 +78,11 @@
   * 重启 dhcp-agent 后，状态变为 "Started"；
   * 云主机成功通过 DHCP 获取 IP 地址，查看网络信息看到网络已经正确配置。
 
-##### 场景 No.3: 所有租户的所有虚拟机无法连接外网
+##### 场景 No.3: 所有租户的所有云主机无法连接外网
 
 * 故障描述：
 
-  登录所有租户的任意一台虚拟机，ping 公网任意一个 IP 地址，ping 不通。
+  登录所有租户的任意一台云主机，ping 公网任意一个 IP 地址，ping 不通。
 
 * 测试准备：
 
@@ -96,11 +96,11 @@
 
   * 目前环境中只有 1 个交换机，测试影响较大，暂时不进行测试。
 
-##### 场景 No.4: 同一租户下两台虚拟机网络流量很高，导致所有租户的网络受到影响
+##### 场景 No.4: 同一租户下两台云主机网络流量很高，导致所有租户的网络受到影响
 
 * 故障描述：
 
-  登录任意一台虚拟机，ping 其它节点或外网延迟非常大，丢包率非常高。
+  登录任意一台云主机，ping 其它节点或外网延迟非常大，丢包率非常高。
 
 * 测试准备：
 
@@ -110,11 +110,11 @@
 
 * 预期结果：
 
-##### 场景 No.5: 虚拟机限速时，在该虚拟机向外发包，其它租户的虚拟机的网络受到影响
+##### 场景 No.5: 云主机限速时，在该云主机向外发包，其它租户的云主机的网络受到影响
 
 * 故障描述：
 
-  登录任意一台虚拟机，ping 其它节点或外网延迟非常大，丢包率非常高。
+  登录任意一台云主机，ping 其它节点或外网延迟非常大，丢包率非常高。
 
 * 测试准备：
 
@@ -180,41 +180,51 @@
 
   * 本次测试针对 EayunStack 现有的测试环境进行测试，架构为 3 台 Controller 节点，因此测试准备中切断 2 台 Controller 节点的电源。
 
-##### 场景 No.7: Compute 节点宕机，环境中可用资源可满足该节点上的虚拟机重启
+##### 场景 No.7: Compute 节点宕机，环境中可用资源可满足该节点上的云主机重启
 
 * 故障描述：
 
-  Compute 节点宕机，运行在该节点上的虚拟机宕机，环境中可用资源满足宕掉的虚拟机重启。
+  Compute 节点宕机，运行在该节点上的云主机宕机，环境中可用资源满足宕掉的云主机重启。
 
 * 测试准备：
 
-  1. 切断一台运行着云主机的 Compute 节点的电源；
+  1. 切断一台运行着**从镜像启动和从卷启动**的云主机的 Compute 节点的电源；
   1. 要保证环境中 Compute 节点的可用资源足够恢复该切断电源的 Compute 节点上的云主机。
 
 * 测试步骤：
 
+  1. 登录到剩余 Compute 节点中的一台；
+  1. 执行命令 `nova host-evacuate <compute_node_name>`，其中 \<compute\_node\_name\> 为宕机的 Compute 节点的名称；
+  1. 等待，确认所有云主机是否恢复成功。
+
 * 预期结果：
 
-##### 场景 No.8: Compute 节点宕机，环境中可用资源不能满足该节点上的虚拟机重启
+  * 所有云主机在其他 Compute 节点上成功恢复。
+
+##### 场景 No.8: Compute 节点宕机，环境中可用资源不能满足该节点上的云主机重启
 
 * 故障描述：
 
-  Compute 节点宕机，运行在该节点上的虚拟机宕机，环境中可用资源无法满足重新启动宕掉的虚拟机的需求。
+  Compute 节点宕机，运行在该节点上的云主机宕机，环境中可用资源无法满足重新启动宕掉的云主机的需求。
 
 * 测试准备：
 
-  1. 切断一台运行着云主机的 Compute 节点的电源；
-  1. 剩下的环境中的 Compute 节点的可用资源无法满足恢复该切断电源的 Compute 节点上的云主机。
+  1. 切断一台运行着**从镜像启动和从卷启动**的云主机的 Compute 节点的电源；
+  1. 要保证环境中 Compute 节点的可用资源足够恢复该切断电源的 Compute 节点上的云主机。
 
 * 测试步骤：
 
+  1. 登录到剩余 Compute 节点中的一台；
+  1. 执行命令 `nova host-evacuate <compute_node_name>`，其中 \<compute\_node\_name\> 为宕机的 Compute 节点的名称；
+  1. 等待，确认所有云主机是否恢复成功。
+
 * 预期结果：
 
-##### 场景 No.9: 某些虚拟机出现磁盘 I/O 错误，Ceph 集群报错
+##### 场景 No.9: 某些云主机出现磁盘 I/O 错误，Ceph 集群报错
 
 * 故障描述：
 
-  某些虚拟机出现磁盘 I/O 错误，Ceph 集群报错。
+  某些云主机出现磁盘 I/O 错误，Ceph 集群报错。
 
 * 测试准备：
 
@@ -404,7 +414,7 @@
 
   1. 登录到 Controller 节点，确认 RabbitMQ 集群服务状态，执行命令 `pcs resource`；
   1. 进一步确认集群中节点的状态，执行命令 `rabbitmqctl cluster_status`；
-  1. 找到故障节点后，依次停止所有故障节点上的 RabbitMQ 资源，执行命令 `pcs resource ban p_rabbitmq-server <node_name>`，将其中的 \<node_name\> 替换为各个故障节点的名称；
+  1. 找到故障节点后，依次停止所有故障节点上的 RabbitMQ 资源，执行命令 `pcs resource ban p_rabbitmq-server <node_name>`，将其中的 \<node\_name\> 替换为各个故障节点的名称；
   1. (如果所有 Controller 节点管理网络故障，那么)**首先恢复其中一台节点**，执行命令 `pcs resource clear p_rabbitmq-server <first_node_name>`；
   1. 执行命令 `pcs resource`，确认第一台节点是否恢复，确认恢复后，继续执行命令 `pcs resource clear p_rabbitmq-server <node_name>`，恢复其他故障节点；
   1. 恢复完成后，确认集群状态，执行命令 `rabbitmqctl cluster_status`；
@@ -445,7 +455,7 @@
      {partitions,[]}]
     ...done.
     ```
-  * 所有节点恢复后，执行命令 `pcs resource`，看到 p_rabbitmq-server 的 Started 列表中包含了所有 Controller 节点；
+  * 所有节点恢复后，执行命令 `pcs resource`，看到 p\_rabbitmq-server 的 Started 列表中包含了所有 Controller 节点；
 
     ```
     # pcs resource
