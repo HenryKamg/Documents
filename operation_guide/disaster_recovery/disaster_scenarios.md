@@ -21,10 +21,11 @@ N）
 2）解决方法
 
 * 预计故障恢复时间
-排查&解决问题所用的总时间
+
+  排查&解决问题所用的总时间
 ```
 
-##### 场景 No.1：某个租户所有虚拟机无法连接外网
+#### 场景 No.1：某个租户所有虚拟机无法连接外网
 
 * 故障等级：
 
@@ -36,23 +37,27 @@ N）
 
 * 故障原因：
 
-  * 
+  * 路由未连接外网；
+  * 或内网、外网的端口状态为 **DOWN**；
 
 * 恢复方案：
 
   * 排查方法
     
-    * 
+    * 登录到 Controller 节点，执行命令 `neutron router-show <router_name>`，其中 \<router\_name\> 为对应的路由名称，查看该路由的状态；
+    * 也可以登录 dashboard 后，点击 【Project】 -> 【Network】 -> 【Routers】，在右侧列出的路由列表中选择对应的路由进入详细页面，查看接口的状态。
     
   * 解决方法
 
-    * 
+    1. 登录 Controller 节点；
+    1. 执行命令 `neutron router-update <router_name> --admin_state_up True`，恢复路由状态为 **UP**；
+    1. 执行命令 `neutron router-show <router_name>` 确认路由状态是否恢复正常。
 
 * 预计故障恢复时间
 
 ===
 
-##### 场景 No.2：虚拟机无法通过DHCP方式获取IP地址
+#### 场景 No.2：虚拟机无法通过DHCP方式获取IP地址
 
 * 故障等级：
 
@@ -64,23 +69,24 @@ N）
 
 * 故障原因：
 
-  * 
+  * DHCP 代理故障。
 
 * 恢复方案：
 
   * 排查方法
     
-    * 
+    * 登录 Controller 节点，执行命令 `pcs resource`，查看 p_neutron-dhcp-agent 服务的状态，如果为 "Stopped"，说明 DHCP 代理故障。
     
   * 解决方法
 
-    * 
+    1. 登录到 Controller 节点，执行命令 `pcs resource enable p_neutron-dhcp-agent`，重启 dhcp-agent 服务；
+    1. 打开云主机控制台，重启网络或通过 DHCP 获取 IP 后，执行 `ip addr` 查看 IP 地址信息，确认能够获取到地址。
 
 * 预计故障恢复时间
 
 ===
 
-##### 场景 No.3：所有租户的所有虚拟机无法连接外网
+#### 场景 No.3：所有租户的所有虚拟机无法连接外网
 
 * 故障等级：
 
@@ -92,23 +98,27 @@ N）
 
 * 故障原因：
 
-  * 
+  * 环境外网被切断。
 
 * 恢复方案：
 
   * 排查方法
     
-    * 
+    * 检查外网网络是否正常。
     
   * 解决方法
 
-    * 
+    * 恢复外网网络。
 
 * 预计故障恢复时间
 
+* **备注**：
+
+  目前的环境暂时无法模拟。
+
 ===
 
-##### 场景 No.4：同一租户下两台虚拟机网络流量很高，导致所有租户的网络受到影响
+#### 场景 No.4：同一租户下两台虚拟机网络流量很高，导致所有租户的网络受到影响
 
 * 故障等级：
 
@@ -134,9 +144,13 @@ N）
 
 * 预计故障恢复时间
 
+* **备注**：
+
+  目前的环境暂时无法模拟。
+
 ===
 
-##### 场景 No.5：虚拟机限速时，在该虚拟机向外发包，其它租户的虚拟机的网络受到影响
+#### 场景 No.5：虚拟机限速时，在该虚拟机向外发包，其它租户的虚拟机的网络受到影响
 
 * 故障等级：
 
@@ -162,9 +176,13 @@ N）
 
 * 预计故障恢复时间
 
+* **备注**：
+
+  目前的环境暂时无法模拟。
+
 ===
 
-##### 场景 No.6(已测试通过)：DashBoard无法访问，监控系统发现大于或等于 N/2 台 Controller 节点宕机（N为Controller节点总数）
+#### 场景 No.6(已测试通过)：DashBoard无法访问，监控系统发现大于或等于 N/2 台 Controller 节点宕机（N为Controller节点总数）
 
 * 故障等级：
 
@@ -192,29 +210,29 @@ N）
     * 等待大约5分钟后，在任意一台 Controller 节点上使用 ```# pcs resource```命令确认 pacemaker 集群中所有资源处于 Started 状态。如下所示：
     ```
     # pcs resource
- vip__public	(ocf::mirantis:ns_IPaddr2):	Started 
- Clone Set: clone_ping_vip__public [ping_vip__public]
-     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
- vip__management	(ocf::mirantis:ns_IPaddr2):	Started 
- Clone Set: clone_p_openstack-heat-engine [p_openstack-heat-engine]
-     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
- p_openstack-ceilometer-central	(ocf::mirantis:ceilometer-agent-central):	Started 
- p_openstack-ceilometer-alarm-evaluator	(ocf::mirantis:ceilometer-alarm-evaluator):	Started 
- Clone Set: clone_p_neutron-openvswitch-agent [p_neutron-openvswitch-agent]
-     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
- p_neutron-dhcp-agent	(ocf::mirantis:neutron-agent-dhcp):	Started 
- Clone Set: clone_p_neutron-metadata-agent [p_neutron-metadata-agent]
-     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
- Clone Set: clone_p_neutron-l3-agent [p_neutron-l3-agent]
-     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
- Clone Set: clone_p_mysql [p_mysql]
-     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
- Clone Set: clone_p_rabbitmq-server [p_rabbitmq-server]
-     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
- Clone Set: clone_p_haproxy [p_haproxy]
-     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
- Clone Set: clone_p_neutron-lbaas-agent [p_neutron-lbaas-agent]
-     Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+     vip__public	(ocf::mirantis:ns_IPaddr2):	Started 
+     Clone Set: clone_ping_vip__public [ping_vip__public]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+     vip__management	(ocf::mirantis:ns_IPaddr2):	Started 
+     Clone Set: clone_p_openstack-heat-engine [p_openstack-heat-engine]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+     p_openstack-ceilometer-central	(ocf::mirantis:ceilometer-agent-central):	Started 
+     p_openstack-ceilometer-alarm-evaluator	(ocf::mirantis:ceilometer-alarm-evaluator):	Started 
+     Clone Set: clone_p_neutron-openvswitch-agent [p_neutron-openvswitch-agent]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+     p_neutron-dhcp-agent	(ocf::mirantis:neutron-agent-dhcp):	Started 
+     Clone Set: clone_p_neutron-metadata-agent [p_neutron-metadata-agent]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+     Clone Set: clone_p_neutron-l3-agent [p_neutron-l3-agent]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+     Clone Set: clone_p_mysql [p_mysql]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+     Clone Set: clone_p_rabbitmq-server [p_rabbitmq-server]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+     Clone Set: clone_p_haproxy [p_haproxy]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+     Clone Set: clone_p_neutron-lbaas-agent [p_neutron-lbaas-agent]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
     ```
     * 如有某些资源在某个节点处于 Stoped 状态，可使用```pcs resource ban 资源名 节点主机名```及```pcs resource clear 资源名 节点主机名```尝试启动该资源。
     * 如果某些资源在某个节点处于 unmanaged 状态，可登陆该节点，使用```pcs resource cleanup 资源名```尝试重新启动该资源。
@@ -223,7 +241,7 @@ N）
 
 ===
 
-##### 场景 No.7：环境中多台云主机同时宕机，监控系统发现 Compute 节点宕机
+#### 场景 No.7：环境中多台云主机同时宕机，监控系统发现 Compute 节点宕机
 
 ***测试时boot-from-image类型的虚拟机迁移失败，原因为compute节点断电后ceph中存在关于该虚拟机的rbd client。该类型的虚拟机迁移成功的前提是在compute节点断电后约10分钟后，确认对应 rbd client消失后，执行迁移即可成功。该问题还需要讨论研究。***
 
@@ -256,7 +274,7 @@ N）
 
 ===
 
-##### No.8：某些虚拟机出现磁盘I/O错误，Ceph集群报错
+#### No.8：某些虚拟机出现磁盘I/O错误，Ceph集群报错
 
 * 故障等级：
 
@@ -287,7 +305,7 @@ N）
 
 ===
 
-##### 场景 No.9（已测试通过）：Ceilometer 服务不可用，报数据库连接错误。
+#### 场景 No.9（已测试通过）：Ceilometer 服务不可用，报数据库连接错误。
 
 * 故障等级：
 
@@ -351,7 +369,7 @@ AutoReconnect: could not connect to 172.16.101.11:27017: [Errno 113] EHOSTUNREAC
 
 ===
 
-##### 场景 No.10（已测试通过）：所有 OpenStack 节点NTP同步失败
+#### 场景 No.10（已测试通过）：所有 OpenStack 节点NTP同步失败
 
 * 故障等级：
 
@@ -379,7 +397,7 @@ AutoReconnect: could not connect to 172.16.101.11:27017: [Errno 113] EHOSTUNREAC
 
 * 预计故障恢复时间
 
-##### 场景 No.11：MySQL 集群故障
+#### 场景 No.11：MySQL 集群故障
 
 * 故障等级：
 
@@ -409,7 +427,7 @@ AutoReconnect: could not connect to 172.16.101.11:27017: [Errno 113] EHOSTUNREAC
 
 ===
 
-##### 场景 No.12：RabbitMQ 集群故障
+#### 场景 No.12：RabbitMQ 集群故障
 
 * 故障等级：
 
@@ -419,7 +437,7 @@ AutoReconnect: could not connect to 172.16.101.11:27017: [Errno 113] EHOSTUNREAC
 
 * 故障模拟方案：
 
-通过人为切断某些 Controller 节点的管理网络来破坏 RabbitMQ 集群内部通讯，从而打乱集群。
+  通过人为切断某些 Controller 节点的管理网络来破坏 RabbitMQ 集群内部通讯，从而打乱集群。
 
 * 故障原因：
 
@@ -435,11 +453,19 @@ AutoReconnect: could not connect to 172.16.101.11:27017: [Errno 113] EHOSTUNREAC
 
     * 判断哪台 Controller 节点故障，恢复故障节点的网络环境后，重启其上的 RabbitMQ 服务以及所有 OpenStack 服务。
 
+* **备注**：
+
+  RabbitMQ 集群故障的原因可能很多(管理网络断开是其中之一)，但最终表现为集群异常。故障原因可能包括：
+
+  * 某台 Controller 节点与其他 Controller 节点无法通信(管理网络异常)；
+  * RabbitMQ 相关进程异常；
+  * 。。。
+
 * 预计故障恢复时间
 
 ===
 
-##### 场景 No.13：Ceph 集群故障，数据丢失
+#### 场景 No.13：Ceph 集群故障，数据丢失
 
 * 故障等级：
 
