@@ -352,8 +352,41 @@
 
 * 预期结果：
 
-  * 确认集群状态时，发现有 1 台节点不在 Started 列表中；
-  * 节点恢复后，执行命令 `pcs resource`，看到 p_rabbitmq-server 的 Started 列表中包含了所有 Controller 节点；
+  * 确认集群状态时，发现有 1 台节点不在 Started 列表中，显示如下(本实验切断了 node-5 的管理网络)：
+
+    ```
+    # pcs resource
+    ...
+     Clone Set: clone_p_rabbitmq-server [p_rabbitmq-server]
+         Started: [ node-6.eayun.com node-8.eayun.com ]    # node-5 不在列表中
+    ...
+
+    # rabbitmqctl cluster_status
+    Cluster status of node 'rabbit@node-6' ...
+    [{nodes,[{disc,['rabbit@node-5','rabbit@node-6','rabbit@node-8']}]},
+     {running_nodes,['rabbit@node-8','rabbit@node-6']},    # node-5 不在列表中
+     {cluster_name,<<"rabbit@node-6.eayun.com">>},
+     {partitions,[]}]
+    ...done.
+
+    ```
+  * 节点恢复后，执行命令 `pcs resource`，看到 p_rabbitmq-server 的 Started 列表中包含了所有 Controller 节点，显示如下：
+
+    ```
+    # pcs resource
+    ...
+     Clone Set: clone_p_rabbitmq-server [p_rabbitmq-server]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    ...
+    
+    # rabbitmqctl cluster_status
+    Cluster status of node 'rabbit@node-6' ...
+    [{nodes,[{disc,['rabbit@node-5','rabbit@node-6','rabbit@node-8']}]},
+     {running_nodes,['rabbit@node-5','rabbit@node-8','rabbit@node-6']},
+     {cluster_name,<<"rabbit@node-6.eayun.com">>},
+     {partitions,[]}]
+    ...done.
+    ```
   * 集群恢复并重启服务后，组件连接 RabbitMQ 正常，日志中不出现报错现象。
 
 * **备注**：
@@ -372,7 +405,7 @@
   1. 登录到 Controller 节点，确认 RabbitMQ 集群服务状态，执行命令 `pcs resource`；
   1. 进一步确认集群中节点的状态，执行命令 `rabbitmqctl cluster_status`；
   1. 找到故障节点后，依次停止所有故障节点上的 RabbitMQ 资源，执行命令 `pcs resource ban p_rabbitmq-server <node_name>`，将其中的 \<node_name\> 替换为各个故障节点的名称；
-  1. **首先恢复其中一台节点**，执行命令 `pcs resource clear p_rabbitmq-server <first_node_name>`；
+  1. (如果所有 Controller 节点管理网络故障，那么)**首先恢复其中一台节点**，执行命令 `pcs resource clear p_rabbitmq-server <first_node_name>`；
   1. 执行命令 `pcs resource`，确认第一台节点是否恢复，确认恢复后，继续执行命令 `pcs resource clear p_rabbitmq-server <node_name>`，恢复其他故障节点；
   1. 恢复完成后，确认集群状态，执行命令 `rabbitmqctl cluster_status`；
   1. 登录恢复的故障节点，重启 OpenStack 的各服务：
@@ -395,13 +428,49 @@
 
 * 预期结果：
 
-  * 确认集群状态时，发现有 N 台节点不在 Started 列表中；
+  * 确认集群状态时，发现有 N 台节点不在 Started 列表中，显示如下
+
+    ```
+    # pcs resource
+    ...
+     Clone Set: clone_p_rabbitmq-server [p_rabbitmq-server]
+         Started: [ node-8.eayun.com ]    # node-5 和 node-6 不在列表中
+    ...
+
+    # rabbitmqctl cluster_status
+    Cluster status of node 'rabbit@node-8' ...
+    [{nodes,[{disc,['rabbit@node-5','rabbit@node-6','rabbit@node-8']}]},
+     {running_nodes,['rabbit@node-8']},    # node-5 和 node-6 不在列表中
+     {cluster_name,<<"rabbit@node-8.eayun.com">>},
+     {partitions,[]}]
+    ...done.
+    ```
   * 所有节点恢复后，执行命令 `pcs resource`，看到 p_rabbitmq-server 的 Started 列表中包含了所有 Controller 节点；
+
+    ```
+    # pcs resource
+    ...
+     Clone Set: clone_p_rabbitmq-server [p_rabbitmq-server]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    ...
+    
+    # rabbitmqctl cluster_status
+    Cluster status of node 'rabbit@node-8' ...
+    [{nodes,[{disc,['rabbit@node-5','rabbit@node-6','rabbit@node-8']}]},
+     {running_nodes,['rabbit@node-5','rabbit@node-8','rabbit@node-6']},
+     {cluster_name,<<"rabbit@node-8.eayun.com">>},
+     {partitions,[]}]
+    ...done.
+    ```
   * 集群恢复并重启服务后，组件连接 RabbitMQ 正常，日志中不出现报错现象。
 
 * **注意**：
 
   * 多台 RabbitMQ 节点故障的情况中，由于选举机制，必需先恢复 1 台节点后，再恢复其他故障节点，否则可能导致集群故障。
+
+* **说明**：
+
+  * 由于目前环境仅有 3 台 Controller 节点，切断多台 Controller 节点的管理网络的表现与多台 Controller 节点宕机相同，因此不作重复测试。
 
 ##### 场景 No.14: Ceph 集群故障，数据未丢失
 
