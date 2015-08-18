@@ -477,19 +477,14 @@ AutoReconnect: could not connect to 172.16.101.11:27017: [Errno 113] EHOSTUNREAC
     * 集群重启后，重启故障节点上的所有 OpenStack 服务：
 
     ```
-    pcs resource disable/enable clone_p_neutron-lbaas-agent
-    pcs resource disable/enable clone_p_neutron-lbaas-agent
-    pcs resource disable/enable clone_p_neutron-l3-agent
-    pcs resource disable/enable clone_p_neutron-metadata-agent
-    pcs resource disable/enable p_neutron-dhcp-agent
-    pcs resource disable/enable clone_p_neutron-openvswitch-agent
-    pcs resource disable/enable clone_p_openstack-heat-engine
-    systemctl restart neutron-server openstack-nova-api openstack-nova-cert\
-    openstack-nova-conductor openstack-nova-consoleauth openstack-nova-novncproxy\
-    openstack-nova-objectstore openstack-nova-scheduler openstack-cinder-api\
-    openstack-cinder-volume openstack-cinder-scheduler openstack-heat-api-cfn\
-    openstack-heat-api-cloudwatch openstack-heat-api openstack-keystone\
-    openstack-glance-api openstack-glance-registry
+    # pcs resource disable/enable clone_p_neutron-lbaas-agent
+    # pcs resource disable/enable clone_p_neutron-lbaas-agent
+    # pcs resource disable/enable clone_p_neutron-l3-agent
+    # pcs resource disable/enable clone_p_neutron-metadata-agent
+    # pcs resource disable/enable p_neutron-dhcp-agent
+    # pcs resource disable/enable clone_p_neutron-openvswitch-agent
+    # pcs resource disable/enable clone_p_openstack-heat-engine
+    # openstack-service restart
     ```
 
 * **备注**：
