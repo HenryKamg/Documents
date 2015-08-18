@@ -327,6 +327,7 @@ N）
     --path volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-backup \
     --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2
     ```
+    * 启动虚拟机
 
 * 预计故障恢复时间
 
