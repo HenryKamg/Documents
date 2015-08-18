@@ -447,11 +447,50 @@ AutoReconnect: could not connect to 172.16.101.11:27017: [Errno 113] EHOSTUNREAC
 
   * 排查方法
     
-    * 在 Controller 节点查看 RabbitMQ 集群状态。
-    
+    * 在 Controller 节点查看 RabbitMQ 集群状态，执行命令 `pcs resource`，如果集群状态正常，将看到集群内的所有节点均在 "Started" 列表中，输出如下：
+
+    ```
+    # pcs resource
+    ...
+     Clone Set: clone_p_rabbitmq-server [p_rabbitmq-server]
+         Started: [ node-5.eayun.com node-6.eayun.com node-8.eayun.com ]
+    ...
+    ```
+    * 如果想要进一步查看集群状态，可以在 Controller 节点执行命令 `rabbitmqctl cluster_status`，集群状态正常时，所有集群内的节点均在 "running_nodes" 列表中，输出如下：
+
+    ```
+    # rabbitmqctl cluster_status
+    Cluster status of node 'rabbit@node-6' ...
+    [{nodes,[{disc,['rabbit@node-5','rabbit@node-6','rabbit@node-8']}]},
+     {running_nodes,['rabbit@node-5','rabbit@node-8','rabbit@node-6']},
+     {cluster_name,<<"rabbit@node-6.eayun.com">>},
+     {partitions,[]}]
+    ...done.
+    ```
+
+    > ###### 说明：
+    > 当集群状态异常时，通过上述命令查看集群状态，可以看到故障节点不在 "Started" 或 "running_nodes" 列表中。
+
   * 解决方法
 
-    * 判断哪台 Controller 节点故障，恢复故障节点的网络环境后，重启其上的 RabbitMQ 服务以及所有 OpenStack 服务。
+    * 判断哪台 Controller 节点故障，恢复故障节点的网络环境后，重启其上的 RabbitMQ 服务，执行命令 `pcs resource ban p_rabbitmq-server <node_name>` 及 `pcs resource clear p_rabbitmq-server <node_name>`；
+    * 集群重启后，重启故障节点上的所有 OpenStack 服务：
+
+    ```
+    pcs resource disable/enable clone_p_neutron-lbaas-agent
+    pcs resource disable/enable clone_p_neutron-lbaas-agent
+    pcs resource disable/enable clone_p_neutron-l3-agent
+    pcs resource disable/enable clone_p_neutron-metadata-agent
+    pcs resource disable/enable p_neutron-dhcp-agent
+    pcs resource disable/enable clone_p_neutron-openvswitch-agent
+    pcs resource disable/enable clone_p_openstack-heat-engine
+    systemctl restart neutron-server openstack-nova-api openstack-nova-cert\
+    openstack-nova-conductor openstack-nova-consoleauth openstack-nova-novncproxy\
+    openstack-nova-objectstore openstack-nova-scheduler openstack-cinder-api\
+    openstack-cinder-volume openstack-cinder-scheduler openstack-heat-api-cfn\
+    openstack-heat-api-cloudwatch openstack-heat-api openstack-keystone\
+    openstack-glance-api openstack-glance-registry
+    ```
 
 * **备注**：
 
