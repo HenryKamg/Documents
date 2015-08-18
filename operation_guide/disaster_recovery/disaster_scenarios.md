@@ -325,7 +325,7 @@ N）
     ```
     (controller)# rbd -p volumes import \
     --image-format 2 \
-    --order 23
+    --order 23 \
     --path volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-backup \
     --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2
     ```
