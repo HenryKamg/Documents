@@ -236,15 +236,60 @@
 
 * 故障描述：
 
-  某些云主机出现磁盘 I/O 错误，Ceph 集群报错。
+  某些云主机由于磁盘损坏而出现磁盘 I/O 错误，Ceph 集群报错。
 
 * 测试准备：
 
-  1. 同时切断三台或三台以上 Ceph-osd 节点的电源。
+  环境中存在一份 (rbd volume) 磁盘未损坏时的备份，使用该备份恢复磁盘，备份磁盘步骤如下：
+
+  1. 为云主机磁盘卷制作快照：
+
+    ```
+    (controller)# rbd -p volumes snap create \
+    --snap volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-snap \
+    --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2
+    ```
+  1. 将快照导出到备份文件中：
+
+    ```
+    (controller)# rbd -p volumes export \
+    --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2@volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-snap \
+    volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-backup
+    ```
+  1. 删除磁盘卷快照：
+
+    ```
+    (controller)# rbd -p volumes snap rm \
+    --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2 \
+    --snap volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-snap
+    ```
 
 * 测试步骤：
 
+  1. 关闭故障云主机；
+  1. 登录到 Controller 节点，删除该云主机的磁盘卷：
+
+    ```
+    (controller)# rbd -p volumes rm --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2
+    ```
+  1. 从备份文件中导入卷：
+
+    ```
+    (controller)# rbd -p volumes import \
+    --image-format 2 \
+    --order 22 \
+    --path volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-backup \
+    --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2
+    ```
+  1. 启动云主机。
+
 * 预期结果：
+
+  * 重新导入卷后，磁盘恢复，在云主机中执行命令或对某些文件进行读写不会报告 I/O 错误。
+
+* **备注：**
+
+  目前没有模拟磁盘损坏的方案。
 
 #### 场景 No.10: Ceilometer 服务不可用，报数据库连接错误
 
