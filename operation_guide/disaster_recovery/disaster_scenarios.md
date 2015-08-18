@@ -284,10 +284,12 @@ N）
 
 * 故障模拟方案：
 
-  该故障被恢复的前提为存在一份磁盘（rbd volume）未损坏时的备份，使用备份恢复磁盘。备份磁盘的步骤：
+  该故障被恢复的前提为环境中存在一份磁盘（rbd volume）未损坏时的备份，使用备份恢复磁盘。备份磁盘的步骤：
   * 为虚拟机磁盘卷制作快照
   ```
-  (controller)# rbd -p volumes snap create --snap volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-snap --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2
+  (controller)# rbd -p volumes snap create \
+  --snap volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-snap \
+  --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2
   ```
   * 将快照导出到备份文件中
   ```
