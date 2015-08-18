@@ -274,32 +274,57 @@ N）
 
 ===
 
-#### No.8：某些虚拟机出现磁盘I/O错误，Ceph集群报错
+#### No.8：某些虚拟机出现磁盘I/O错误
 
 * 故障等级：
 
 * 现象描述：
 
-  * 某些虚拟机出现磁盘I/O错误，Ceph集群报错。
+  * 某些虚拟机出现磁盘I/O错误
 
 * 故障模拟方案：
 
-  备份某个rbd，然后找到这个 rbd 对应的 object 列表，删除（或者 mv）其中一个 object （包括这个 object 的所有镜像）。同时切断三台或三台以上 Ceph-osd 节点的电源。
+  该故障被恢复的前提为存在一份磁盘（rbd volume）未损坏时的备份，使用备份恢复磁盘。备份磁盘的步骤：
+  * 为虚拟机磁盘卷制作快照
+  ```
+  (controller)# rbd -p volumes snap create --snap volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-snap --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2
+  ```
+  * 将快照导出到备份文件中
+  ```
+  (controller)# rbd -p volumes export \
+  --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2@volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-snap \
+  volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-backup
+  ```
+  * 删除快照
+  ```
+  (controller)# rbd -p volumes snap rm \
+  --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2 \
+  --snap volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-snap
+  ```
 
 * 故障原因：
 
-  * 大于或等于三台 Ceph-osd 节点宕机，rbd中有object丢失或损坏。
+  * 虚拟机的磁盘（rbd volume）损坏。
 
 * 恢复方案：
 
   * 排查方法
     
-    * 通过监控系统确认大于或等于三台 Ceph-osd 节点宕机
+    * 登陆虚拟机中，执行命令或对某些文件进行读写时系统报I/O错误。
     
   * 解决方法
 
-    * 将 Ceph-osd 节点重启
-    * 确认是否有 object 无法恢复，如有 object 无法恢复，恢复无法恢复的 object。
+    * 关闭虚拟机
+    * 删除虚拟机磁盘卷
+    ```
+    (controller)# rbd -p volumes rm --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2
+    ```
+    * 从备份文件中导入卷
+    ```
+    (controller)# rbd -p volumes import \
+    --path volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2-backup \
+    --image volume-038a66c5-fa63-4edb-a54e-b3f282ecb9e2
+    ```
 
 * 预计故障恢复时间
 
