@@ -4,16 +4,16 @@
 
 * 安装Mongodb服务软件mongodb-server
 
-  yum install mongodb-server
+  [root@node-9 ~](mongo)#yum install mongodb-server
 
 * 安装Mongodb客户端软件mongodb
 
-  yum install mongodb
+  [root@node-9 ~](mongo)#yum install mongodb
 
 
 > 通过二进制源码包安装
 
-  二进制源码包安装，直接下载文件，解压文件后，通过配置即可启动mongodb服务
+  二进制源码包安装，直接下载文件，解压文件后，通过配置即可启动mongodb服务，启动方式一般为mongod -f mongodb.conf
 
 ####MongoDB常用配置
 
@@ -21,14 +21,14 @@
 
   |配置项|作用|
   |------|----|
-  |bind_ip|配置服务去绑定IP地址，配置为本地服务器IP地址|
+  |bind_ip|配置服务绑定IP地址，配置为本地服务器IP地址|
   |fork=true|以守护进程方式运行Mongodb|
   |port=27017|配置服务启动后绑定端口|
   |dbpath=/var/lib/mongo|配置mongodb启动后，数据文件存储位置|
   |pidfilepath=/var/run/mongodb/mongodb.pid|配置mongodb启动后PID文件|
   |auth=true|配置启用登录认证|
   |setParameter=logLevel=2|配置mongodb日志存储|
-  |smallfiles=true|使用最小方式启动数据库，不配置此项，启动时通过比例计算数据存储文件占用空间大小，此种模式下，数据较大|
+  |smallfiles=true|使用最小方式启动数据库，不配置此项，启动时通过比例计算数据存储文件占用空间大小|
   |journal=true|写日志|
   |replSet=ceilometer|配置副本集名称|
   |keyFile =/etc/file.key|配置认证key文件|
@@ -140,7 +140,132 @@ ceilometer:PRIMARY>
 
 ####Mongo 导入/导出
 
- Mongodb支持数据导入与到操作，通过使用`mongoexport、mongoimport`导出导入
+ Mongodb支持数据导入与导出操作，通过使用`mongoexport、mongoimport`导出/导入
+
+##### Mongodb导出数据
+
+举例导出数据为csv格式：
+
+```
+[root@node-9 ~]#mongoexport -h 127.0.0.1 --port 27017 -u ceilometer -p password -d ceilometer -c message -f name,phone --csv -o /tmp/mongo/ceilometer.csv
+```
+导出后在/tmp/mongo/下能看到ceilometer.csv文件，该文件可以通过excel打开
+
+参数说明：
+
+|参数|说明|
+|----|----|
+|-h|使用的mongo服务主机地址|
+|--port|连接mongo端口|
+|-u ceilometer|使用ceilometer用户连接|
+|-p password|ceilometer 用户密码|
+|-d ceilometer|连接的数据库ceilometer|
+|-c message|ceilometer数据库下collections 下的文档|
+|-f name,phone| message文档的name列，phone列|
+|--csv|导出格式为csv格式|
+|-o /tmp/mongo/ceilometer.csv|导出的文件存放路径|
+
+##### Mongodb导入数据
+
+举例数据导入为csv格式：
+```
+[root@node-9 ~]#mongoimport -h 127.0.0.1 --port 27017 -u ceilometer -p password -d ceilometer -c message --type csv --headerline -file /tmp/mongo/ceilometer.csv
+```
+导入完成后，通过查询，检查数据是否导入成功
+
+```
+ceilometer:PRIMARY>use ceilometer;
+ceilometer:PRIMARY>db.message.find();
+ceilometer:PRIMARY> db.message.find();
+{ "_id" : "01", "name" : "xiaoming", "phone" : "0808008" }
+{ "_id" : ObjectId("55f7e7fc63cdd4c9cba3c934"), "dizhi" : "ChengDu", "gongsi" : "ChengDu Gongshi" }
+```
+
+Mongodb 还支持json文件格式的导入
+
+```
+[root@node-9 ~]#mongoimport -h 127.0.0.1 --port 27017 -u ceilometer -p password -d ceilometer -c message  -file /tmp/mongo/ceilometer.json
+```
+
+#### Mongo数据库备份与恢复
+
+Mongodb 支持数据库备份与恢复操作，通过使用`mongodump、mongorestore`进行数据库备份与恢复操作
+
+##### Mongodb 数据库备份
+
+* 登录数据库主库并创建数据库
+
+`ceilometer:PRIMARY>use ceilometer;` （创建ceilometer 数据库）
+
+* 为ceilometer 数据库添加用户，权限为dbowner
+
+`ceilometer:PRIMARY>db.addUser('ceilometer','password');`
+
+* 使用ceilometer 用户登录，并在ceilometer 数据库中创建collection
+
+`[root@node-9 ~]# mongo 127.0.0.1:27017/ceilometer -u ceilometer -p` （使用ceilometer 用户登录ceilometer数据库）
+
+`ceilometer:PRIMARY>db.message.insert({'_id':'01','name':'xiaoming','phone':'0808008'});` （创建collection)
+
+* 备份ceilometer 数据库
+`[root@node-9 ~]#mongodump -h 127.0.0.1 --port 27017 -u ceilometer -p password -d ceilometer -o /tmp/data/ceilometer` (备份ceilometer数据库）
+
+备份完成后在/tmp/data/ceilometer下将会看到备份文件：
+
+```
+[root@node-9 ~]#ls
+message.bson  message.metadata.json  system.indexes.bson
+```
+查看到备份文件后，备份成功
+
+##### Mongodb数据库恢复
+
+* 登录数据库主库，删除掉ceilometer 数据库
+
+查看数据库
+
+```
+ceilometer:PRIMARY>show dbs;
+admin  0.078GB
+ceilometer  0.078GB
+local  4.076GB
+test   0.078GB
+```
+
+删除数据库
+
+```
+ceilometer:PRIMARY>use ceilometer; (切换到ceilometer数据库）
+ceilometer:PRIMARY>db.dropDatabase(); （删除数据库ceilometer）
+ceilometer:PRIMARY>show dbs;
+admin  0.078GB
+local  4.076GB
+test   0.078GB
+```
+
+数据库ceilometer已被删除
+
+* 通过备份恢复ceilometer 数据库
+
+`[root@node-9 ~]# mongorestore -h 127.0.0.1 --port 27017 -u ceilometer -p password --db ceilometer /tmp/data/ceilometer/* ` (恢复数据库）
+
+* 使用ceilometer登录，查看ceilometer是否恢复
+
+```
+ceilometer:PRIMARY>show dbs;
+admin  0.078GB
+ceilometer  0.078GB
+local  4.076GB
+test   0.078GB
+ceilometer:PRIMARY>use ceilometer;
+ceilometer:PRIMARY> show collections; （查看ceilometer数据库中collection已恢复）
+message
+system.indexes
+ceilometer:PRIMARY>db.message.find(); (查看message的信息）
+{'_id':'01','name':'xiaoming','phone':'0808008'}
+```
+
+ceilometer 数据库恢复完成
 
 
 

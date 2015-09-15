@@ -4,8 +4,8 @@
 
 #### 监控系统配置文件配置
 
- 关闭所有ceilometer监控服务
- 
+ 配置集群前关闭所有ceilometer监控服务
+
 1） 修改ceilometer配置文件，增加数据库连接节点配置
 * vim /etc/ceilometer/ceilometer.conf （每个安装ceilometer集群下的ceilometer 配置文件都要配置）
 * 在[database]标签下，修改connection= 如下：
@@ -89,7 +89,7 @@ replSet=ceilometer
 keyFile = /etc/mongodb.key
 
 ```
-`auth=true与keyFile=可以等集群配置完成后，创建了管理员用户后，启用认证服务，先注释掉`
+`auth=true与keyFile=可以等集群配置完成后，创建了管理员用户后，启用认证服务后配置，先注释掉这两项配置`
 * 启动mongodb服务
 
 `[root@node-9 ~](mongo)# systemctl start mongod`
@@ -183,7 +183,7 @@ ceilometer:PRIMARY>
 
 `ceilometer:PRIMARY>quit()`
 
-5）开登录认证，添加ceilometer用户
+5）打开数据库登录认证，添加ceilometer用户
 
 * 关闭每个mongo节点的mongod服务(systemctl stop mongod)
 
@@ -215,7 +215,7 @@ ceilometer:PRIMARY>
 
 `ceilometer:PRIMARY>db.auth('ceilometer','password');`
 
-* 退出登录，使用ceilometer 用户登录，确认ceilometer能够正常登录到ceilometer数据库，该用户只对eilometer数据库具有dbowner权限
+* 退出登录，使用ceilometer用户登录，确认ceilometer能够正常登录到ceilometer数据库，该用户只对ceilometer数据库具有dbowner权限
 
 6）启动ceilometer 所有服务，监控系统添加从数据库服务完成
 
