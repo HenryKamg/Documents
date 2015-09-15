@@ -19,19 +19,19 @@
 
   Mongodb配置通过配置mongodb.conf文件进行配置，常用配置如下：
 
-  |配置项|作用|
-  |------|----|
-  |bind_ip|配置服务绑定IP地址，配置为本地服务器IP地址|
-  |fork|以守护进程方式运行Mongodb|
-  |port|配置服务启动后绑定端口|
-  |dbpath|配置mongodb启动后，数据文件存储位置|
-  |pidfilepath|配置mongodb启动后PID文件|
-  |auth|配置启用登录认证|
-  |setParameter|配置mongodb日志存储|
-  |smallfiles|使用最小方式启动数据库，不配置此项，启动时通过比例计算数据存储文件占用空间大小|
-  |journal|写日志|
-  |replSet|配置副本集名称|
-  |keyFile|配置认证key文件|
+  ```
+  bind_ip: 配置服务绑定IP地址，配置为本地服务器IP地址
+  fork: 以守护进程方式运行Mongodb
+  port: 配置服务启动后绑定端口
+  dbpath: 配置mongodb启动后，数据文件存储位置
+  pidfilepath: 配置mongodb启动后PID文件
+  auth: 配置启用登录认证
+  setParameter: 配置mongodb日志存储
+  smallfiles: 使用最小方式启动数据库，不配置此项，启动时通过比例计算数据存储文件占用空间大小
+  journal: 写日志
+  replSet: 配置副本集名称
+  keyFile: 配置认证key文件
+  ```
 
   以上在配置副本集中：replSet、keyFile必须配置
 
