@@ -4,7 +4,7 @@
 <center><h4>黄敦荣</h4></center>
 <center>易云捷讯 云计算文档组</br>dunrong.huang@eayun.com</center>
 <center><h4>陈远斌</h4></center>
-<center>易云捷讯 云计算文档组</br>yuanbing.chen@eayun.com</center>
+<center>易云捷讯 云计算文档组</br>yuanbin.chen@eayun.com</center>
 <center><h4>陈燕</h4></center>
 <center>易云捷讯 云计算文档组</br>yan.chen@eayun.com</center>
 <center><h4>季方</h4></center>
