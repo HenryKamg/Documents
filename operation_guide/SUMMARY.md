@@ -20,6 +20,7 @@
        * [查看已有规格](basic_admin/flavors/flavors_list.md)
        * [创建规格](basic_admin/flavors/flavors_create.md)
        * [删除规格](basic_admin/flavors/flavors_delete.md)
+       * [调整云主机规格](basic_admin/flavors/flavors_resize.md)
    * [网络配置管理](basic_admin/network_management/network.md)
        * [创建外部网络](basic_admin/network_management/network_create.md)
        * [创建内部网络](basic_admin/network_management/network_create_net.md)
