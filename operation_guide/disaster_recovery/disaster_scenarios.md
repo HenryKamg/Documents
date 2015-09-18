@@ -57,6 +57,106 @@ N）
 
 ===
 
+#### 场景 No.：某些虚拟机无法连接外网
+
+* 故障等级：
+
+* 现象描述：
+
+  * 环境中的虚拟机，ping 公网任意一个 IP 地址，不通，ping 虚拟机路由，不通。
+
+* 故障模拟方案
+
+* 故障原因：
+
+  1. 环境里所有的 neutron-l3-agent 都与 neutron-server 断开连接；
+  1. 而 neutron-server 先发现了其中一台节点（node-A）上的 l3-agent 断开，则将该节点上的路由迁移到其他节点上；
+  1. 此时恰好发现其他节点（如 node-B）的 l3-agent 还连接着（其实已经断开连接，只是数据库还没来得及更新状态），于是将 node-A 上的路由全部迁移到 node-B 上；
+  1. 迁移时需要将 internal port 绑定到 node-B 上，此时恰好 node-B 更新了状态，l3-agent 连接断开，绑定失败。
+
+* 恢复方案：
+
+  * 排查方法
+    
+    1. 登录到 Controller 节点，执行 `eayunstack doctor net vrouter`，提示：`[ ERROR ] (controller) (node-5.eayun.com): status of port network:router_interface[1e123c6d-a14d-40ae-b99f-82325a23e44b] on node-5.eayun.com is down`，找到出现问题的端口；
+    1. 执行命令查看该端口的情况，看到端口状态为 **DOWN** 且 binding:vif_type 为 **binding_failed**：
+
+        ```
+        (controller)# neutron port-show 1e123c6d-a14d-40ae-b99f-82325a23e44b
+        +-----------------------+--------------------------------------------------------------------------------+
+        | Field                 | Value                                                                          |
+        +-----------------------+--------------------------------------------------------------------------------+
+        | admin_state_up        | True                                                                           |
+        | allowed_address_pairs |                                                                                |
+        | binding:host_id       | node-5.eayun.com                                                               |
+        | binding:profile       | {}                                                                             |
+        | binding:vif_details   | {}                                                                             |
+        | binding:vif_type      | binding_failed                                                                 |
+        | binding:vnic_type     | normal                                                                         |
+        | device_id             | 0ec8c1ec-c52b-444e-ba84-593830b18cf6                                           |
+        | device_owner          | network:router_interface                                                       |
+        | extra_dhcp_opts       |                                                                                |
+        | fixed_ips             | {"subnet_id": "0567bc8b-ace4-415b-b1be-b3afcc4f386c", "ip_address": "5.5.5.1"} |
+        | id                    | 1e123c6d-a14d-40ae-b99f-82325a23e44b                                           |
+        | mac_address           | fa:16:3e:83:6f:ac                                                              |
+        | name                  |                                                                                |
+        | network_id            | 592086b8-765f-429d-ab33-27a07fc71784                                           |
+        | security_groups       |                                                                                |
+        | status                | DOWN                                                                           |
+        | tenant_id             | 722ab8ce061248d18e79d83e2a746249                                               |
+        +-----------------------+--------------------------------------------------------------------------------+
+        ```
+    
+  * 解决方法
+
+    1. 登录 Controller 节点；
+    1. 查看 neutron-l3-agent 列表，执行命令：
+
+        ```
+        (controller)# neutron agent-list | grep l3
+        | 00c94036-fc5a-4105-82f5-1ffd445e842f | L3 agent           | node-5.eayun.com  | :-)   | True           | neutron-l3-agent          |
+        | 95b823d6-a503-4c80-aa95-75f35770bc6b | L3 agent           | node-8.eayun.com  | :-)   | True           | neutron-l3-agent          |
+        | ccbd988b-8ca2-4e90-88c3-0fb5bf601d0d | L3 agent           | node-6.eayun.com  | :-)   | True           | neutron-l3-agent          |
+        ```
+    1. 记下 node-5.eayun.com 的 agent-id（因为该路由运行在 node-5.eayun.com 上）；
+    1. 将路由从这个 l3-agent 中移除：`neutron l3-agent-router-remove \<agent_id\> \<router_id\>`，即 `neutron l3-agent-router-remove 00c94036-fc5a-4105-82f5-1ffd445e842f 0ec8c1ec-c52b-444e-ba84-593830b18cf6` （在 port-show 列出的信息中，device_id 指的是该端口对应的路由）；
+    1. 将路由添加到另一个 l3-agent 中：`neutron l3-agent-router-add \<agent_id\> \<router_id\>`，如添加到 node-6.eayun.com 的 l3-agent 中：`neutron l3-agent-router-add ccbd988b-8ca2-4e90-88c3-0fb5bf601d0d 0ec8c1ec-c52b-444e-ba84-593830b18cf6`；
+    1. 重新查看端口状态，确认问题解决：
+
+        ```
+        (controller)# neutron port-show 1e123c6d-a14d-40ae-b99f-82325a23e44b
+        +-----------------------+--------------------------------------------------------------------------------+
+        | Field                 | Value                                                                          |
+        +-----------------------+--------------------------------------------------------------------------------+
+        | admin_state_up        | True                                                                           |
+        | allowed_address_pairs |                                                                                |
+        | binding:host_id       | node-6.eayun.com                                                               |
+        | binding:profile       | {}                                                                             |
+        | binding:vif_details   | {"port_filter": true, "ovs_hybrid_plug": true}                                 |
+        | binding:vif_type      | ovs                                                                            |
+        | binding:vnic_type     | normal                                                                         |
+        | device_id             | 0ec8c1ec-c52b-444e-ba84-593830b18cf6                                           |
+        | device_owner          | network:router_interface                                                       |
+        | extra_dhcp_opts       |                                                                                |
+        | fixed_ips             | {"subnet_id": "0567bc8b-ace4-415b-b1be-b3afcc4f386c", "ip_address": "5.5.5.1"} |
+        | id                    | 1e123c6d-a14d-40ae-b99f-82325a23e44b                                           |
+        | mac_address           | fa:16:3e:83:6f:ac                                                              |
+        | name                  |                                                                                |
+        | network_id            | 592086b8-765f-429d-ab33-27a07fc71784                                           |
+        | security_groups       |                                                                                |
+        | status                | ACTIVE                                                                         |
+        | tenant_id             | 722ab8ce061248d18e79d83e2a746249                                               |
+        +-----------------------+--------------------------------------------------------------------------------+
+        ```
+
+    > #### 重要：
+    > * 只有当 Internal interface 显示为 **DOWN** 且端口 **binding_failed** 时，才符合这个情况；
+    > * 将路由从 l3-agent 移除后，必需添加到**另一个** l3-agent 上，问题才能修复，添加到同一个 l3-agent 中无法修复问题。
+
+* 预计故障恢复时间
+
+===
+
 #### 场景 No.2：虚拟机无法通过DHCP方式获取IP地址
 
 * 故障等级：
