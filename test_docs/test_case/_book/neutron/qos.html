@@ -1,0 +1,990 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>QoS | EayunStack 测试用例文档</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.0.3">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    
+    <link rel="next" href="../nova/nova.html" />
+    
+    
+    <link rel="prev" href="../neutron/floating-ip.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book"  data-level="5.9" data-basepath=".." data-revision="1443000196913">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         介绍
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="authenticate/authenticate.html">
+            
+                
+                    <a href="../authenticate/authenticate.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         验证模块的 Token
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2" data-path="cinder/cinder.html">
+            
+                
+                    <a href="../cinder/cinder.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Cinder 模块
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1" data-path="cinder/volume.html">
+            
+                
+                    <a href="../cinder/volume.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                         卷
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2" data-path="cinder/snapshot.html">
+            
+                
+                    <a href="../cinder/snapshot.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         快照
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3" data-path="glance/glance.html">
+            
+                
+                    <a href="../glance/glance.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         Glance 模块
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="glance/image.html">
+            
+                
+                    <a href="../glance/image.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         镜像
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4" data-path="keystone/keystone.html">
+            
+                
+                    <a href="../keystone/keystone.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         Keystone 模块
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1" data-path="keystone/tenant.html">
+            
+                
+                    <a href="../keystone/tenant.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         租户
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.2" data-path="keystone/user.html">
+            
+                
+                    <a href="../keystone/user.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                         用户
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.3" data-path="keystone/entities.html">
+            
+                
+                    <a href="../keystone/entities.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                         实体
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.4" data-path="keystone/service.html">
+            
+                
+                    <a href="../keystone/service.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                         服务
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5" data-path="neutron/neutron.html">
+            
+                
+                    <a href="../neutron/neutron.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         Neutron 模块
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.1" data-path="neutron/network.html">
+            
+                
+                    <a href="../neutron/network.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                         网络
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2" data-path="neutron/port.html">
+            
+                
+                    <a href="../neutron/port.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                         端口
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.3" data-path="neutron/router.html">
+            
+                
+                    <a href="../neutron/router.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                         路由
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.4" data-path="neutron/subnet.html">
+            
+                
+                    <a href="../neutron/subnet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                         子网
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.5" data-path="neutron/fwaas.html">
+            
+                
+                    <a href="../neutron/fwaas.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.5.</b>
+                        
+                         FWaaS
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6" data-path="neutron/lbaas.html">
+            
+                
+                    <a href="../neutron/lbaas.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.6.</b>
+                        
+                         LBaaS
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.7" data-path="neutron/vpnaas.html">
+            
+                
+                    <a href="../neutron/vpnaas.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.7.</b>
+                        
+                         VPNaaS
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.8" data-path="neutron/floating-ip.html">
+            
+                
+                    <a href="../neutron/floating-ip.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.8.</b>
+                        
+                         floating-ip
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="5.9" data-path="neutron/qos.html">
+            
+                
+                    <a href="../neutron/qos.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.9.</b>
+                        
+                         QoS
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6" data-path="nova/nova.html">
+            
+                
+                    <a href="../nova/nova.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         Nova 模块
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.1" data-path="nova/keypair.html">
+            
+                
+                    <a href="../nova/keypair.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         Keypair
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2" data-path="nova/secgroup.html">
+            
+                
+                    <a href="../nova/secgroup.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                         安全组
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.3" data-path="nova/servers.html">
+            
+                
+                    <a href="../nova/servers.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                         虚拟机
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.4" data-path="nova/flavor.html">
+            
+                
+                    <a href="../nova/flavor.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.4.</b>
+                        
+                         类型
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7" data-path="quotas/quotas.html">
+            
+                
+                    <a href="../quotas/quotas.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                         Quotas 模块
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1" data-path="quotas/cinder.html">
+            
+                
+                    <a href="../quotas/cinder.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                         Cinder 配额
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.2" data-path="quotas/neutron.html">
+            
+                
+                    <a href="../quotas/neutron.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                         Neutron 配额
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.3" data-path="quotas/nova.html">
+            
+                
+                    <a href="../quotas/nova.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                         Nova 配额
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8" data-path="ceilometer/ceilometer.html">
+            
+                
+                    <a href="../ceilometer/ceilometer.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                         Ceilometer 模块
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="8.1" data-path="ceilometer/alarms.html">
+            
+                
+                    <a href="../ceilometer/alarms.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                         Alarms
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.2" data-path="ceilometer/meters.html">
+            
+                
+                    <a href="../ceilometer/meters.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                         Meters
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.3" data-path="ceilometer/queries.html">
+            
+                
+                    <a href="../ceilometer/queries.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.3.</b>
+                        
+                         Queries
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.4" data-path="ceilometer/resource.html">
+            
+                
+                    <a href="../ceilometer/resource.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.4.</b>
+                        
+                         Resource
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.5" data-path="ceilometer/stats.html">
+            
+                
+                    <a href="../ceilometer/stats.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.5.</b>
+                        
+                         Stats
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="9" data-path="operation_tools/operation_tool.html">
+            
+                
+                    <a href="../operation_tools/operation_tool.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                         Operation_tools
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="9.1" data-path="operation_tools/operation_tools.html">
+            
+                
+                    <a href="../operation_tools/operation_tools.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                         运维工具
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >EayunStack 测试用例文档</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_10256">
+                    
+                        <h1 id="qos">QoS</h1>
+<table>
+<thead>
+<tr>
+<th>内容编号</th>
+<th>内容名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>06</td>
+<td>QoS</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>测试编号</th>
+<th>测试目的</th>
+<th>操作</th>
+<th>预期结果</th>
+<th>实际结果</th>
+<th>备注</th>
+<th>Rally/Tempest/None</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01010601</td>
+<td>在公网环境下添加一条QoS</td>
+<td><ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令，创建QoS并为新建的QoS匹配上port：<code>neutron eayun-qos-create --name test-qos --target-type port --target-id TARGET-ID ingress 102400 20480</code></td>
+<td><ul><li>CLI:QoS创建成功</td>
+<td></td>
+<td>可以为QoS匹配对应的port或者router</td>
+<td></td>
+</tr>
+<tr>
+<td>01010602</td>
+<td>在公网环境下修改一条QoS</td>
+<td><ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令，修改限定速率：<code>neutron eayun-qos-update --rate 51200 QOS-ID</code></td>
+<td><ul><li>CLI:QoS修改成功</td>
+<td></td>
+<td>可以为QoS修改的选项还有名字，匹配的目标类型等</td>
+<td></td>
+</tr>
+<tr>
+<td>01010603</td>
+<td>QoS脱离绑定设备</td>
+<td><ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-unbind QOS-ID</code>。</td>
+<td><ul><li>CLI:QoS成功脱离设备</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>01010604</td>
+<td>在公网环境下删除一条QoS</td>
+<td><ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令，删除：<code>neutron eayun-qos-delete QOS-ID</code>。</td>
+<td><ul><li>CLI:QoS删除成功</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>01010605</td>
+<td>在QoS中添加队列</td>
+<td><ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-queue-create QOS-ID 20480 --prio 0</code>。</td>
+<td><ul><li>CLI:队列创建成功</td>
+<td></td>
+<td>要创建子队列只需添加参数<code>--parent PARENT-ID</code></td>
+<td></td>
+</tr>
+<tr>
+<td>01010606</td>
+<td>队列更新</td>
+<td><ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-queue-update --rate 51200 QOS_QUEUE-ID</code>。</td>
+<td><ul><li>CLI:队列更新成功</td>
+<td></td>
+<td>可以修改的队列参数还有优先级等且默认队列不能更新</td>
+<td></td>
+</tr>
+<tr>
+<td>01010607</td>
+<td>队列删除</td>
+<td><ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-queue-delete QOS_QUEUE-ID</code>。</td>
+<td><ul><li>CLI:队列删除成功</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>01010608</td>
+<td>在公网环境下创建过滤器</td>
+<td><ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-filter-create --queue QOS_QUEUE-ID --protocol 6 --src-port 23 --dst-port 23 --src-addr 172.168.200.4/24 --dst-addr 172.168.200.2/24 QOS-ID 104</code>。</td>
+<td><ul><li>CLI:过滤器创建成功</td>
+<td></td>
+<td>过滤器只能创建在没有子队列的队列中</td>
+<td></td>
+</tr>
+<tr>
+<td>01010609</td>
+<td>更新过滤器</td>
+<td><ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-filter-update --prio 200 QOS_FILTER-ID</code>。</td>
+<td><ul><li>CLI:过滤器更新成功</td>
+<td></td>
+<td>过滤器可以修改的参数还有协议，匹配端口等</td>
+<td></td>
+</tr>
+<tr>
+<td>01010610</td>
+<td>过滤器脱离队列</td>
+<td><ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-filter-unattach QOS_FILTER-ID</code>。</td>
+<td><ul><li>CLI:过滤器成功脱离队列</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>01010611</td>
+<td>删除过滤器</td>
+<td><ul><li>CLI:<ol><li>登录到network节点；</li><li>执行命令：<code>neutron eayun-qos-filter-delete QOS_FILTER-ID</code>。</td>
+<td><ul><li>CLI:过滤器成功删除</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>01010612</td>
+<td>验证QoS</td>
+<td><ul><li>UI:<ol><li>登录dashboard，点击【Project】选项，点击【Compute】子选项；</li><li>点击【实例】选项，选择过滤器匹配的两个实例，点击虚拟控制台进入；</li><li>选用合适的网络性能测试工具，在两台实例之间测试流量。</td>
+<td><ul><li>CLI:网络流量按照需求匹配</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../neutron/floating-ip.html" class="navigation navigation-prev " aria-label="Previous page: floating-ip"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../nova/nova.html" class="navigation navigation-next " aria-label="Next page: Nova 模块"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
