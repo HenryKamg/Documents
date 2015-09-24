@@ -15,7 +15,7 @@ resource：是被监控的资源对象。例如某一台虚拟机、某个镜像
 可选的条件属性有：
 
 | attr | value eg |
-| -- | -- |
+| --- | --- |
 | project_id | 5f3c266772b94980ac2629b1c9d773c6 |
 | resource_id | 3708a98e-e856-4836-bc06-481d629942a4 |
 | source | openstack |
