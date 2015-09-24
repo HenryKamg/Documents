@@ -29,7 +29,7 @@ meter，计量值，可以理解为指标。属性有name、type、unit等。
 可选的条件属性有：
 
 | attr | value eg |
-| -- | -- |
+| --- | --- |
 | project_id | 5f3c266772b94980ac2629b1c9d773c6 |
 | resource_id | 3708a98e-e856-4836-bc06-481d629942a4 |
 | user_id | 7e2fff4edbad42869051c5e631ca2600 |
