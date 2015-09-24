@@ -1,4 +1,4 @@
- # 查看计量项采样 #
+# 查看计量项采样
 
 sample，计量项采样。即某个时刻某个resource的某个meter值。
 
@@ -19,7 +19,7 @@ sample，计量项采样。即某个时刻某个resource的某个meter值。
 可选的条件属性有：
 
 | attr | value eg |
-| -- | -- |
+| --- | --- |
 | project_id | 5f3c266772b94980ac2629b1c9d773c6 |
 | resource_id | 3708a98e-e856-4836-bc06-481d629942a4 |
 | timestamp | 2015-09-09T04:07:21 |
