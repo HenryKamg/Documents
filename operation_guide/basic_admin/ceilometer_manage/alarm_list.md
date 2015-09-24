@@ -25,7 +25,7 @@ Alarm 包括 threshold alarm （阈值告警）和 combination （组合告警�
 可选的条件属性有：
 
 | attr | value eg |
-| -- | -- |
+| --- | --- |
 | alarm_id | 9db1b034-5605-4643-a564-4dcf174ce0b7 |
 | name | cpu_util_high |
 | state | insufficient data |
