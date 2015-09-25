@@ -408,6 +408,10 @@ optional arguments:
 
 该命令可以单独检测服务运行状态，例如只检测Controller节点上各组件服务的运行状态。
 
+> **注意**
+>
+> 以下示例中省略掉了部分Debug信息
+
 ```
 [controller]# eayunstack --debug doctor stack --controller --service
 [ DEBUG ] (controller) (node-5.eayun.com): =====> start running check_controller_service 
