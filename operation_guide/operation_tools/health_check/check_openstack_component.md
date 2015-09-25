@@ -458,6 +458,10 @@ optional arguments:
 >
 > 该命令需要在Fuel节点上执行
 
+> **注意**
+>
+> 以下示例中省略掉了部分Debug信息
+
 ```
 [fuel]# eayunstack --debug doctor stack -a
 [ INFO  ] (fule) (fuel.domain.tld): *************** Role: controller Node: 172.16.100.8  ***************
