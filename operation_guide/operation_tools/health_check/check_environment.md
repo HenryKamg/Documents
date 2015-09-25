@@ -17,6 +17,11 @@ optional arguments:
   -a, --all             Check ALL
 ```
 
+> **注意**
+>
+> 在使用该命令时，如需输出Debug消息，请在"eayunstack"命令后使用"--debug"选项，如以下示例。
+
+
 ## NTP检测
 
 该命令用于检测当前节点NTP服务运行状态及与上游NTP服务器的同步状态，当执行该命令输出类似如下信息时，当前节点NTP服务运行状态及与上游NTP服务器同步状态正常。
