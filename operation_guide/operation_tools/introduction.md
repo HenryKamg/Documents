@@ -27,7 +27,18 @@ Commands:
     doctor              EayunStack Doctor
 ```
 
-## 子命令及选项功能
+## 选项及子命令功能简介
+
+### 选项
+
+* -h，--help
+   * 查看命令帮助信息
+* -o FILENAME, --output FILENAME
+   * 将命令执行结果保存到指定文件中
+* -d, --debug
+   * 命令执行时输出Debug信息（默认不输出Debug信息）
+* -e EMAIL, --email EMAIL
+   * 将命令执行时输出的"ERROR"级别的信息发送到指定邮箱
 
 ### 子命令
 
@@ -47,14 +58,3 @@ Commands:
    * 检测所有OpenStack节点OpenStack组件配置及服务运行状态
    * 检测MySQL/RabbitMQ/Ceph集群状态
    * 检测OpenStack网络（如virtual router检测）
-
-### 选项
-
-* -h，--help
-   * 查看命令帮助信息
-* -o FILENAME, --output FILENAME
-   * 将命令执行结果保存到指定文件中
-* -d, --debug
-   * 命令执行时输出Debug信息（默认不输出Debug信息）
-* -e EMAIL, --email EMAIL
-   * 将命令执行时输出的"ERROR"级别的信息发送到指定邮箱
