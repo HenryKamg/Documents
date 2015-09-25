@@ -7,15 +7,13 @@
 |controller|Keystone</br>Glance</br>Nova</br>Neutron</br>Cinder|配置文件正确性检测</br>服务运行状态检测</br>服务与数据库的连通性检测</br>服务可用性检测|
 |compute|Nova|配置文件正确性检测</br>服务运行状态检测|
 |mongo|Mongo|配置文件正确性检测</br>服务运行状态检测|
-|ceph-osd|Ceph|配置文件正确性检测</br>服务运行状态检测|
 
 ## 命令格式
 
 ```
-$ eayunstack doctor stack --help
+# eayunstack doctor stack --help
 usage: eayunstack doctor stack [-h] [--profile] [--service] [--controller]
-                               [--compute] [--mongo] [--ceph-osd] [-a]
-                               [-o FILENAME]
+                               [--compute] [--mongo] [-a]
 
 Check OpenStack Compent
 
@@ -26,331 +24,315 @@ optional arguments:
   --controller  Check All Controller Node
   --compute     Check All Compute Node
   --mongo       Check All Mongo Node
-  --ceph-osd    Check All Ceph-osd Node
   -a, --all     Check ALL
-  -o FILENAME   Local File To Save Output Info
 ```
 
 ## Controller节点检测
 
 > ###### 注意
+>
 > 该命令可以在**Fuel节点**或**Controller节点**上运行。在**Fuel节点**上运行该命令，可以同时对所有Controller节点进行检测。在**Controller节点**上运行该命令，只检测当前节点。
 
 * Fuel节点执行命令
 
+> **注意**
+>
+> 以下示例中省略掉了部分Debug信息
+
 ```
-[fuel]$ eayunstack doctor stack --controller
-[ INFO  ] *************** Role: controller Node: 172.16.100.7  ***************
-[ INFO  ] Checking "Keystone" Component
-          Profile: /etc/keystone/keystone.conf
-[ INFO  ] Checking "Glance" Component
-          Profile: /etc/glance/glance-api.conf
-          Profile: /etc/glance/glance-registry.conf
-[ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Neutron" Component
-          Profile: /etc/neutron/neutron.conf
-[ INFO  ] Checking "Cinder" Component
-          Profile: /etc/cinder/cinder.conf
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ] -Service Status
-          Service openstack-keystone is running ...
-          Service openstack-keystone is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Glance" Component
-[ INFO  ] -Service Status
-          Service openstack-glance-api is running ...
-          Service openstack-glance-api is enabled ...
-          Service openstack-glance-registry is running ...
-          Service openstack-glance-registry is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Nova" Component
-[ INFO  ] -Service Status
-          Service openstack-nova-api is running ...
-          Service openstack-nova-api is enabled ...
-          Service openstack-nova-conductor is running ...
-          Service openstack-nova-conductor is enabled ...
-          Service openstack-nova-scheduler is running ...
-          Service openstack-nova-scheduler is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Neutron" Component
-[ INFO  ] -Service Status
-          Service neutron-server is running ...
-          Service neutron-server is enabled ...
-          Service neutron-ovs-cleanup is running ...
-          Service neutron-ovs-cleanup is enabled ...
-          Service openvswitch is running ...
-          Service openvswitch is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ] -Service Status
-          Service openstack-cinder-api is running ...
-          Service openstack-cinder-api is enabled ...
-          Service openstack-cinder-scheduler is running ...
-          Service openstack-cinder-scheduler is enabled ...
-          Service openstack-cinder-volume is running ...
-          Service openstack-cinder-volume is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
+[fuel]# eayunstack --debug doctor stack --controller
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: controller Node: 172.16.100.8  ***************
+[ DEBUG ] (controller) (node-6.eayun.com): =====> start running check_controller_profile 
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/keystone/keystone.conf
+...
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/glance/glance-api.conf
+...
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/glance/glance-registry.conf
+...
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/neutron/neutron.conf
+...
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/cinder/cinder.conf
+...
+[ DEBUG ] (controller) (node-6.eayun.com): =====> start running check_controller_service 
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-6.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-6.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-6.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-6.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-6.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-6.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-6.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-6.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-6.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-6.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-6.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-6.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-6.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-6.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-6.eayun.com): Check Successfully.
 
-[ INFO  ] *************** Role: controller Node: 172.16.100.5  ***************
-[ INFO  ] Checking "Keystone" Component
-          Profile: /etc/keystone/keystone.conf
-[ INFO  ] Checking "Glance" Component
-          Profile: /etc/glance/glance-api.conf
-          Profile: /etc/glance/glance-registry.conf
-[ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Neutron" Component
-          Profile: /etc/neutron/neutron.conf
-[ INFO  ] Checking "Cinder" Component
-          Profile: /etc/cinder/cinder.conf
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ] -Service Status
-          Service openstack-keystone is running ...
-          Service openstack-keystone is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Glance" Component
-[ INFO  ] -Service Status
-          Service openstack-glance-api is running ...
-          Service openstack-glance-api is enabled ...
-          Service openstack-glance-registry is running ...
-          Service openstack-glance-registry is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Nova" Component
-[ INFO  ] -Service Status
-          Service openstack-nova-api is running ...
-          Service openstack-nova-api is enabled ...
-          Service openstack-nova-conductor is running ...
-          Service openstack-nova-conductor is enabled ...
-          Service openstack-nova-scheduler is running ...
-          Service openstack-nova-scheduler is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Neutron" Component
-[ INFO  ] -Service Status
-          Service neutron-server is running ...
-          Service neutron-server is enabled ...
-          Service neutron-ovs-cleanup is running ...
-          Service neutron-ovs-cleanup is enabled ...
-          Service openvswitch is running ...
-          Service openvswitch is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ] -Service Status
-          Service openstack-cinder-api is running ...
-          Service openstack-cinder-api is enabled ...
-          Service openstack-cinder-scheduler is running ...
-          Service openstack-cinder-scheduler is enabled ...
-          Service openstack-cinder-volume is running ...
-          Service openstack-cinder-volume is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: controller Node: 172.16.100.10 ***************
+[ DEBUG ] (controller) (node-8.eayun.com): =====> start running check_controller_profile 
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/keystone/keystone.conf
+...
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/glance/glance-api.conf
+...
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/glance/glance-registry.conf
+...
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/neutron/neutron.conf
+...
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/cinder/cinder.conf
+...
+[ DEBUG ] (controller) (node-8.eayun.com): =====> start running check_controller_service 
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Status
+[ DEBUG ] (controller) (node-8.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-8.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-8.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-8.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-8.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-8.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-8.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-8.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-8.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-8.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-8.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-8.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-8.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-8.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-8.eayun.com): Check Successfully.
 
-[ INFO  ] *************** Role: controller Node: 172.16.100.4  ***************
-[ INFO  ] Checking "Keystone" Component
-          Profile: /etc/keystone/keystone.conf
-[ INFO  ] Checking "Glance" Component
-          Profile: /etc/glance/glance-api.conf
-          Profile: /etc/glance/glance-registry.conf
-[ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Neutron" Component
-          Profile: /etc/neutron/neutron.conf
-[ INFO  ] Checking "Cinder" Component
-          Profile: /etc/cinder/cinder.conf
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ] -Service Status
-          Service openstack-keystone is running ...
-          Service openstack-keystone is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Glance" Component
-[ INFO  ] -Service Status
-          Service openstack-glance-api is running ...
-          Service openstack-glance-api is enabled ...
-          Service openstack-glance-registry is running ...
-          Service openstack-glance-registry is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Nova" Component
-[ INFO  ] -Service Status
-          Service openstack-nova-api is running ...
-          Service openstack-nova-api is enabled ...
-          Service openstack-nova-conductor is running ...
-          Service openstack-nova-conductor is enabled ...
-          Service openstack-nova-scheduler is running ...
-          Service openstack-nova-scheduler is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Neutron" Component
-[ INFO  ] -Service Status
-          Service neutron-server is running ...
-          Service neutron-server is enabled ...
-          Service neutron-ovs-cleanup is running ...
-          Service neutron-ovs-cleanup is enabled ...
-          Service openvswitch is running ...
-          Service openvswitch is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ] -Service Status
-          Service openstack-cinder-api is running ...
-          Service openstack-cinder-api is enabled ...
-          Service openstack-cinder-scheduler is running ...
-          Service openstack-cinder-scheduler is enabled ...
-          Service openstack-cinder-volume is running ...
-          Service openstack-cinder-volume is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: controller Node: 172.16.100.6  ***************
+[ DEBUG ] (controller) (node-5.eayun.com): =====> start running check_controller_profile 
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/keystone/keystone.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/glance/glance-api.conf
+...
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/glance/glance-registry.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/neutron/neutron.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/cinder/cinder.conf
+...
+[ DEBUG ] (controller) (node-5.eayun.com): =====> start running check_controller_service 
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
 ```
 
 * Controller节点执行命令
 
+> **注意**
+>
+> 以下示例中省略掉了部分Debug信息
+
 ```
-[controller]$ eayunstack doctor stack --controller
-[ INFO  ] Checking "Keystone" Component
-          Profile: /etc/keystone/keystone.conf
-[ INFO  ] Checking "Glance" Component
-          Profile: /etc/glance/glance-api.conf
-          Profile: /etc/glance/glance-registry.conf
-[ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Neutron" Component
-          Profile: /etc/neutron/neutron.conf
-[ INFO  ] Checking "Cinder" Component
-          Profile: /etc/cinder/cinder.conf
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ] -Service Status
-          Service openstack-keystone is running ...
-          Service openstack-keystone is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Glance" Component
-[ INFO  ] -Service Status
-          Service openstack-glance-api is running ...
-          Service openstack-glance-api is enabled ...
-          Service openstack-glance-registry is running ...
-          Service openstack-glance-registry is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Nova" Component
-[ INFO  ] -Service Status
-          Service openstack-nova-api is running ...
-          Service openstack-nova-api is enabled ...
-          Service openstack-nova-conductor is running ...
-          Service openstack-nova-conductor is enabled ...
-          Service openstack-nova-scheduler is running ...
-          Service openstack-nova-scheduler is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Neutron" Component
-[ INFO  ] -Service Status
-          Service neutron-server is running ...
-          Service neutron-server is enabled ...
-          Service neutron-ovs-cleanup is running ...
-          Service neutron-ovs-cleanup is enabled ...
-          Service openvswitch is running ...
-          Service openvswitch is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ] -Service Status
-          Service openstack-cinder-api is running ...
-          Service openstack-cinder-api is enabled ...
-          Service openstack-cinder-scheduler is running ...
-          Service openstack-cinder-scheduler is enabled ...
-          Service openstack-cinder-volume is running ...
-          Service openstack-cinder-volume is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
+[controller]# eayunstack --debug doctor stack --controller
+[ DEBUG ] (controller) (node-5.eayun.com): =====> start running check_controller_profile 
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/keystone/keystone.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/glance/glance-api.conf
+...
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/glance/glance-registry.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/neutron/neutron.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/cinder/cinder.conf
+...
+[ DEBUG ] (controller) (node-5.eayun.com): =====> start running check_controller_service 
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
 ```
 
 ## Compute节点检测
 
 > ###### 注意
+>
 > 该命令可以在**Fuel节点**或**Compute节点**上运行。在**Fuel节点**上运行该命令，可以同时对所有Compute节点进行检测。在**Compute节点**上运行该命令，只检测当前节点。
 
 * Fuel节点执行命令
 
+> **注意**
+>
+> 以下示例中省略掉了部分Debug信息
+
 ```
-[fuel]$ eayunstack doctor stack --compute
-[ INFO  ] *************** Role: compute    Node: 172.16.100.12 ***************
+[fuel]# eayunstack --debug doctor stack --compute
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: compute    Node: 172.16.100.9  ***************
+[ DEBUG ] (compute) (node-7.eayun.com): =====> start running check_compute_profile 
+[ INFO  ] (compute) (node-7.eayun.com): Checking "Nova" Component
+[ DEBUG ] (compute) (node-7.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ DEBUG ] (compute) (node-7.eayun.com): =====> start running check_compute_service 
+[ INFO  ] (compute) (node-7.eayun.com): Checking "Nova" Component
+[ DEBUG ] (compute) (node-7.eayun.com): -Service Status
+...
+
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: compute    Node: 172.16.100.7  ***************
+[ DEBUG ] =====> start running check_compute_profile 
 [ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
+...
+[ DEBUG ] =====> start running check_compute_service 
 [ INFO  ] Checking "Nova" Component
 [ INFO  ] -Service Status
-          Service openstack-nova-compute is running ...
-          Service openstack-nova-compute is enabled ...
+...
 
-[ INFO  ] *************** Role: compute    Node: 172.16.100.6  ***************
-[ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Nova" Component
-[ INFO  ] -Service Status
-          Service openstack-nova-compute is running ...
-          Service openstack-nova-compute is enabled ...
-
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: compute    Node: 172.16.100.12 ***************
+[ DEBUG ] (compute) (node-10.eayun.com): =====> start running check_compute_profile 
+[ INFO  ] (compute) (node-10.eayun.com): Checking "Nova" Component
+[ DEBUG ] (compute) (node-10.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ DEBUG ] (compute) (node-10.eayun.com): =====> start running check_compute_service 
+[ INFO  ] (compute) (node-10.eayun.com): Checking "Nova" Component
+[ DEBUG ] (compute) (node-10.eayun.com): -Service Status
+...
 ```
 
 * Compute节点执行命令
 
+> **注意**
+>
+> 以下示例中省略掉了部分Debug信息
+
 ```
-[compute]$ eayunstack doctor stack --compute
-[ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Nova" Component
-[ INFO  ] -Service Status
-          Service openstack-nova-compute is running ...
-          Service openstack-nova-compute is enabled ...
+[compute]# eayunstack --debug doctor stack --compute
+[ DEBUG ] (compute) (node-7.eayun.com): =====> start running check_compute_profile 
+[ INFO  ] (compute) (node-7.eayun.com): Checking "Nova" Component
+[ DEBUG ] (compute) (node-7.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ DEBUG ] (compute) (node-7.eayun.com): =====> start running check_compute_service 
+[ INFO  ] (compute) (node-7.eayun.com): Checking "Nova" Component
+[ DEBUG ] (compute) (node-7.eayun.com): -Service Status
+...
 ```
 
 ## Mongo节点检测
@@ -360,103 +342,66 @@ optional arguments:
 
 * Fuel节点执行命令
 
+> **注意**
+>
+> 以下示例中省略掉了部分Debug信息
+
 ```
-[fuel]$ eayunstack doctor stack --mongo
-[ INFO  ] *************** Role: mongo      Node: 172.16.100.11 ***************
-[ INFO  ] Checking "Mongo" Component
-          Profile: /etc/mongodb.conf
-[ INFO  ] Checking "Mongo" Component
-[ INFO  ] -Service Status
-          Service mongod is running ...
-          Service mongod is enabled ...
+[fuel]# eayunstack --debug doctor stack --mongo
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: mongo      Node: 172.16.100.11 ***************
+[ DEBUG ] (mongo) (node-9.eayun.com): =====> start running check_mongo_profile 
+[ INFO  ] (mongo) (node-9.eayun.com): Checking "Mongo" Component
+[ DEBUG ] (mongo) (node-9.eayun.com): Profile: /etc/mongodb.conf
+...
+[ DEBUG ] (mongo) (node-9.eayun.com): =====> start running check_mongo_service 
+[ INFO  ] (mongo) (node-9.eayun.com): Checking "Mongo" Component
+[ DEBUG ] (mongo) (node-9.eayun.com): -Service Status
+...
 
 ```
 
 * Mongo节点执行命令
 
 ```
-[mongo]$ eayunstack doctor stack --mongo
-[ INFO  ] Checking "Mongo" Component
-          Profile: /etc/mongodb.conf
-[ INFO  ] Checking "Mongo" Component
-[ INFO  ] -Service Status
-          Service mongod is running ...
-          Service mongod is enabled ...
-```
-
-## Ceph-osd节点检测
-
-> ###### 注意
-> 该命令可以在**Fuel节点**或**Ceph-osd节点**上运行。在**Fuel节点**上运行该命令，可以同时对所有Ceph-osd节点进行检测。在**Ceph-osd节点**上运行该命令，只检测当前节点。
-
-* Fuel节点执行命令
-
-```
-[fuel]$ eayunstack doctor stack --ceph
-[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.10 ***************
-[ INFO  ] Checking "Ceph_osd" Component
-          Profile: /etc/ceph/ceph.conf
-[ INFO  ] Checking "Ceph_osd" Component
-[ INFO  ] -Service Status
-          Service ceph is running ...
-          Service ceph is enabled ...
-
-[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.9  ***************
-[ INFO  ] Checking "Ceph_osd" Component
-          Profile: /etc/ceph/ceph.conf
-[ INFO  ] Checking "Ceph_osd" Component
-[ INFO  ] -Service Status
-          Service ceph is running ...
-          Service ceph is enabled ...
-
-[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.8  ***************
-[ INFO  ] Checking "Ceph_osd" Component
-          Profile: /etc/ceph/ceph.conf
-[ INFO  ] Checking "Ceph_osd" Component
-[ INFO  ] -Service Status
-          Service ceph is running ...
-          Service ceph is enabled ...
-
-[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.13 ***************
-[ INFO  ] Checking "Ceph_osd" Component
-          Profile: /etc/ceph/ceph.conf
-[ INFO  ] Checking "Ceph_osd" Component
-[ INFO  ] -Service Status
-          Service ceph is running ...
-          Service ceph is enabled ...
-
-```
-
-* Ceph-osd节点执行命令
-
-```
-[ceph-osd]$ eayunstack doctor stack --ceph
-[ INFO  ] Checking "Ceph_osd" Component
-          Profile: /etc/ceph/ceph.conf
-[ INFO  ] Checking "Ceph_osd" Component
-[ INFO  ] -Service Status
-          Service ceph is running ...
-          Service ceph is enabled ...
+[mongo]# eayunstack --debug doctor stack --mongo
+[ DEBUG ] (mongo) (node-9.eayun.com): =====> start running check_mongo_profile 
+[ INFO  ] (mongo) (node-9.eayun.com): Checking "Mongo" Component
+[ DEBUG ] (mongo) (node-9.eayun.com): Profile: /etc/mongodb.conf
+...
+[ DEBUG ] (mongo) (node-9.eayun.com): =====> start running check_mongo_service 
+[ INFO  ] (mongo) (node-9.eayun.com): Checking "Mongo" Component
+[ DEBUG ] (mongo) (node-9.eayun.com): -Service Status
+...
 ```
 
 ## 单独检测配置文正确性
 
 该命令可以单独检测配置文件的正确性，例如只检测Controller节点上各组件的配置文件。
 
-```
-[controller]$ eayunstack doctor stack --controller --profile
-[ INFO  ] Checking "Keystone" Component
-          Profile: /etc/keystone/keystone.conf
-[ INFO  ] Checking "Glance" Component
-          Profile: /etc/glance/glance-api.conf
-          Profile: /etc/glance/glance-registry.conf
-[ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Neutron" Component
-          Profile: /etc/neutron/neutron.conf
-[ INFO  ] Checking "Cinder" Component
-          Profile: /etc/cinder/cinder.conf
+> **注意**
+>
+> 以下示例中省略掉了部分Debug信息
 
+```
+[controller]# eayunstack --debug doctor stack --controller --profile
+[ DEBUG ] (controller) (node-5.eayun.com): =====> start running check_controller_profile 
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/keystone/keystone.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/glance/glance-api.conf
+...
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/glance/glance-registry.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/neutron/neutron.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/cinder/cinder.conf
+...
 ```
 
 ## 单独检测服务运行状态
@@ -464,327 +409,257 @@ optional arguments:
 该命令可以单独检测服务运行状态，例如只检测Controller节点上各组件服务的运行状态。
 
 ```
-[controller]$ eayunstack doctor stack --controller --service
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ] -Service Status
-          Service openstack-keystone is running ...
-          Service openstack-keystone is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Glance" Component
-[ INFO  ] -Service Status
-          Service openstack-glance-api is running ...
-          Service openstack-glance-api is enabled ...
-          Service openstack-glance-registry is running ...
-          Service openstack-glance-registry is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Nova" Component
-[ INFO  ] -Service Status
-          Service openstack-nova-api is running ...
-          Service openstack-nova-api is enabled ...
-          Service openstack-nova-conductor is running ...
-          Service openstack-nova-conductor is enabled ...
-          Service openstack-nova-scheduler is running ...
-          Service openstack-nova-scheduler is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Neutron" Component
-[ INFO  ] -Service Status
-          Service neutron-server is running ...
-          Service neutron-server is enabled ...
-          Service neutron-ovs-cleanup is running ...
-          Service neutron-ovs-cleanup is enabled ...
-          Service openvswitch is running ...
-          Service openvswitch is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ] -Service Status
-          Service openstack-cinder-api is running ...
-          Service openstack-cinder-api is enabled ...
-          Service openstack-cinder-scheduler is running ...
-          Service openstack-cinder-scheduler is enabled ...
-          Service openstack-cinder-volume is running ...
-          Service openstack-cinder-volume is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
+[controller]# eayunstack --debug doctor stack --controller --service
+[ DEBUG ] (controller) (node-5.eayun.com): =====> start running check_controller_service 
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
 ```
 
 ## 检测所有检测对象
 
 > ###### 注意
+>
 > 该命令需要在Fuel节点上执行
 
 ```
-[fuel]# eayunstack doctor stack -a
-[ INFO  ] *************** Role: controller Node: 172.16.100.7  ***************
-[ INFO  ] Checking "Keystone" Component
-          Profile: /etc/keystone/keystone.conf
-[ INFO  ] Checking "Glance" Component
-          Profile: /etc/glance/glance-api.conf
-          Profile: /etc/glance/glance-registry.conf
-[ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Neutron" Component
-          Profile: /etc/neutron/neutron.conf
-[ INFO  ] Checking "Cinder" Component
-          Profile: /etc/cinder/cinder.conf
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ] -Service Status
-          Service openstack-keystone is running ...
-          Service openstack-keystone is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Glance" Component
-[ INFO  ] -Service Status
-          Service openstack-glance-api is running ...
-          Service openstack-glance-api is enabled ...
-          Service openstack-glance-registry is running ...
-          Service openstack-glance-registry is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Nova" Component
-[ INFO  ] -Service Status
-          Service openstack-nova-api is running ...
-          Service openstack-nova-api is enabled ...
-          Service openstack-nova-conductor is running ...
-          Service openstack-nova-conductor is enabled ...
-          Service openstack-nova-scheduler is running ...
-          Service openstack-nova-scheduler is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Neutron" Component
-[ INFO  ] -Service Status
-          Service neutron-server is running ...
-          Service neutron-server is enabled ...
-          Service neutron-ovs-cleanup is running ...
-          Service neutron-ovs-cleanup is enabled ...
-          Service openvswitch is running ...
-          Service openvswitch is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ] -Service Status
-          Service openstack-cinder-api is running ...
-          Service openstack-cinder-api is enabled ...
-          Service openstack-cinder-scheduler is running ...
-          Service openstack-cinder-scheduler is enabled ...
-          Service openstack-cinder-volume is running ...
-          Service openstack-cinder-volume is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
+[fuel]# eayunstack --debug doctor stack -a
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: controller Node: 172.16.100.8  ***************
+[ DEBUG ] (controller) (node-6.eayun.com): =====> start running check_controller_profile 
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/keystone/keystone.conf
+...
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/glance/glance-api.conf
+...
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/glance/glance-registry.conf
+...
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/neutron/neutron.conf
+...
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-6.eayun.com): Profile: /etc/cinder/cinder.conf
+...
+[ DEBUG ] (controller) (node-6.eayun.com): =====> start running check_controller_service 
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-6.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-6.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-6.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-6.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-6.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-6.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-6.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-6.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-6.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-6.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-6.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-6.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-6.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-6.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-6.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-6.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-6.eayun.com): Check Successfully.
 
-[ INFO  ] *************** Role: controller Node: 172.16.100.5  ***************
-[ INFO  ] Checking "Keystone" Component
-          Profile: /etc/keystone/keystone.conf
-[ INFO  ] Checking "Glance" Component
-          Profile: /etc/glance/glance-api.conf
-          Profile: /etc/glance/glance-registry.conf
-[ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Neutron" Component
-          Profile: /etc/neutron/neutron.conf
-[ INFO  ] Checking "Cinder" Component
-          Profile: /etc/cinder/cinder.conf
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ] -Service Status
-          Service openstack-keystone is running ...
-          Service openstack-keystone is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Glance" Component
-[ INFO  ] -Service Status
-          Service openstack-glance-api is running ...
-          Service openstack-glance-api is enabled ...
-          Service openstack-glance-registry is running ...
-          Service openstack-glance-registry is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Nova" Component
-[ INFO  ] -Service Status
-          Service openstack-nova-api is running ...
-          Service openstack-nova-api is enabled ...
-          Service openstack-nova-conductor is running ...
-          Service openstack-nova-conductor is enabled ...
-          Service openstack-nova-scheduler is running ...
-          Service openstack-nova-scheduler is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Neutron" Component
-[ INFO  ] -Service Status
-          Service neutron-server is running ...
-          Service neutron-server is enabled ...
-          Service neutron-ovs-cleanup is running ...
-          Service neutron-ovs-cleanup is enabled ...
-          Service openvswitch is running ...
-          Service openvswitch is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ] -Service Status
-          Service openstack-cinder-api is running ...
-          Service openstack-cinder-api is enabled ...
-          Service openstack-cinder-scheduler is running ...
-          Service openstack-cinder-scheduler is enabled ...
-          Service openstack-cinder-volume is running ...
-          Service openstack-cinder-volume is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: controller Node: 172.16.100.10 ***************
+[ DEBUG ] (controller) (node-8.eayun.com): =====> start running check_controller_profile 
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/keystone/keystone.conf
+...
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/glance/glance-api.conf
+...
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/glance/glance-registry.conf
+...
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/neutron/neutron.conf
+...
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-8.eayun.com): Profile: /etc/cinder/cinder.conf
+...
+[ DEBUG ] (controller) (node-8.eayun.com): =====> start running check_controller_service 
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Status
+[ DEBUG ] (controller) (node-8.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-8.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-8.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-8.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-8.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-8.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-8.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-8.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-8.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-8.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-8.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-8.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-8.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-8.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-8.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-8.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-8.eayun.com): Check Successfully.
 
-[ INFO  ] *************** Role: controller Node: 172.16.100.4  ***************
-[ INFO  ] Checking "Keystone" Component
-          Profile: /etc/keystone/keystone.conf
-[ INFO  ] Checking "Glance" Component
-          Profile: /etc/glance/glance-api.conf
-          Profile: /etc/glance/glance-registry.conf
-[ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Neutron" Component
-          Profile: /etc/neutron/neutron.conf
-[ INFO  ] Checking "Cinder" Component
-          Profile: /etc/cinder/cinder.conf
-[ INFO  ] Checking "Keystone" Component
-[ INFO  ] -Service Status
-          Service openstack-keystone is running ...
-          Service openstack-keystone is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Glance" Component
-[ INFO  ] -Service Status
-          Service openstack-glance-api is running ...
-          Service openstack-glance-api is enabled ...
-          Service openstack-glance-registry is running ...
-          Service openstack-glance-registry is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Nova" Component
-[ INFO  ] -Service Status
-          Service openstack-nova-api is running ...
-          Service openstack-nova-api is enabled ...
-          Service openstack-nova-conductor is running ...
-          Service openstack-nova-conductor is enabled ...
-          Service openstack-nova-scheduler is running ...
-          Service openstack-nova-scheduler is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Neutron" Component
-[ INFO  ] -Service Status
-          Service neutron-server is running ...
-          Service neutron-server is enabled ...
-          Service neutron-ovs-cleanup is running ...
-          Service neutron-ovs-cleanup is enabled ...
-          Service openvswitch is running ...
-          Service openvswitch is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
-[ INFO  ] Checking "Cinder" Component
-[ INFO  ] -Service Status
-          Service openstack-cinder-api is running ...
-          Service openstack-cinder-api is enabled ...
-          Service openstack-cinder-scheduler is running ...
-          Service openstack-cinder-scheduler is enabled ...
-          Service openstack-cinder-volume is running ...
-          Service openstack-cinder-volume is enabled ...
-[ INFO  ] -DB Connectivity
-          Check Sucessfully.
-[ INFO  ] -Service Availability
-          Check Successfully.
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: controller Node: 172.16.100.6  ***************
+[ DEBUG ] (controller) (node-5.eayun.com): =====> start running check_controller_profile 
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/keystone/keystone.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/glance/glance-api.conf
+...
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/glance/glance-registry.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/neutron/neutron.conf
+...
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-5.eayun.com): Profile: /etc/cinder/cinder.conf
+...
+[ DEBUG ] (controller) (node-5.eayun.com): =====> start running check_controller_service 
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Keystone" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Glance" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Nova" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Neutron" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
+[ INFO  ] (controller) (node-5.eayun.com): Checking "Cinder" Component
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Status
+...
+[ DEBUG ] (controller) (node-5.eayun.com): -DB Connectivity
+[ DEBUG ] (controller) (node-5.eayun.com): Check Sucessfully.
+[ DEBUG ] (controller) (node-5.eayun.com): -Service Availability
+[ DEBUG ] (controller) (node-5.eayun.com): Check Successfully.
 
-[ INFO  ] *************** Role: compute    Node: 172.16.100.12 ***************
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: compute    Node: 172.16.100.9  ***************
+[ DEBUG ] (compute) (node-7.eayun.com): =====> start running check_compute_profile 
+[ INFO  ] (compute) (node-7.eayun.com): Checking "Nova" Component
+[ DEBUG ] (compute) (node-7.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ DEBUG ] (compute) (node-7.eayun.com): =====> start running check_compute_service 
+[ INFO  ] (compute) (node-7.eayun.com): Checking "Nova" Component
+[ DEBUG ] (compute) (node-7.eayun.com): -Service Status
+...
+
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: compute    Node: 172.16.100.7  ***************
+[ DEBUG ] =====> start running check_compute_profile 
 [ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
+...
+[ DEBUG ] =====> start running check_compute_service 
 [ INFO  ] Checking "Nova" Component
 [ INFO  ] -Service Status
-          Service openstack-nova-compute is running ...
-          Service openstack-nova-compute is enabled ...
+...
 
-[ INFO  ] *************** Role: compute    Node: 172.16.100.6  ***************
-[ INFO  ] Checking "Nova" Component
-          Profile: /etc/nova/nova.conf
-[ INFO  ] Checking "Nova" Component
-[ INFO  ] -Service Status
-          Service openstack-nova-compute is running ...
-          Service openstack-nova-compute is enabled ...
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: compute    Node: 172.16.100.12 ***************
+[ DEBUG ] (compute) (node-10.eayun.com): =====> start running check_compute_profile 
+[ INFO  ] (compute) (node-10.eayun.com): Checking "Nova" Component
+[ DEBUG ] (compute) (node-10.eayun.com): Profile: /etc/nova/nova.conf
+...
+[ DEBUG ] (compute) (node-10.eayun.com): =====> start running check_compute_service 
+[ INFO  ] (compute) (node-10.eayun.com): Checking "Nova" Component
+[ DEBUG ] (compute) (node-10.eayun.com): -Service Status
+...
 
-[ INFO  ] *************** Role: mongo      Node: 172.16.100.11 ***************
-[ INFO  ] Checking "Mongo" Component
-          Profile: /etc/mongodb.conf
-[ INFO  ] Checking "Mongo" Component
-[ INFO  ] -Service Status
-          Service mongod is running ...
-          Service mongod is enabled ...
-
-[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.10 ***************
-[ INFO  ] Checking "Ceph_osd" Component
-          Profile: /etc/ceph/ceph.conf
-[ INFO  ] Checking "Ceph_osd" Component
-[ INFO  ] -Service Status
-          Service ceph is running ...
-          Service ceph is enabled ...
-
-[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.9  ***************
-[ INFO  ] Checking "Ceph_osd" Component
-          Profile: /etc/ceph/ceph.conf
-[ INFO  ] Checking "Ceph_osd" Component
-[ INFO  ] -Service Status
-          Service ceph is running ...
-          Service ceph is enabled ...
-
-[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.8  ***************
-[ INFO  ] Checking "Ceph_osd" Component
-          Profile: /etc/ceph/ceph.conf
-[ INFO  ] Checking "Ceph_osd" Component
-[ INFO  ] -Service Status
-          Service ceph is running ...
-          Service ceph is enabled ...
-
-[ INFO  ] *************** Role: ceph-osd   Node: 172.16.100.13 ***************
-[ INFO  ] Checking "Ceph_osd" Component
-          Profile: /etc/ceph/ceph.conf
-[ INFO  ] Checking "Ceph_osd" Component
-[ INFO  ] -Service Status
-          Service ceph is running ...
-          Service ceph is enabled ...
-
+[ INFO  ] (fule) (fuel.domain.tld): *************** Role: mongo      Node: 172.16.100.11 ***************
+[ DEBUG ] (mongo) (node-9.eayun.com): =====> start running check_mongo_profile 
+[ INFO  ] (mongo) (node-9.eayun.com): Checking "Mongo" Component
+[ DEBUG ] (mongo) (node-9.eayun.com): Profile: /etc/mongodb.conf
+...
+[ DEBUG ] (mongo) (node-9.eayun.com): =====> start running check_mongo_service 
+[ INFO  ] (mongo) (node-9.eayun.com): Checking "Mongo" Component
+[ DEBUG ] (mongo) (node-9.eayun.com): -Service Status
 ```
 
 
