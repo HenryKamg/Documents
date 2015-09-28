@@ -2,12 +2,17 @@
 
 ## 简介
 
-该命令用来对EayunStack环境中的一些对象进行管理操作，包括上传AMI镜像、列出OpenStack节点信息、删除Cinder卷。
+该命令用来对EayunStack环境中的一些对象进行管理操作，包括上传AMI镜像、删除错误的Cinder卷。
 
 ## 命令格式
 
+> **注意**
+>
+> 该命令仅可以在Controller节点使用
+
+
 ```
-$ eayunstack manage --help
+# eayunstack manage --help
 usage: eayunstack manage [-h] COMMAND ...
 
 EayunStack Management
@@ -17,9 +22,6 @@ optional arguments:
 
 Commands:
   COMMAND     DESCRIPTION
-    image     Image Management
-    list      List OpenStack Node
     volume    Volume Management
-    evacuation
-              Envacuation Management
+    ami       AMI Image Management
 ```
