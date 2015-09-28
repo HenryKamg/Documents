@@ -116,7 +116,6 @@
        * [集群状态检测](operation_tools/health_check/check_cluster.md)
    * [环境管理命令](operation_tools/environment_management/environment_management.md)
        * [上传AMI镜像](operation_tools/environment_management/ami_image_upload.md)
-       * [列出OpenStack节点信息](operation_tools/environment_management/list_openstack_node.md)
        * [删除错误云硬盘](operation_tools/environment_management/delete_volume.md)
    * [Fuel节点管理命令](operation_tools/fuel_management/fuel_management.md)
        * [Fuel节点备份](operation_tools/fuel_management/fuel_backup.md)
