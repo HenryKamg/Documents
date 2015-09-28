@@ -120,6 +120,7 @@
    * [Fuel节点管理命令](operation_tools/fuel_management/fuel_management.md)
        * [Fuel节点备份](operation_tools/fuel_management/fuel_backup.md)
        * [Fuel节点恢复](operation_tools/fuel_management/fuel_restore.md)
+       * [配置Ceph Cluster网络](operation_tools/fuel_management/ceph_cluster_network_configuration.md)
    * [初始化命令](operation_tools/init/init.md)
 * [备份与恢复](backup_restore/intro.md)
    * [Feul备份与恢复](backup_restore/fuel_backup_restore.md)
