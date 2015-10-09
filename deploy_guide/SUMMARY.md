@@ -30,6 +30,7 @@
    * [验证网络](deploy_openstack/verify_network.md)
    * [部署节点](deploy_openstack/deploy_node.md)
    * [健康检测](deploy_openstack/health_check.md)
+   * [修改root用户密码](deploy_openstack/change_root_password.md)
 * [环境备份](env_backup/env_backup.md)
    * [Fuel节点备份](env_backup/fuel_backup.md)
    * [OpenStack数据库备份](env_backup/openstack_db_backup.md)
