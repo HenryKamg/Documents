@@ -44,7 +44,7 @@
 * [集群自动伸缩](autoscaling/README.md)
    * [创建自动伸缩集群](autoscaling/create_cluster.md)
    * [查看集群信息](autoscaling/show_cluster.md)
-   * [测试集群的伸缩](autoscaling/scaling.md)
+   * [集群的伸缩](autoscaling/scaling.md)
    * [删除自动伸缩集群](autoscaling/delete_cluster.md)
 * [灾难恢复](disaster_recovery/README.md)
    * [术语说明](disaster_recovery/glossary.md)
