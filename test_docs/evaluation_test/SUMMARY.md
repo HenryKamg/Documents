@@ -41,6 +41,7 @@
    * [负载均衡](advance-usage/load_balancer.md)
    * [防火墙服务](advance-usage/firewall.md)
    * [VPN 服务](advance-usage/vpn.md)
+   * [QoS 功能](advance-usage/qos.md)
 * [集群自动伸缩](autoscaling/README.md)
    * [创建自动伸缩集群](autoscaling/create_cluster.md)
    * [查看集群信息](autoscaling/show_cluster.md)
