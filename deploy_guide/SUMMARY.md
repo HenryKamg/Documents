@@ -10,7 +10,6 @@
        * [安装介质](basic_environment/environment_requirement/installation_media.md)
        * [服务器](basic_environment/environment_requirement/server.md)
        * [网络设备](basic_environment/environment_requirement/network.md)
-       * [存储设备](basic_environment/environment_requirement/storage.md)
    * [网络架构](basic_environment/network_architecture.md)
    * [搭建基本环境](basic_environment/build_basic_environment.md)
 * [Fuel节点部署](deploy_fuel/deploy_fuel.md)
@@ -26,7 +25,6 @@
    * [发现及增加节点](deploy_openstack/discovery_node.md)
    * [配置节点网卡](deploy_openstack/nic_configuration.md)
    * [配置节点磁盘](deploy_openstack/disk_configuration.md)
-   * [配置Ceph Cluster网络](deploy_openstack/ceph_cluster_network_configuration.md)
    * [验证网络](deploy_openstack/verify_network.md)
    * [部署节点](deploy_openstack/deploy_node.md)
    * [健康检测](deploy_openstack/health_check.md)
@@ -35,6 +33,4 @@
    * [Fuel节点备份](env_backup/fuel_backup.md)
    * [OpenStack数据库备份](env_backup/openstack_db_backup.md)
    * [OpenStack配置文件备份](env_backup/openstack_profile_backup.md)
-* [环境初始化](env_init/env_init.md)
-
 
