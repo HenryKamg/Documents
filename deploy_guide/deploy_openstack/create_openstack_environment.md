@@ -16,7 +16,7 @@
 
 ## 设置部署模式
 
-* 本次部署的环境中需要实现Controller节点的HA，因此选择“HA多节点”，如下图所示。
+* 选择“多节点”，如下图所示。
 
  ![openstack_install_423](../images/openstack_install_423.png)
 
@@ -34,13 +34,13 @@
 
 ## 设置后端存储
 
-* Cinder、Glance两个组件均使用Ceph作为后端存储，如下图所示。
+* Cinder、Glance两个组件均使用默认存储，如下图所示。
 
  ![openstack_install_426](../images/openstack_install_426.png)
 
 ## 设置附加服务
 
-* 选择附加安装的组件，EayunStack环境需要附加安装Ceilometer，如下图所示。
+* 不需要选择附加组件，如下图所示。
 
  ![openstack_install_427](../images/openstack_install_427.png)
 
