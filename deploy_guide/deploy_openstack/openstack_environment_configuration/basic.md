@@ -13,7 +13,7 @@
 
 ## 配置附加组件
 
-* ***使用默认配置***，如下图所示。
+* ***使用默认配置***，EayunStack环境需要选中Ceilometer，如下图所示。
 
  ![openstack_install_4312](../../images/openstack_install_4312.png)
 
@@ -69,21 +69,17 @@
 
  ![openstack_install_43111](../../images/openstack_install_43111.png)
 
-## 配置存储(*)
+## 配置存储
 
-* 配置存储，去除“Ceph RBD for ephemeral volumes(Nova)”的勾选，如下图所示。
+* ***使用默认配置***，配置存储，如下图所示。
 
  ![openstack_install_43113](../../images/openstack_install_43113.png)
 
-## 配置Neutron LBaaS
-
-* ***使用默认配置***，如下图所示。
+## 配置Neutron LBaaS(*)
 
  ![openstack_install_43120](../../images/openstack_install_43120.png)
 
-## 配置Neutron QoS
-
-* ***使用默认配置***，如下图所示。
+## 配置Neutron QoS(*)
 
  ![openstack_install_43123](../../images/openstack_install_43123.png)
  
@@ -93,27 +89,23 @@
 
  ![openstack_install_43115](../../images/openstack_install_43115.png)
  
-## 配置Neutron VPNaaS
-
-* ***使用默认配置***，如下图所示。
+## 配置Neutron VPNaaS(*)
 
  ![openstack_install_43121](../../images/openstack_install_43121.png)
 
-## 配置Eqlx存储
+## 配置Eqlx存储(*)
 
-* ***使用默认配置***，如下图所示。
+* 配置Eqlx服务器相关参数，如下图所示。
 
  ![openstack_install_43114](../../images/openstack_install_43114.png)
  
-## 配置Neutron FWaas
-
-* ***使用默认配置***，如下图所示。
+## 配置Neutron FWaas(*)
 
  ![openstack_install_43122](../../images/openstack_install_43122.png)
 
 ## 配置Provision方式
 
-* ***使用默认配置***，配置OpenStack节点操作系统安装方式，如下图所示。
+* ***可使用默认配置***，配置OpenStack节点操作系统安装方式，如下图所示。
 
  ![openstack_install_43116](../../images/openstack_install_43116.png)
 
@@ -134,4 +126,32 @@
 ## 保存设置
 
 ![openstack_install_43119](../../images/openstack_install_43119.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
