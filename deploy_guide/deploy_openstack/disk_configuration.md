@@ -4,7 +4,7 @@
 
 ## Controller节点
 
-* 勾选**Controller节点**，点击**磁盘配置**按钮。
+* 勾选全部**Controller节点**，点击**磁盘配置**按钮。
 
   ![openstack_install_451](../images/openstack_install_451.png)
 
@@ -14,7 +14,7 @@
 
 ## Compute节点
 
-* 勾选**Compute节点**，点击**磁盘配置**按钮。
+* 勾选全部**Compute节点**，点击**磁盘配置**按钮。
 
   ![openstack_install_453](../images/openstack_install_453.png)
 
@@ -22,3 +22,22 @@
 
   ![openstack_install_464](../images/openstack_install_464.png)
 
+## Mongo节点
+
+* 勾选全部**Mongo节点**，点击**磁盘配置**按钮。
+
+  ![openstack_install_455](../images/openstack_install_455.png)
+
+* 配置磁盘分区，如下图所示，**无特殊需求建议使用默认分区方案**。
+
+  ![openstack_install_466](../images/openstack_install_466.png)
+
+## Ceph-osd节点
+
+* 勾选全部**Ceph-osd节点**，点击**磁盘配置**按钮。
+
+  ![openstack_install_457](../images/openstack_install_457.png)
+
+* 配置磁盘分区，如下图所示，**无特殊需求建议使用默认分区方案**。
+
+  ![openstack_install_468](../images/openstack_install_468.png)
