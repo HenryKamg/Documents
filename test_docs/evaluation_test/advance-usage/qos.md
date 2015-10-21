@@ -494,19 +494,28 @@
     +-----------+--------------------------------------+
     ```
   * instanceA 和 instanceB 中都已经安装了 iperf3 网络性能测试工具。
+  * instanceC 也安装了 iperf3，用于模拟其他流量占用带宽的情况。
 
 * 操作：
 
   1. 访问 instanceA，在 instanceA 中执行 `iperf3 -s`；
-  1. 访问 instanceB，在 instanceB 中执行 `iperf3 -c <IP_OF_instanceA> -f K`，记录测试结果；
+  1. 访问 instanceB，在 instanceB 中执行 `iperf3 -c <IP_OF_instanceA> -u -R -f K -b 800K -l 1500`，记录测试结果 data1，此时流量的方向为 isntanceA -> instanceB，端口为默认端口 5201；
   1. 访问 instanceB，在 instanceB 中执行 `iperf3 -s`；
-  1. 访问 instanceA，在 instanceA 中执行 `iperf3 -c <IP_OF_instanceB> -f K`，记录测试结果；
-  1. 访问 instanceB，在 instanceB 中执行 `iperf3 -s -p 21`；
-  1. 在带宽拥挤的情况下，访问 instanceA，在 instanceA 中执行 `iperf3 -c <IP_OF_instanceB> -f K -p 21`，记录测试结果。
+  1. 访问 instanceA，在 instanceA 中执行 `iperf3 -c <IP_OF_instanceB> -u -R -f K -b 800K -l 1500`，记录测试结果 data2，此时流量的方向为 instanceB -> instanceA，端口为默认端口 5201；
+  1. 访问 instanceA，在 instanceA 中执行 `iperf3 -s -p 21`；
+  1. 访问 instanceB，在 instanceB 中执行 `iperf3 -c <IP_OF_instanceA> -u -R -f K -p 21 -b 800K -l 1500`，记录测试结果 data3，此时流量的方向为 instanceA -> instanceB，端口为 21；
+  1. 访问 instanceC，在 instanceC 中执行 `iperf3 -s`；
+  1. 访问 instanceA，在 instanceA 中执行 `iperf3 -c <IP_OF_instanceC> -u -f K -t 30 -b 800K -l 1500`，记录测试结果 data4，此时流量方向为 instanceA -> instanceC，端口为默认端口 5201；
+  1. 当 instanceA -> instanceC 大概执行了 10s 时，访问 instanceB，再次在 instanceB 中执行 `iperf3 -c <IP_OF_instanceA> -u -R -f K -p 21 -b 800K -l 1500`，记录测试结果 data5，此时流量的方向为 instanceA -> instanceB，端口为 21；
+  1. 分别比较 data1 和 data2、data3 和 data1、data5 和 data4、data5 和 data3。
 
 * 预期结果：
 
-  * 
+  * 比较 data1 和 data2，看到 data1 的带宽速度明显比 data2 的带宽速度高很多；
+  * 比较 data3 和 data1，看到 data3 和 data1 的速度。。。
+  * 比较 data5 和 data4，看到开始执行时，instanceA -> instanceB 的带宽大概为 100KB/s，当 instanceA -> instanceB 开始执行后，instanceA -> instanceC 的带宽减小为大概 20KB/s，而 instanceA -> instanceB 的带宽减小为大概 80KB/s：
+  * 比较 data5 和 data3，看到 data3 是在网络中只有 instanceA -> instanceB 的情况，它使用了 100KB/s 的带宽；当网络中使用了 instanceA -> instanceC 带宽后，instanceA -> instanceB 的带宽被重新分配，获得了 80KB/s 的带宽：
+  * 带宽分配是由于我们设置了队列的优先级为 7，与默认队列相同，FTP 的带宽保证为 40KB/s，而默认带宽保证为 10KB/s，当网络中没有其他流量时，100KB/s 可以全部分配给 FTP 使用，当网络中有其他流量，FTP 和默认队列由于设置了相同的优先级，剩下的 50KB/s 的流量将按比例分配给 FTP 和默认队列，即 80KB/s 和 20KB/s。
 
 ### 不同宿主机上的两台云主机之间的限速
 
