@@ -455,7 +455,7 @@
   * 创建 QoS 下的队列 queueA，速度限制为 40KB/s：
 
     ```
-    # neutron eayun-qos-queue-create a43338d7-4fd6-432e-910c-1d5f84ed5f53 40960 --prio 0
+    # neutron eayun-qos-queue-create a43338d7-4fd6-432e-910c-1d5f84ed5f53 40960 --ceil 102400 --prio 0
     Created a new qos_queue:
     +------------------+--------------------------------------+
     | Field            | Value                                |
@@ -463,7 +463,7 @@
     | attached_filters |                                      |
     | burst            |                                      |
     | cburst           |                                      |
-    | ceil             |                                      |
+    | ceil             | 102400                               |
     | id               | 2ca88d47-278a-4fa7-9e1f-e15807ec4f12 |
     | parent_id        |                                      |
     | prio             | 0                                    |
@@ -485,7 +485,7 @@
     | dst_port  |                                      |
     | id        | 3fe2a418-1003-4735-9c03-dfe1bcbdc42c |
     | prio      | 100                                  |
-    | protocol  | 6                                    |
+    | protocol  | 17                                   |
     | qos_id    | a43338d7-4fd6-432e-910c-1d5f84ed5f53 |
     | queue_id  | 2ca88d47-278a-4fa7-9e1f-e15807ec4f12 |
     | src_addr  | 172.16.200.0/24                      |
@@ -512,10 +512,173 @@
 * 预期结果：
 
   * 比较 data1 和 data2，看到 data1 的带宽速度明显比 data2 的带宽速度高很多；
+
+    ```
+    # instanceA -> instanceB
+    # iperf3 -c 172.16.200.186 -u -R -f K -b 800K -l 1500
+    Connecting to host 172.16.200.186, port 5201
+    Reverse mode, remote host 172.16.200.186 is sending
+    [  4] local 172.16.200.188 port 33712 connected to 172.16.200.186 port 5201
+    [ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+    [  4]   0.00-1.00   sec  92.3 KBytes  92.3 KBytes/sec  23.917 ms  0/63 (0%)  
+    [  4]   1.00-2.00   sec  93.8 KBytes  93.8 KBytes/sec  24.200 ms  0/64 (0%)  
+    [  4]   2.00-3.00   sec  95.2 KBytes  95.2 KBytes/sec  25.160 ms  0/65 (0%)  
+    [  4]   3.00-4.00   sec  93.8 KBytes  93.8 KBytes/sec  26.990 ms  0/64 (0%)  
+    [  4]   4.00-5.00   sec  95.2 KBytes  95.2 KBytes/sec  23.820 ms  0/65 (0%)  
+    [  4]   5.00-6.00   sec  93.8 KBytes  93.8 KBytes/sec  25.466 ms  0/64 (0%)  
+    [  4]   6.00-7.00   sec  95.2 KBytes  95.2 KBytes/sec  26.503 ms  0/65 (0%)  
+    [  4]   7.00-8.00   sec  93.8 KBytes  93.7 KBytes/sec  23.976 ms  0/64 (0%)  
+    [  4]   8.00-9.00   sec  95.2 KBytes  95.2 KBytes/sec  24.954 ms  0/65 (0%)  
+    [  4]   9.00-10.00  sec  93.8 KBytes  93.7 KBytes/sec  26.826 ms  0/64 (0%)  
+    - - - - - - - - - - - - - - - - - - - - - - - - -
+    [ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+    [  4]   0.00-10.00  sec   977 KBytes  97.7 KBytes/sec  24.238 ms  0/667 (0%)  
+    [  4] Sent 667 datagrams
+
+    iperf Done.
+
+    # instanceB -> instanceA
+    # iperf3 -c 172.16.200.188 -u -R -f K -b 800K -l 1500
+    Connecting to host 172.16.200.188, port 5201
+    Reverse mode, remote host 172.16.200.188 is sending
+    [  4] local 172.16.200.186 port 35386 connected to 172.16.200.188 port 5201
+    [ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+    [  4]   0.00-1.00   sec  98.1 KBytes  98.1 KBytes/sec  0.097 ms  0/67 (0%)  
+    [  4]   1.00-2.00   sec  98.1 KBytes  98.1 KBytes/sec  0.013 ms  0/67 (0%)  
+    [  4]   2.00-3.00   sec  98.1 KBytes  98.1 KBytes/sec  0.009 ms  0/67 (0%)  
+    [  4]   3.00-4.00   sec  96.7 KBytes  96.7 KBytes/sec  0.008 ms  0/66 (0%)  
+    [  4]   4.00-5.00   sec  98.1 KBytes  98.1 KBytes/sec  0.010 ms  0/67 (0%)  
+    [  4]   5.00-6.00   sec  98.1 KBytes  98.1 KBytes/sec  0.009 ms  0/67 (0%)  
+    [  4]   6.00-7.00   sec  96.7 KBytes  96.7 KBytes/sec  0.015 ms  0/66 (0%)  
+    [  4]   7.00-8.00   sec  98.1 KBytes  98.1 KBytes/sec  0.010 ms  0/67 (0%)  
+    [  4]   8.00-9.00   sec  98.1 KBytes  98.1 KBytes/sec  0.013 ms  0/67 (0%)  
+    [  4]   9.00-10.00  sec  96.7 KBytes  96.7 KBytes/sec  0.012 ms  0/66 (0%)  
+    - - - - - - - - - - - - - - - - - - - - - - - - -
+    [ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+    [  4]   0.00-10.00  sec   977 KBytes  97.7 KBytes/sec  0.012 ms  0/667 (0%)  
+    [  4] Sent 667 datagrams
+
+    iperf Done.
+    ```
   * 比较 data3 和 data1，看到 data3 和 data1 的速度。。。
-  * 比较 data5 和 data4，看到开始执行时，instanceA -> instanceB 的带宽大概为 100KB/s，当 instanceA -> instanceB 开始执行后，instanceA -> instanceC 的带宽减小为大概 20KB/s，而 instanceA -> instanceB 的带宽减小为大概 80KB/s：
-  * 比较 data5 和 data3，看到 data3 是在网络中只有 instanceA -> instanceB 的情况，它使用了 100KB/s 的带宽；当网络中使用了 instanceA -> instanceC 带宽后，instanceA -> instanceB 的带宽被重新分配，获得了 80KB/s 的带宽：
-  * 带宽分配是由于我们设置了队列的优先级为 7，与默认队列相同，FTP 的带宽保证为 40KB/s，而默认带宽保证为 10KB/s，当网络中没有其他流量时，100KB/s 可以全部分配给 FTP 使用，当网络中有其他流量，FTP 和默认队列由于设置了相同的优先级，剩下的 50KB/s 的流量将按比例分配给 FTP 和默认队列，即 80KB/s 和 20KB/s。
+
+    ```
+    # instanceA -> instanceB : port 21
+    # iperf3 -c 172.16.200.186 -u -R -f K -b 800K -l 1500 -p 21
+    Connecting to host 172.16.200.186, port 21
+    Reverse mode, remote host 172.16.200.186 is sending
+    [  4] local 172.16.200.188 port 34192 connected to 172.16.200.186 port 21
+    [ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+    [  4]   0.00-1.00   sec  90.8 KBytes  90.8 KBytes/sec  24.587 ms  0/62 (0%)  
+    [  4]   1.00-2.00   sec  95.2 KBytes  95.2 KBytes/sec  24.212 ms  0/65 (0%)  
+    [  4]   2.00-3.00   sec  95.2 KBytes  95.2 KBytes/sec  25.166 ms  0/65 (0%)  
+    [  4]   3.00-4.00   sec  87.9 KBytes  87.9 KBytes/sec  25.276 ms  0/60 (0%)  
+    [  4]   4.00-5.00   sec  95.2 KBytes  95.2 KBytes/sec  26.276 ms  0/65 (0%)  
+    [  4]   5.00-6.00   sec  95.2 KBytes  95.2 KBytes/sec  27.598 ms  0/65 (0%)  
+    [  4]   6.00-7.00   sec  93.8 KBytes  93.7 KBytes/sec  24.840 ms  0/64 (0%)  
+    [  4]   7.00-8.00   sec  95.2 KBytes  95.2 KBytes/sec  25.799 ms  0/65 (0%)  
+    [  4]   8.00-9.00   sec  95.2 KBytes  95.2 KBytes/sec  26.986 ms  0/65 (0%)  
+    [  4]   9.00-10.00  sec  93.8 KBytes  93.7 KBytes/sec  24.375 ms  0/64 (0%)  
+    - - - - - - - - - - - - - - - - - - - - - - - - -
+    [ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+    [  4]   0.00-10.00  sec   977 KBytes  97.7 KBytes/sec  24.375 ms  0/640 (0%)  
+    [  4] Sent 640 datagrams
+ 
+    iperf Done.
+    ```
+  * 比较 data5 和 data4，看到开始执行时，instanceA -> instanceB 的带宽大概为 100KB/s，当 instanceA -> instanceB 开始执行后，instanceA -> instanceC 的带宽减小为大概 10KB/s，而 instanceA -> instanceB 的带宽为大概 90KB/s：
+
+    ```
+    # instanceA -> instanceC
+    Accepted connection from 172.16.200.186, port 33902
+    [  5] local 172.16.200.187 port 5201 connected to 172.16.200.186 port 41588
+    [ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+    [  5]   0.00-1.00   sec  85.0 KBytes  85.0 KBytes/sec  24.567 ms  0/58 (0%)  
+    [  5]   1.00-2.00   sec  93.8 KBytes  93.8 KBytes/sec  27.586 ms  0/64 (0%)  
+    [  5]   2.00-3.00   sec  95.2 KBytes  95.2 KBytes/sec  24.254 ms  0/65 (0%)  
+    [  5]   3.00-4.00   sec  93.8 KBytes  93.8 KBytes/sec  25.803 ms  0/64 (0%)  
+    [  5]   4.00-5.00   sec  95.2 KBytes  95.2 KBytes/sec  27.003 ms  0/65 (0%)  
+    [  5]   5.00-6.00   sec  93.8 KBytes  93.8 KBytes/sec  24.365 ms  0/64 (0%)  
+    [  5]   6.00-7.00   sec  95.2 KBytes  95.2 KBytes/sec  25.456 ms  0/65 (0%)  
+    [  5]   7.00-8.00   sec  93.8 KBytes  93.7 KBytes/sec  27.106 ms  0/64 (0%)  
+    [  5]   8.00-9.00   sec  95.2 KBytes  95.2 KBytes/sec  23.970 ms  0/65 (0%)  
+    [  5]   9.00-10.00  sec  93.8 KBytes  93.7 KBytes/sec  25.587 ms  0/64 (0%)  
+    [  5]  10.00-11.00  sec  95.2 KBytes  95.2 KBytes/sec  26.828 ms  0/65 (0%)  
+    [  5]  11.00-12.00  sec  93.8 KBytes  93.7 KBytes/sec  24.224 ms  0/64 (0%)  
+    [  5]  12.00-13.00  sec  63.0 KBytes  63.0 KBytes/sec  33.128 ms  0/43 (0%)  
+    [  5]  13.00-14.00  sec  8.79 KBytes  8.79 KBytes/sec  66.299 ms  0/6 (0%)  
+    [  5]  14.00-15.00  sec  10.3 KBytes  10.3 KBytes/sec  92.569 ms  0/7 (0%)  
+    [  5]  15.00-16.00  sec  8.79 KBytes  8.79 KBytes/sec  106.652 ms  0/6 (0%)  
+    [  5]  16.00-17.00  sec  10.3 KBytes  10.3 KBytes/sec  118.644 ms  0/7 (0%)  
+    [  5]  17.00-18.00  sec  8.79 KBytes  8.79 KBytes/sec  123.969 ms  0/6 (0%)  
+    [  5]  18.00-19.00  sec  10.3 KBytes  10.3 KBytes/sec  129.273 ms  0/7 (0%)  
+    [  5]  19.00-20.00  sec  8.79 KBytes  8.79 KBytes/sec  131.185 ms  0/6 (0%)  
+    [  5]  20.00-21.00  sec  10.3 KBytes  10.3 KBytes/sec  133.478 ms  0/7 (0%)  
+    [  5]  21.00-22.00  sec  8.79 KBytes  8.79 KBytes/sec  135.247 ms  0/6 (0%)  
+    [  5]  22.00-23.00  sec  8.79 KBytes  8.79 KBytes/sec  141.486 ms  0/6 (0%)  
+    [  5]  23.00-24.00  sec  10.3 KBytes  10.3 KBytes/sec  142.044 ms  0/7 (0%)  
+    [  5]  24.00-25.00  sec  8.79 KBytes  8.79 KBytes/sec  141.576 ms  0/6 (0%)  
+    [  5]  25.00-26.00  sec  10.3 KBytes  10.3 KBytes/sec  142.099 ms  0/7 (0%)  
+    [  5]  26.00-27.00  sec  8.79 KBytes  8.79 KBytes/sec  141.614 ms  0/6 (0%)  
+    [  5]  27.00-28.00  sec  10.3 KBytes  10.3 KBytes/sec  141.839 ms  0/7 (0%)  
+    [  5]  28.00-29.00  sec  17.6 KBytes  17.6 KBytes/sec  104.814 ms  0/12 (0%)  
+    [  5]  29.00-30.00  sec  93.8 KBytes  93.7 KBytes/sec  27.384 ms  0/64 (0%)  
+    [  5]  30.00-31.00  sec  95.2 KBytes  95.2 KBytes/sec  28.104 ms  0/65 (0%)  
+    [  5]  31.00-32.00  sec  93.8 KBytes  93.8 KBytes/sec  25.208 ms  0/64 (0%)  
+    [  5]  32.00-33.00  sec  95.2 KBytes  95.2 KBytes/sec  26.528 ms  0/65 (0%)  
+    [  5]  33.00-34.00  sec  93.8 KBytes  93.8 KBytes/sec  23.831 ms  0/64 (0%)  
+    [  5]  34.00-35.00  sec  95.2 KBytes  95.2 KBytes/sec  24.865 ms  0/65 (0%)  
+    [  5]  35.00-36.00  sec  93.8 KBytes  93.7 KBytes/sec  26.512 ms  0/64 (0%)  
+    [  5]  36.00-37.00  sec  95.2 KBytes  95.2 KBytes/sec  27.826 ms  0/65 (0%)  
+    [  5]  37.00-38.00  sec  93.8 KBytes  93.7 KBytes/sec  25.017 ms  0/64 (0%)  
+    [  5]  38.00-39.00  sec  95.2 KBytes  95.2 KBytes/sec  26.226 ms  0/65 (0%)  
+    [  5]  39.00-40.00  sec  93.8 KBytes  93.8 KBytes/sec  28.107 ms  0/64 (0%)  
+    [  5]  40.00-41.00  sec  95.2 KBytes  95.2 KBytes/sec  23.781 ms  0/65 (0%)  
+    [  5]  41.00-42.00  sec  95.2 KBytes  95.2 KBytes/sec  25.689 ms  0/65 (0%)  
+    [  5]  42.00-43.00  sec  95.2 KBytes  95.2 KBytes/sec  26.097 ms  0/65 (0%)  
+    [  5]  43.00-44.00  sec  92.3 KBytes  92.3 KBytes/sec  24.927 ms  0/63 (0%)  
+    [  5]  44.00-45.00  sec  95.2 KBytes  95.2 KBytes/sec  28.104 ms  32/97 (33%)  
+    [  5]  45.00-45.18  sec  16.1 KBytes  89.0 KBytes/sec  24.465 ms  0/11 (0%)  
+    - - - - - - - - - - - - - - - - - - - - - - - - -
+    [ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+    [  5]   0.00-45.18  sec  2.85 MBytes  64.6 KBytes/sec  24.465 ms  32/1994 (1.6%)  
+
+    # instanceA -> instanceB : port 21
+    # iperf3 -c 172.16.200.186 -u -R -f K -b 800K -l 1500 -p 21
+    Connecting to host 172.16.200.186, port 21
+    Reverse mode, remote host 172.16.200.186 is sending
+    [  4] local 172.16.200.188 port 39619 connected to 172.16.200.186 port 21
+    [ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+    [  4]   0.00-1.00   sec   144 KBytes   144 KBytes/sec  28.935 ms  203/301 (67%)  
+    [  4]   1.00-2.00   sec  86.4 KBytes  86.4 KBytes/sec  27.881 ms  0/59 (0%)  
+    [  4]   2.00-3.00   sec  85.0 KBytes  85.0 KBytes/sec  24.524 ms  0/58 (0%)  
+    [  4]   3.00-4.00   sec  86.4 KBytes  86.4 KBytes/sec  25.384 ms  0/59 (0%)  
+    [  4]   4.00-5.00   sec  82.0 KBytes  82.0 KBytes/sec  27.733 ms  0/56 (0%)  
+    [  4]   5.00-6.00   sec  86.4 KBytes  86.4 KBytes/sec  25.519 ms  0/59 (0%)  
+    [  4]   6.00-7.00   sec  85.0 KBytes  85.0 KBytes/sec  25.048 ms  0/58 (0%)  
+    [  4]   7.00-8.00   sec  85.0 KBytes  85.0 KBytes/sec  30.636 ms  0/58 (0%)  
+    [  4]   8.00-9.00   sec  86.4 KBytes  86.4 KBytes/sec  26.126 ms  0/59 (0%)  
+    [  4]   9.00-10.00  sec  85.0 KBytes  85.0 KBytes/sec  23.683 ms  0/58 (0%)  
+    - - - - - - - - - - - - - - - - - - - - - - - - -
+    [ ID] Interval           Transfer     Bandwidth       Jitter    Lost/Total Datagrams
+    [  4]   0.00-10.00  sec  1.35 MBytes   139 KBytes/sec  26.123 ms  203/947 (21%)  
+    [  4] Sent 947 datagrams
+
+    iperf Done.
+    ```
+  * 比较 data5 和 data3，看到 data3 是在网络中只有 instanceA -> instanceB 的情况，它使用了接近 100KB/s 的带宽；当网络中使用了 instanceA -> instanceC 带宽后，instanceA -> instanceB 的带宽被重新分配，获得了大概 90KB/s 的带宽：
+  * 带宽分配是由于我们设置了队列的优先级为 0，高于默认队列，FTP 的带宽保证为 40KB/s，而默认带宽保证为 10KB/s，当网络中没有其他流量时，100KB/s 可以全部分配给 FTP 使用，当网络中有其他流量，由于 FTP 队列的优先级高于默认队列，那么空闲的流量将全部分配给 FTP 使用，重新分配带宽后 FTP 带宽和默认带宽为 90KB/s 和 10KB/s。
+
+> #### 注意：
+> * 创建 QoS 时会自动创建一个默认队列，这个默认队列的优先级为 7，因此，在创建队列时，队列应设置为 0-7 的优先级，不应小于默认队列的优先级；
+> * 如果创建队列时，队列的优先级有以下情况：
+>   * 与默认队列相同：那么，空闲的流量将按比例分配。如若在本例中 FTP 队列的优先级与默认队列相同，重新分配带宽后，FTP 和默认队列的带宽将分别为 80KB/s 和 20KB/s；
+>   * 高于默认队列（如本例）：那么，空闲的流量优先分配给所创建的队列；
+>   * 一般不会设置低于默认队列的情况。
+
+> ###### 说明：
+> * iperf3 的计算数据有些不对的地方，测试结果只需要观察过程的输出带宽即可；
+> * 由于设置的 -b 参数和 -l 参数会影响带宽，很难找到准确的 -b 和 -l 参数值，但是该影响不大，不会影响测试结果。
 
 ### 不同宿主机上的两台云主机之间的限速
 
