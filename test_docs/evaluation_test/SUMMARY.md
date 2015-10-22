@@ -43,6 +43,7 @@
    * [负载均衡](advance-usage/load_balancer.md)
    * [防火墙服务](advance-usage/firewall.md)
    * [VPN 服务](advance-usage/vpn.md)
+   * [多外子网时使用固定 IP 地址](advance-usage/fixedip.md)
    * [QoS 功能](advance-usage/qos.md)
 * [集群自动伸缩](autoscaling/README.md)
    * [创建自动伸缩集群](autoscaling/create_cluster.md)
