@@ -26,3 +26,12 @@
   * CinderVolumes.create_and_list_volume
   * CinderVolumes.create_and_delete_volume
 
+> ###### 备注：
+> * 由于环境中对配额有限制，为了防止配额对测试的影响，可以在任务文件中的 `context` 处添加如下内容（以 nova 为例）：
+>   ```
+>   context:
+>     ...
+>     quotas:
+>       nova:
+>         instances: -1
+>   ```
