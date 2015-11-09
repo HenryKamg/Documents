@@ -12,6 +12,8 @@
    * [测试设计](test_summary/test_design.md)
    * [测试工具介绍](test_summary/test_tools.md)
 * [测试内容和统计](test_statistic/README.md)
+   * [测试内容](test_statistic/content.md)
+   * [测试统计](test_statistic/statistic.md)
 * [测试结果和分析](results/README.md)
    * [测试结果](results/results.md)
    * [测试比较与分析](results/compare_analysis.md)
