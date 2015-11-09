@@ -21,7 +21,6 @@
   * NeutronNetworks.create_and_delete_ports
 * Glance:
   * GlanceImages.create_and_list_image
-  * GlanceImages.create_and_delete_image
 * Cinder:
   * CinderVolumes.create_and_list_volume
   * CinderVolumes.create_and_delete_volume
