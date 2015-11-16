@@ -16,4 +16,5 @@
    * [测试结果](results/results.md)
    * [测试统计](results/statistics.md)
    * [测试比较与分析](results/compare_analysis.md)
+   * [测试总结](results/summary.md)
 * [附录](appendix.md)
