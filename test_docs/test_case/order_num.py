@@ -8,7 +8,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 # Change this to the testcase dir!
-TEST_CASE_DIR = '/home/coffee/working/docs/EayunStack/Documents/test_docs/test_case'
+TEST_CASE_DIR = './'
 
 
 def write_file(filename, context):
