@@ -108,6 +108,7 @@
   1. 获取之前所创建的 QoS 的 ID：
 
     ```
+    # neutron eayun-qos-list
     ```
   1. 创建 QoS 下的父队列：
 
