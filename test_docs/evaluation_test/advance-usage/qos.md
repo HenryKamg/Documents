@@ -108,7 +108,7 @@
   1. 获取之前所创建的 QoS 的 ID：
 
     ```
-    # neutron eayun-qos-list
+    # neutron eayun-qos-list | grep XXX
     ```
   1. 创建 QoS 下的父队列：
 
@@ -156,6 +156,7 @@
   1. 获取之前所创建的 QoS 和该 QoS 的父队列 ID：
 
     ```
+    # neutron eayun-qos-queue-list | grep XXX
     ```
   1. 创建该 QoS 父队列的子队列：
 
