@@ -246,6 +246,7 @@
   1. 获取之前所创建的 QoS 和所要创建过滤器的队列的 ID：
 
     ```
+    # neutron eayun-qos-queue-list | grep XXX
     ```
   1. 创建该 QoS 队列的过滤器：
 
