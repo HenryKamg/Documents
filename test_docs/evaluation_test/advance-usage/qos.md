@@ -424,7 +424,7 @@
 
 ## 测试限速功能
 
-### 相同宿主机上的两台云主机之间的限速
+### 同一网络上的两台云主机之间的限速
 
 * 场景描述：
 
@@ -432,6 +432,9 @@
 
 * 前提：
 
+  * 已经创建了同一个内网中的三个虚拟机，名称分别为 instance[A-C]。
+  * instanceA 和 instanceB 中都已经安装了 iperf3 网络性能测试工具。
+  * instanceC 也安装了 iperf3，用于模拟其他流量占用带宽的情况。
   * 创建一个 QoS，带宽为 100KB/s，默认队列带宽为 10KB/s，方向为上传（输出），指向 instanceA 的端口：
 
     ```
@@ -497,8 +500,6 @@
     | tenant_id | 30187482c96749f6a1eccd6acd76f45d     |
     +-----------+--------------------------------------+
     ```
-  * instanceA 和 instanceB 中都已经安装了 iperf3 网络性能测试工具。
-  * instanceC 也安装了 iperf3，用于模拟其他流量占用带宽的情况。
 
 * 操作：
 
@@ -682,7 +683,7 @@
 > * iperf3 的计算数据有些不对的地方，测试结果只需要观察过程的输出带宽即可；
 > * 由于设置的 -b 参数和 -l 参数会影响带宽，很难找到准确的 -b 和 -l 参数值，但是该影响不大，不会影响测试结果。
 
-### 不同宿主机上的两台云主机之间的限速
+### 不同网络上的两台云主机之间的限速
 
 * 场景描述：
 
@@ -690,14 +691,197 @@
 
 * 前提：
 
-  * 创建 QoS，带宽设置为 100KB/s，默认队列带宽为 10KB/s，方向为上传，指向该内网的路由：
+  * 创建了同一个内网中的三个虚拟机，名称分别为 instance[A-C]。
+  * 创建了另外一个内网中的一个虚拟机，名称分别为 instance[D]。
+  * 四个虚拟机中，都安装了 iperf3 工具。
+  * 创建 A 和 B 的内网路由上的 QoS，带宽设置为 100KB/s，默认队列带宽为 10KB/s，方向为上传，指向该内网的路由：
+
+    ```
+    # neutron eayun-qos-create --name apporc_test_router_qos --target-type router --target-id 83c5ffb9-97e7-4862-b497-b10f01ca6882 ingress 102400 10240
+    Created a new qos:
+    +--------------------+--------------------------------------+
+    | Field              | Value                                |
+    +--------------------+--------------------------------------+
+    | burst              |                                      |
+    | cburst             |                                      |
+    | default_queue_id   | 7997305a-8d28-4b90-8abb-4f10ed6ec8bc |
+    | description        |                                      |
+    | direction          | ingress                              |
+    | id                 | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | name               | apporc_test_router_qos               |
+    | qos_queues         | 7997305a-8d28-4b90-8abb-4f10ed6ec8bc |
+    | rate               | 102400                               |
+    | target_id          | 83c5ffb9-97e7-4862-b497-b10f01ca6882 |
+    | target_type        | router                               |
+    | tenant_id          | 30187482c96749f6a1eccd6acd76f45d     |
+    | unattached_filters |                                      |
+    +--------------------+--------------------------------------+
+    ```
   * 在该 QoS 下创建队列 queueA，带宽设置为 60KB/s，提供给 instanceA 使用：
+    ```
+    # neutron eayun-qos-queue-create da6a5a81-f152-4165-9521-fbfa5cd0fada 61440 --ceil 102400 --prio 0
+    Created a new qos_queue:
+    +------------------+--------------------------------------+
+    | Field            | Value                                |
+    +------------------+--------------------------------------+
+    | attached_filters |                                      |
+    | burst            |                                      |
+    | cburst           |                                      |
+    | ceil             | 102400                               |
+    | id               | 25e4a68b-18ee-4fc6-b6d6-a10f7b91d2ce |
+    | parent_id        |                                      |
+    | prio             | 0                                    |
+    | qos_id           | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | rate             | 61440                                |
+    | subqueues        |                                      |
+    | tenant_id        | 30187482c96749f6a1eccd6acd76f45d     |
+    +------------------+--------------------------------------+
+    ```
   * 在 queueA 下创建两个队列 queueA-1 和 queueA-2，速度分别设置为 40KB/s 和 20KB/s，分别提供给 HTTP 和 FTP 使用：
+    ```
+    # neutron eayun-qos-queue-create --parent 25e4a68b-18ee-4fc6-b6d6-a10f7b91d2ce da6a5a81-f152-4165-9521-fbfa5cd0fada 40960 --prio 0 
+    Created a new qos_queue:
+    +------------------+--------------------------------------+
+    | Field            | Value                                |
+    +------------------+--------------------------------------+
+    | attached_filters |                                      |
+    | burst            |                                      |
+    | cburst           |                                      |
+    | ceil             |                                      |
+    | id               | 324c5d83-c06b-4c67-b97b-3e065187f0af |
+    | parent_id        | 25e4a68b-18ee-4fc6-b6d6-a10f7b91d2ce |
+    | prio             | 0                                    |
+    | qos_id           | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | rate             | 40960                                |
+    | subqueues        |                                      |
+    | tenant_id        | 30187482c96749f6a1eccd6acd76f45d     |
+    +------------------+--------------------------------------+
+
+    # neutron eayun-qos-queue-create --parent 25e4a68b-18ee-4fc6-b6d6-a10f7b91d2ce da6a5a81-f152-4165-9521-fbfa5cd0fada  20480 --prio 0 
+    Created a new qos_queue:
+    +------------------+--------------------------------------+
+    | Field            | Value                                |
+    +------------------+--------------------------------------+
+    | attached_filters |                                      |
+    | burst            |                                      |
+    | cburst           |                                      |
+    | ceil             |                                      |
+    | id               | 84891ac5-1031-4183-984a-34b1faffc70d |
+    | parent_id        | 25e4a68b-18ee-4fc6-b6d6-a10f7b91d2ce |
+    | prio             | 0                                    |
+    | qos_id           | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | rate             | 20480                                |
+    | subqueues        |                                      |
+    | tenant_id        | 30187482c96749f6a1eccd6acd76f45d     |
+    +------------------+--------------------------------------+
+    ```
   * 在 QoS 下创建队列 queueB，带宽设置为 30KB/s，提供给 instanceB 使用，即 instanceB 的 HTTP 服务使用：
+    ```
+    # neutron eayun-qos-queue-create da6a5a81-f152-4165-9521-fbfa5cd0fada 30720 --ceil 102400 --prio 0 
+    Created a new qos_queue:
+    +------------------+--------------------------------------+
+    | Field            | Value                                |
+    +------------------+--------------------------------------+
+    | attached_filters |                                      |
+    | burst            |                                      |
+    | cburst           |                                      |
+    | ceil             | 102400                               |
+    | id               | 41065b3d-cc1e-4aa6-9d44-a85b97f9a4a9 |
+    | parent_id        |                                      |
+    | prio             | 0                                    |
+    | qos_id           | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | rate             | 30720                                |
+    | subqueues        |                                      |
+    | tenant_id        | 30187482c96749f6a1eccd6acd76f45d     |
+    +------------------+--------------------------------------+
+    ```
   * 创建过滤器，匹配从 instanceA 向外的 HTTP 流量，指向 queueA-1：
+
+    ```
+    # neutron eayun-qos-filter-create --queue 324c5d83-c06b-4c67-b97b-3e065187f0af --protocol 6 --src-port 80 --src-addr 10.10.10.8/32 da6a5a81-f152-4165-9521-fbfa5cd0fada 100
+    Created a new qos_filter:
+    +-----------+--------------------------------------+
+    | Field     | Value                                |
+    +-----------+--------------------------------------+
+    | dst_addr  |                                      |
+    | dst_port  |                                      |
+    | id        | e531f23f-3ec8-4ea3-81bf-cf2a6cc0b231 |
+    | prio      | 100                                  |
+    | protocol  | 6                                    |
+    | qos_id    | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | queue_id  | 324c5d83-c06b-4c67-b97b-3e065187f0af |
+    | src_addr  | 10.10.10.8/32                        |
+    | src_port  | 80                                   |
+    | tenant_id | 30187482c96749f6a1eccd6acd76f45d     |
+    +-----------+--------------------------------------+
+    ```
   * 创建过滤器，匹配从 instanceA 向外的 FTP 流量，指向 queueA-2：
+    ```
+    # neutron eayun-qos-filter-create --queue 84891ac5-1031-4183-984a-34b1faffc70d --protocol 6 --src-port 21 --src-addr 10.10.10.8/32 da6a5a81-f152-4165-9521-fbfa5cd0fada 101
+    Created a new qos_filter:
+    +-----------+--------------------------------------+
+    | Field     | Value                                |
+    +-----------+--------------------------------------+
+    | dst_addr  |                                      |
+    | dst_port  |                                      |
+    | id        | 203af614-a3eb-4824-b096-d0d3f7eaa91e |
+    | prio      | 101                                  |
+    | protocol  | 6                                    |
+    | qos_id    | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | queue_id  | 84891ac5-1031-4183-984a-34b1faffc70d |
+    | src_addr  | 10.10.10.8/32                        |
+    | src_port  | 21                                   |
+    | tenant_id | 30187482c96749f6a1eccd6acd76f45d     |
+    +-----------+--------------------------------------+
+    ```
   * 创建过滤器，匹配从 instanceB 向外的 HTTP 流量，执行 queueB：
+    ```
+    # neutron eayun-qos-filter-create --queue 41065b3d-cc1e-4aa6-9d44-a85b97f9a4a9 --protocol 6 --src-port 80 --src-addr 10.10.10.9/32 da6a5a81-f152-4165-9521-fbfa5cd0fada 102
+    Created a new qos_filter:
+    +-----------+--------------------------------------+
+    | Field     | Value                                |
+    +-----------+--------------------------------------+
+    | dst_addr  |                                      |
+    | dst_port  |                                      |
+    | id        | 467fa5e5-52b8-4273-9423-ccb3c22ae3fd |
+    | prio      | 102                                  |
+    | protocol  | 6                                    |
+    | qos_id    | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | queue_id  | 41065b3d-cc1e-4aa6-9d44-a85b97f9a4a9 |
+    | src_addr  | 10.10.10.9/32                        |
+    | src_port  | 80                                   |
+    | tenant_id | 30187482c96749f6a1eccd6acd76f45d     |
+    +-----------+--------------------------------------+
+    ```
 
 * 操作：
 
+    测试脚本：
+
+    ```
+    #!/bin/bash
+    # test.sh
+
+    iperf3 -c 10.10.10.8 -R -f K -p 80 -b 800K -t 50 > data1 &
+    sleep 10
+    iperf3 -c 10.10.10.8 -R -f K -p 21 -b 800K -t 30 > data2 &
+    sleep 10
+    iperf3 -c 10.10.10.9 -R -f K -p 80 -b 800K -t 30 > data3 &
+    sleep 10
+    iperf3 -c 10.10.10.24 -R -f K -b 800K -t 20 > data4 &
+    ```
+
+    注意：测试过程中，instance[A-D] 上不要连入 ssh，其上操作执行后即应退出 ssh，因为会影响测试数据。
+    1. 访问 instanceA，在 instanceA 上执行 `iperf3 -s -p 80 -D`;
+    1. 访问 instanceA，在 instanceA 上执行 `iperf3 -s -p 21 -D`;
+    1. 访问 instanceB, 在 instanceB 上执行 `iperf3 -s -p 80 -D`;
+    1. 访问 instanceC, 在 instanceC 上执行 `iperf3 -s -D`;
+    1. 访问 instanceD, 在 instanceD 上执行 `./test.sh`;
 * 预期结果：
+
+    由于测试精度不高，以下速度值近似即可
+    1. data1 中速度变化依次为 100KB/s -> 66KB/s -> 44KB/s -> 40KB/s -> 60KB/s
+       左右。
+    2. data2 中速度变化依次为 33KB/s -> 22KB/s -> 20KB/s
+    3. data3 中速度变化依次为 33KB/s -> 30KB/s
+    4. data4 中速度大概为 10KB/s
