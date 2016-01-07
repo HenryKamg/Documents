@@ -15,3 +15,6 @@
      * [Neutron](neutron.md)
      * [Nova](nova.md)
      * [Quota](quota.md)
+     * [Ceilometer)(ceilometer.md)
+     * [AutoScaling](autoscaling.md)
+     * [运维工具](tools.md)

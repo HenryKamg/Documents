@@ -2,22 +2,36 @@
 
 由于 EayunStack 的系统特性，对功能的测试以模块进行划分，如下：
 
-|模块名称|测试内容|用例总数|
-|--------|--------|--------|
-|Authenticate|各个模块的 token|5|
-|Keystone|keystone 模块的功能|15|
-|Glance|glance 模块的功能|13|
-|Neutron|neutron 模块的功能|20|
-|Nova|nova 模块的功能|42|
-|Cinder|cinder 模块的功能|42|
-|Quota|各个模块的 quota 功能|5|
-|总计||142|
+|模块名称|测试内容|用例总数|新增数目|
+|--------|--------|--------|--------|
+|Authenticate|各个模块的 token|5||
+|Keystone|keystone 模块的功能|15||
+|Glance|glance 模块的功能|13||
+|Neutron|neutron 模块的功能|20||
+|Nova|nova 模块的功能|42||
+|Cinder|cinder 模块的功能|42||
+|Quota|各个模块的 quota 功能|5||
+|Ceilometer|Ceilometer 模块的功能|||
+|AutoScaling|集群自动伸缩功能|||
+|运维工具|运维工具的各项功能|||
+|总计|-|142||
+
+> ###### 注：
+> 其中【新增数目】为相对于上个版本，即 EayunStack 1.0 版本中，测试用例所增加的数目。
+
+> ###### 注：
+> 其中的 AutoScaling 功能比较特殊，没有直接的测试用例，但进行了相关的场景测试，详情请参考[场景测试文档]()中的集群自动伸缩章节。
+
+> ###### 注：
+> 运维工具属于团队自主研发的内容，不属于 EayunStack 本身的组件。
 
 ## 模块测试内容
 
 对各个模块进行测试，保证各个组件的功能可用。
 
-每个测试都包括了 UI 的操作和 CLI (命令行或使用测试工具) 的操作，兼顾了 Horizon 组件的测试。
+测试用例中包括了 UI 的操作和 CLI (命令行或使用测试工具) 的操作，兼顾了 Horizon 组件的测试。
+
+如果没有 UI 上的操作，则仅有 CLI 操作与 Rally 的测试操作（如果 Rally 有对应的测试用例的话）。
 
 ### Authenticate
 
@@ -77,9 +91,32 @@
 |cinder quota|2|
 |neutron quota|1|
 
+### Ceilometer
+
+|测试内容|用例数目|
+|--------|--------|
+|alarm||
+|event||
+|meter||
+|resource||
+|sample||
+|trait||
+
+### AutoScaling
+
+|测试内容|用例数目|
+|--------|--------|
+|集群自动伸缩|-|
+
+### 运维工具
+
+|测试内容|用例数目|
+|--------|--------|
+|运维工具各功能||
+
 ## 测试范围
 
-此功能测试仅仅针对 EayunStack 的功能本身进行测试，不涉及 EayunStack 之外的组件 (如 Fuel) 和性能测试。
+此功能测试仅仅针对 EayunStack 的功能本身与运维工具进行测试，不涉及 EayunStack 之外的组件 (如 Fuel) 和性能测试。
 
 对功能的测试包括**常规途径**和**非常规途径**：
 
