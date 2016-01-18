@@ -23,8 +23,20 @@
 <center><h4>陈远兵</h4></center>
 <center>易云捷讯 云计算测试组</br>yuanbing.chen@eayun.com</center>
 </br>
+<center><h4>刘洋</h4></center>
+<center>易云捷讯 云计算测试组</br>yang.liu@eayun.com</center>
+</br>
+<center><h4>蔡杉</h4></center>
+<center>易云捷讯 云计算测试组</br>shan.cai@eayun.com</center>
+</br>
+<center><h4>彭奇</h4></center>
+<center>易云捷讯 云计算测试组</br>qi.peng@eayun.com</center>
+</br>
 <center><h4>陈艳</h4></center>
 <center>易云捷讯 云计算测试组</br>yan.chen@eayun.com</center>
+</br>
+<center><h4>叶明</h4></center>
+<center>易云捷讯 云计算测试组</br>ming.ye@eayun.com</center>
 </br>
 </br>
 </br>

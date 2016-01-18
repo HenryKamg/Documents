@@ -11,7 +11,7 @@ EayunStack 功能测试所使用的方式有 3 种，如下：
   > ###### 说明：
   > * 主要采用 Rally 测试工具；
   > * 由于 Tempest 的输出信息不易读且无法修改相关参数，在 EayunStack 1.1 版本的测试总已将该工具废弃使用；
-  > * 少数使用人工测试。
+  > * Rally 无法进行测试的功能与团队研发的新功能，采用人工测试的方式。
 
   > ###### 注：
   > 关于 Rally 的使用，请参考 [wiki](https://oa.eayun.cn/wiki/doku.php?id=eayunstack:rally:基本使用)。
@@ -20,13 +20,13 @@ EayunStack 功能测试所使用的方式有 3 种，如下：
 
 |模块名称|Rally 测试数目|手工测试数目|
 |--------|--------------|------------|
-|Authenticate|5|0|
-|Keystone|9|6|
+|Authenticate|6|0|
+|Keystone|15|6|
 |Glance|11|2|
-|Cinder|18|24|
-|Neutron|13|7|
-|Nova|30|12|
+|Cinder|18|29|
+|Neutron|26|52|
+|Nova|35|17|
 |Quota|5|0|
-|Ceilometer||
-|运维工具||
-|总计|91|51|
+|Ceilometer|20|0|
+|运维工具|0|14|
+|总计|136|120|
