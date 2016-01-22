@@ -25,23 +25,23 @@
 
     1. 在 【Kernel parameters】 栏，设置内核参数：添加 "console=ttyS0,9600 console=tty0"；
     1. 在 【Mellanox neutron components】 栏，使用默认设置；
-    1. 在 【Syslog】 栏，？？？；
+    1. 在 【Syslog】 栏，设置远程主机名和端口，选择传输协议为 TCP；
     1. 在 【VLAN Splinters】 栏，使用默认配置；
-    1. 在 【Public network assignment】 栏，。。。
+    1. 在 【Public network assignment】 栏，不作设置；
     1. 在 【Storage】 栏，配置存储：
 
-      * 勾选 。。。
-      * 将 【Ceph object replication】 设置为 2。
+      * 勾选以下内容：
 
-    1. 在 【Cinder and Eqlx integration】 栏，配置 Eqlx 存储：
+        * Ceph RBD for volumes(Cinder)
+        * Ceph RBD for images(Glance)
+        * Ceph RBD for ephemeral volumes(Nova)
 
-      * 填写 Eqlx 存储的 IP 地址；
-      * 。。。
+      * 将 【Ceph object replication】 设置为 3。
 
     1. 【Zabbix】 不进行配置；
     1. 在 【Provision】 栏，使用默认设置；
-    1. 在 【Upstream DNS】 栏，填写 DNS 服务器地址为："8.8.8.8" 和 "8.8.4.4"，用"," 隔开；
-    1. 在 【Upstream NTP】 栏，填写 NTP 服务器地址：。。。
+    1. 在 【Upstream DNS】 栏，填写 DNS 服务器地址为："114.114.114.114" 和 "8.8.8.8"，用"," 隔开；
+    1. 在 【Upstream NTP】 栏，填写 NTP 服务器地址："0.pool.ntp.org" 和 "1.pool.ntp.org"，用 "," 隔开。
 
   1. 已上内容设置完成后，点击页面下方的【保存设置】按钮。
 

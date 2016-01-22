@@ -30,20 +30,20 @@
   * 成功列出集群资源：
 
     ```
-# heat resource-list coffee_withlb
-+------------------+--------------------------------------+----------------------------+-----------------+----------------------+
-| resource_name    | physical_resource_id                 | resource_type              | resource_status | updated_time         |
-+------------------+--------------------------------------+----------------------------+-----------------+----------------------+
-| monitor          | de9fe43b-c16f-4359-ad64-955b2e7467f3 | OS::Neutron::HealthMonitor | CREATE_COMPLETE | 2015-10-10T03:55:40Z |
-| pool             | dd7c63db-00ef-4185-a318-5493847e0590 | OS::Neutron::Pool          | CREATE_COMPLETE | 2015-10-10T03:55:41Z |
-| lb               |                                      | OS::Neutron::LoadBalancer  | CREATE_COMPLETE | 2015-10-10T03:55:47Z |
-| lb_floating      | e52b2074-9d47-48a4-abde-9c3248771181 | OS::Neutron::FloatingIP    | CREATE_COMPLETE | 2015-10-10T03:55:47Z |
-| server_group     | 41e0234e-9048-42e8-9576-ec292a038a1e | OS::Heat::AutoScalingGroup | CREATE_COMPLETE | 2015-10-10T03:55:47Z |
-| scaledown_policy | c1e03e6fb081466e856d5ec9cafd2a18     | OS::Heat::ScalingPolicy    | CREATE_COMPLETE | 2015-10-10T03:56:00Z |
-| scaleup_policy   | 990cf9b9eb214d41905b61b94610d852     | OS::Heat::ScalingPolicy    | CREATE_COMPLETE | 2015-10-10T03:56:00Z |
-| cpu_alarm_high   | 38fe8b9a-8b4a-4bff-b0cc-7990e55e8b4d | OS::Ceilometer::Alarm      | CREATE_COMPLETE | 2015-10-10T03:56:02Z |
-| cpu_alarm_low    | 3a6db4a0-331a-4cfb-bfb5-d8fb80ed25b8 | OS::Ceilometer::Alarm      | CREATE_COMPLETE | 2015-10-10T03:56:02Z |
-+------------------+--------------------------------------+----------------------------+-----------------+----------------------+
+    # heat resource-list coffee_withlb
+    +------------------+--------------------------------------+----------------------------+-----------------+----------------------+
+    | resource_name    | physical_resource_id                 | resource_type              | resource_status | updated_time         |
+    +------------------+--------------------------------------+----------------------------+-----------------+----------------------+
+    | monitor          | de9fe43b-c16f-4359-ad64-955b2e7467f3 | OS::Neutron::HealthMonitor | CREATE_COMPLETE | 2015-10-10T03:55:40Z |
+    | pool             | dd7c63db-00ef-4185-a318-5493847e0590 | OS::Neutron::Pool          | CREATE_COMPLETE | 2015-10-10T03:55:41Z |
+    | lb               |                                      | OS::Neutron::LoadBalancer  | CREATE_COMPLETE | 2015-10-10T03:55:47Z |
+    | lb_floating      | e52b2074-9d47-48a4-abde-9c3248771181 | OS::Neutron::FloatingIP    | CREATE_COMPLETE | 2015-10-10T03:55:47Z |
+    | server_group     | 41e0234e-9048-42e8-9576-ec292a038a1e | OS::Heat::AutoScalingGroup | CREATE_COMPLETE | 2015-10-10T03:55:47Z |
+    | scaledown_policy | c1e03e6fb081466e856d5ec9cafd2a18     | OS::Heat::ScalingPolicy    | CREATE_COMPLETE | 2015-10-10T03:56:00Z |
+    | scaleup_policy   | 990cf9b9eb214d41905b61b94610d852     | OS::Heat::ScalingPolicy    | CREATE_COMPLETE | 2015-10-10T03:56:00Z |
+    | cpu_alarm_high   | 38fe8b9a-8b4a-4bff-b0cc-7990e55e8b4d | OS::Ceilometer::Alarm      | CREATE_COMPLETE | 2015-10-10T03:56:02Z |
+    | cpu_alarm_low    | 3a6db4a0-331a-4cfb-bfb5-d8fb80ed25b8 | OS::Ceilometer::Alarm      | CREATE_COMPLETE | 2015-10-10T03:56:02Z |
+    +------------------+--------------------------------------+----------------------------+-----------------+----------------------+
     ```
   * 成功列出集群输出：
 
