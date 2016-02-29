@@ -25,7 +25,7 @@
       * [Nova](content_execute/nova.md)
       * [Quota](content_execute/quota.md)
       * [Ceilometer](content_execute/ceilometer.md)
-      * [AutoScaling](content_execute/autoscaling.md)
+      * [AutoScaling](content_execute/heat.md)
       * [运维工具](content_execute/tools.md)
 * [缺陷统计和分析](bug_statistics/bug_statistics.md)
    * [缺陷汇总和趋势分析](bug_statistics/bug_collection.md)
