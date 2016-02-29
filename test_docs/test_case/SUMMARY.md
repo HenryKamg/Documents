@@ -40,6 +40,6 @@
    * [资源](ceilometer/resource.md)
    * [样品](ceilometer/samples.md)
    * [Trait](ceilometer/traits.md)
-* [EayunStack Tools](operation_tools/operation_tool.md)
-   * [运维工具](operation_tools/operation_tools.md)
+* [EayunStack Tools](operation_tools/operation_tools.md)
+   * [运维工具](operation_tools/tools.md)
 
