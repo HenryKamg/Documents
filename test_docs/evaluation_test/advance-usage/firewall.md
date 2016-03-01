@@ -110,12 +110,137 @@
 
 ## 创建指定目标路由的防火墙
 
-TODO
+* 前提：
+
+  * 租户中有 2 个路由 "router_01" 和 "router_02"；
+  * 租户的 2 个网络 "net_01" 和 "net_02" 的子网 "subnet_01" 和 "subnet_02" 分别连接到 2 个路由上；
+  * 租户的安全组允许 PING 的操作；
+  * 创建了 2 台云主机 "instance_01" 和 "instance_02"，分别为云主机分配了浮动 IP，分别为 "ip_01" 和 "ip_02"。
+
+* 操作：
+
+  1. PING "instance_01" 和 "instance_02" 的浮动 IP，都能 PING 通；
+  1. 登录到 Dashboard，点击 【Project】 下的 【Network】 选项，选择 【Firewalls】 选项；
+  1. 在右侧的 Firewalls 列表中，点击 【Firewall Rules】 标签，点击右上角的 【+Add Rule】 按钮；
+  1. 在弹出的 【Add Rule】 对话框中，输入名称为 "deny_icmp"，选择 Protocol 为 "ICMP"，Action 为 "DENY"；勾选 "Enabled"，启用规则；
+  1. 点击对话框右下角的 【Add】 按钮，创建防火墙规则；
+  1. 点击列表中的 【Firewall Policies】 标签，点击右上角的 【Add Policy】 按钮；
+  1. 在弹出的 【Add Policy】 对话框的 【AddPolicy】 标签下，输入策略名称为 "policy_01"；点击 【Rules】 标签，从 "Available Rules" 中选择 "deny_icmp" 规则；
+  1. 点击对话框右下角的 【Add】 按钮，创建防火墙策略；
+  1. 登录 Controller 节点；
+  1. 执行命令，创建指定目标路由为 router_01 的防火墙：
+
+    ```
+    (controller)# neutron firewall-create --name firewall-with-router01 policy --fw_target_routers list=true [ROUTER_01_ID]
+    ```
+  1. 再次 PING "instance_01" 和 "instance_02" 的浮动 IP。
+
+* 预期结果：
+
+  * 创建防火墙之前，可以 PING 通 "instance_01" 和 "instance_02"；
+  * 指定目标路由为 router_01 的防火墙创建成功：
+
+    ```
+    (controller)# neutron firewall-create --name firewall-with-router01 policy --fw_target_routers list=true 169e460d-16ff-4c25-bd2a-47250772541c
+    Created a new firewall:
+    +--------------------+--------------------------------------+
+    | Field              | Value                                |
+    +--------------------+--------------------------------------+
+    | admin_state_up     | True                                 |
+    | description        |                                      |
+    | firewall_policy_id | aa1fd2ff-4e94-46f6-92f1-5a9d7e393604 |
+    | fw_target_routers  | 169e460d-16ff-4c25-bd2a-47250772541c |
+    | id                 | 2635f3e0-fe81-428f-ac69-0b6c2e1bb564 |
+    | name               | firewall-with-router01               |
+    | status             | PENDING_CREATE                       |
+    | tenant_id          | 7f67af7413074a85b751eaf997d59ae7     |
+    +--------------------+--------------------------------------+
+    ```
+  * 防火墙创建完成后，PING "instance_01"，无法 PING 通；PING "instance_02"，可以 PING 通。
 
 ## 更新防火墙的目标路由表
 
-TODO
+* 前提：
+
+  * 租户中有 2 个路由 "router_01" 和 "router_02"；
+  * 租户的 2 个网络 "net_01" 和 "net_02" 的子网 "subnet_01" 和 "subnet_02" 分别连接到 2 个路由上；
+  * 租户的安全组允许 PING 的操作；
+  * 创建了 2 台云主机 "instance_01" 和 "instance_02"，分别为云主机分配了浮动 IP，分别为 "ip_01" 和 "ip_02"；
+  * 创建了指定目标路由为 "router_01" 的防火墙。
+
+* 操作：
+
+  1. PING "instance_01" 和 "instance_02"，其中，"instance_01" 无法 PING 通，"instance_02" 可以 PING 通；
+  1. 执行命令，将防火墙更新为指定目标路由为 "router_02"：
+
+    ```
+    (controller)# neutron firewall-update [FW_ID] --fw_target_routers list=true [ROUTER_02_ID]
+    ```
+  1. 再次 PING "instance_01" 和 "instance_02"。
+
+* 预期结果：
+
+  * 更新防火墙路由表之前，无法 PING 通 "instance_01"，可以 PING 通 "instance_02"；
+  * 防火墙更新成功，防火墙的 fw_target_routers 中显示路由表为 "router_02"：
+
+    ```
+    (controller)# neutron firewall-update 2635f3e0-fe81-428f-ac69-0b6c2e1bb564 --fw_target_routers list=true e3dfd77e-e863-4d36-bb37-a7fcadfa48f7
+    Updated firewall: 2635f3e0-fe81-428f-ac69-0b6c2e1bb564
+
+    (controller)# neutron firewall-show 2635f3e0-fe81-428f-ac69-0b6c2e1bb564
+    +--------------------+--------------------------------------+
+    | Field              | Value                                |
+    +--------------------+--------------------------------------+
+    | admin_state_up     | True                                 |
+    | description        |                                      |
+    | firewall_policy_id | aa1fd2ff-4e94-46f6-92f1-5a9d7e393604 |
+    | fw_target_routers  | e3dfd77e-e863-4d36-bb37-a7fcadfa48f7 |
+    | id                 | 2635f3e0-fe81-428f-ac69-0b6c2e1bb564 |
+    | name               | firewall-with-router01               |
+    | status             | ACTIVE                               |
+    | tenant_id          | 7f67af7413074a85b751eaf997d59ae7     |
+    +--------------------+--------------------------------------+
+    ```
+  * 防火墙更新完成后，PING "instance_01"，可以 PING 通；PING "instance_02"，无法 PING 通。
 
 ## 清空防火墙的目标路由表
 
-TODO
+  * 租户中有 2 个路由 "router_01" 和 "router_02"；
+  * 租户的 2 个网络 "net_01" 和 "net_02" 的子网 "subnet_01" 和 "subnet_02" 分别连接到 2 个路由上；
+  * 租户的安全组允许 PING 的操作；
+  * 创建了 2 台云主机 "instance_01" 和 "instance_02"，分别为云主机分配了浮动 IP，分别为 "ip_01" 和 "ip_02"；
+  * 创建了指定目标路由为 "router_01" 的防火墙。
+
+* 操作：
+
+  1. PING "instance_01" 和 "instance_02"，其中，"instance_01" 无法 PING 通，"instance_02" 可以 PING 通；
+  1. 执行命令，清空防火墙的目标路由表：
+
+    ```
+    (controller)# neutron firewall-update [FW_ID] --fw_target_routers action=clear
+    ```
+  1. 再次 PING "instance_01" 和 "instance_02"。
+
+* 预期结果：
+
+  * 清空防火墙路由表成功，防火墙的 fw_target_routers 显示路由表为空：
+
+    ```
+    (controller)# neutron firewall-update 2635f3e0-fe81-428f-ac69-0b6c2e1bb564 --fw_target_routers action=clear
+    Updated firewall: 2635f3e0-fe81-428f-ac69-0b6c2e1bb564
+
+    (controller)# neutron firewall-show 2635f3e0-fe81-428f-ac69-0b6c2e1bb564
+    +--------------------+--------------------------------------+
+    | Field              | Value                                |
+    +--------------------+--------------------------------------+
+    | admin_state_up     | True                                 |
+    | description        |                                      |
+    | firewall_policy_id | aa1fd2ff-4e94-46f6-92f1-5a9d7e393604 |
+    | fw_target_routers  |                                      |
+    | id                 | 2635f3e0-fe81-428f-ac69-0b6c2e1bb564 |
+    | name               | firewall-with-router01               |
+    | status             | ACTIVE                               |
+    | tenant_id          | 7f67af7413074a85b751eaf997d59ae7     |
+    +--------------------+--------------------------------------+
+    ```
+  * 清空防火墙目标路由表后，防火墙作用于整个租户，"instance_01" 和 "instance_02" 均无法 PING 通。
