@@ -17,9 +17,7 @@
 |01040109|测试运维工具删除错误卷的功能|<ul><li>CLI:<ol><li>登录到 Controller 节点；</li><li>执行命令 <code>eayunstack manage volume -d --id VOLUME_ID</code>，其中，该卷处于非 Available 状态。</li></ol></li></ul>|<ul><li>CLI:<ul><li>成功删除一个卷</li></ul></li></ul>||只能在 Controller 节点上使用||
 |01040110|测试使用运维工具删除一个包含快照的卷|<ul><li>CLI:<ol><li>登录到 Controller 节点；</li><li>执行命令 <code>eayunstack manage volume -d --id VOLUME_ID</code>，其中，该卷处于 Available 状态，但创建了该卷的快照。</li></ol></li></ul>|<ul><li>CLI:<ul><li>成功删除卷的快照，并将卷删除</li></ul></li></ul>||只能在 Controller 节点上使用||
 |01040111|测试运维工具初始化环境命令的功能|<ul><li>CLI:<ol><li>登录到 fuel 节点；</li><li>执行命令 <code>eayunstack init</code>。</li></ol></li></ul>|<ul><li>CLI:<ul><li>对 EayunStack 环境进行初始化操作，在整个环境中的所有节点生成保存了节点角色和节点信息列表的配置文件</li></ul></li></ul>||只能在 fuel 节点上使用||
+||测试运维工具更新初始化配置的功能|<ul><li>CLI:<ol><li>登录到 fuel 节点；</li><li>执行命令 <code>eayunstack init -u</code>。</li></ol></li></ul>|<ul><li>CLI:<ul><li>对 EayunStack 环境的初始化配置文件更新，在整个环境中的所有节点重新生成保存了节点角色和节点信息列表的配置文件</li></ul></li></ul>||只能在 fuel 节点上使用||
 |01040112|测试运维工具备份 Fuel 的功能|<ul><li>CLI:<ol><li>登录到 Fuel 节点；</li><li>执行命令 <code>eayunstack fuel backup -n</code>。</li></ol></li></ul>|<ul><li>CLI:<ul><li>对 fuel 节点进行备份</li></ul></li></ul>||只能在 Fuel 节点上使用||
 |01040113|测试运维工具列出 Fuel 的所有备份的功能|<ul><li>CLI:<ol><li>登录到 Fuel 节点；</li><li>执行命令 <code>eayunstack fuel backup -l</code>。</li></ol></li></ul>|<ul><li>CLI:<ul><li>列出 fuel 节点的备份信息</li></ul></li></ul>||只能在 fuel 节点上使用||
 |01040114|测试运维工具恢复 Fuel 节点的功能|<ul><li>CLI:<ol><li>登录到 fuel 节点；</li><li>执行命令 <code>eayunstack fuel backup -l</code>，列出所有的备份信息，记录所要恢复的备份的 ID（在本例中 ID 为 1）</li><li>执行命令 <code>eayunstack fuel restore -i 1</code>，进行恢复。</li></ol></li></ul>|<ul><li>CLI:<ul><li>成功恢复 Fuel 节点到指定的备份</li></ul></li></ul>||<ul><li>只能在 fuel 节点上使用</li><li>使用 -f 参数，可以指定备份文件，如从 U 盘的备份中恢复 Fuel</li></ul>||
-|01040115|测试使用运维工具配置 ceph cluster 网络的功能|<ul><li>CLI:<ol><li>登录到 fuel 节点；</li><li>执行命令 <code>eayunstack fuel ceph_cluster_network --env 1 --cidr 172.16.200.0/24 --nic_mappings 6:eth4,7:eth4,8:eth4 </code>。</li></ol></li></ul>|<ul><li>CLI:<ul><li>成功配置 ceph cluster 网络</li></ul></li></ul>||只能在 fuel 节点上使用||
-|01040116|测试使用运维工具部署监控插件的功能||||||
-|01040117|测试使用运维工具升级环境的功能||||||
