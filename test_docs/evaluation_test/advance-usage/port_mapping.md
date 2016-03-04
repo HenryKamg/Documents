@@ -20,10 +20,10 @@
     ```
     (controller)# nova show test_server
     ```
-  1. 执行命令，创建端口映射，将云主机的 9090 端口映射到路由的 22 端口上：
+  1. 执行命令，创建端口映射，将云主机的 22 端口映射到路由的 9022 端口上：
 
     ```
-    (controller)# neutron portmapping-create 169e460d-16ff-4c25-bd2a-47250772541c 22 172.16.200.2 9090 --name test_portmapping
+    (controller)# neutron portmapping-create 169e460d-16ff-4c25-bd2a-47250772541c 9022 172.16.200.2 22 --name test_portmapping
     ```
 
 * 预期结果：
@@ -31,19 +31,19 @@
   * 端口映射创建成功：
 
     ```
-    (controller)# neutron portmapping-create 169e460d-16ff-4c25-bd2a-47250772541c 22 172.16.200.2 9090 --name test_portmapping
+    (controller)# neutron portmapping-create 169e460d-16ff-4c25-bd2a-47250772541c 9022 172.16.200.2 22 --name test_portmapping
     Created a new portmapping:
     +------------------+--------------------------------------+
     | Field            | Value                                |
     +------------------+--------------------------------------+
     | admin_state_up   | True                                 |
     | destination_ip   | 172.16.200.2                         |
-    | destination_port | 9090                                 |
+    | destination_port | 22                                   |
     | id               | ef15a002-4d2e-4ec8-916c-e11e3ac5cbed |
     | name             | test_portmapping                     |
     | protocol         | tcp                                  |
     | router_id        | 169e460d-16ff-4c25-bd2a-47250772541c |
-    | router_port      | 22                                   |
+    | router_port      | 9022                                 |
     | status           | DOWN                                 |
     | tenant_id        | 7f67af7413074a85b751eaf997d59ae7     |
     +------------------+--------------------------------------+
@@ -57,12 +57,12 @@
     +------------------+--------------------------------------+
     | admin_state_up   | True                                 |
     | destination_ip   | 172.16.200.2                         |
-    | destination_port | 9090                                 |
+    | destination_port | 22                                   |
     | id               | ef15a002-4d2e-4ec8-916c-e11e3ac5cbed |
     | name             | test_portmapping                     |
     | protocol         | tcp                                  |
     | router_id        | 169e460d-16ff-4c25-bd2a-47250772541c |
-    | router_port      | 22                                   |
+    | router_port      | 9022                                 |
     | status           | ACTIVE                               |
     | tenant_id        | 7f67af7413074a85b751eaf997d59ae7     |
     +------------------+--------------------------------------+

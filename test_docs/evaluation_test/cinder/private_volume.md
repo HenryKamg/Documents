@@ -31,6 +31,30 @@
       rbd1
       rbd2
       ```
+    1. 设置 Ceph 集群用户权限：
+
+      ```
+      ## 查看 volumes 和 compute 用户的权限：
+      (controller)# ceph auth get client.volumes
+      exported keyring for client.volumes
+      [client.volumes]
+              key = AQA4UtBWwL88FhAAscIR5cw7RASxP8R1HESCeg==
+              caps mon = "allow r"
+              caps osd = "allow class-read object_prefix rbd_children, allow rwx pool=volumes, allow rx pool=images"
+      You have new mail in /var/spool/mail/root
+      (controller)# ceph auth get client.compute
+      exported keyring for client.compute
+      [client.compute]
+              key = AQCqV9BWMOkoBBAArn2NYYwuAQ/oHIz84ZumYg==
+              caps mon = "allow r"
+              caps osd = "allow class-read object_prefix rbd_children, allow rwx pool=volumes, allow rx pool=images, allow rwx pool=compute"
+
+      ## 设置权限：
+      (controller)# ceph auth caps client.volumes mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=volumes, allow rx pool=images, allow rwx pool=rbd1, allow rwx pool=rbd2'
+      updated caps for client.volumes
+      (controller)# ceph auth caps client.compute mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=volumes, allow rx pool=images, allow rwx pool=compute, allow rwx pool=rbd1, allow rwx pool=rbd2'
+      updated caps for client.compute
+      ```
     1. 修改配置文件，增加 Cinder 的后端：
 
       ```
@@ -42,7 +66,7 @@
       volume_driver=cinder.volume.drivers.rbd.RBDDriver
       rbd_pool=rbd1
       rbd_max_clone_depth=5
-      rbd_user=admin
+      rbd_user=volumes
       rbd_flatten_volume_from_snapshot=False
       rbd_ceph_conf=/etc/ceph/ceph.conf
       rbd_secret_uuid=7d65f135-d7ba-4d87-a083-910ff8cf4eb2
@@ -52,7 +76,7 @@
       volume_driver=cinder.volume.drivers.rbd.RBDDriver
       rbd_pool=rbd2
       rbd_max_clone_depth=5
-      rbd_user=admin
+      rbd_user=volumes
       rbd_flatten_volume_from_snapshot=False
       rbd_ceph_conf=/etc/ceph/ceph.conf
       rbd_secret_uuid=7d65f135-d7ba-4d87-a083-910ff8cf4eb2
@@ -123,8 +147,8 @@
   1. 创建两种私有卷类型：
 
     ```
-    (controller)# cinder --debug type-create volume_type_001 --is-public false
-    (controller)# cinder --debug type-create volume_type_002 --is-public false
+    (controller)# cinder type-create volume_type_001 --is-public false
+    (controller)# cinder type-create volume_type_002 --is-public false
     ```
   1. 将 volume_type_001 和 volume_type_002 的后端存储分别配置为 rbd1 和 rbd2：
 
