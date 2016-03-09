@@ -194,7 +194,7 @@
 * 测试步骤：
 
   1. 登录到剩余 Compute 节点中的一台；
-  1. 执行命令 `nova host-evacuate <compute_node_name>`，其中 \<compute\_node\_name\> 为宕机的 Compute 节点的名称；
+  1. 执行命令 `nova host-evacuate --on-shared-storage <compute_node_name>`，其中 \<compute\_node\_name\> 为宕机的 Compute 节点的名称；
   1. 等待，确认所有云主机是否恢复成功。
 
 * 预期结果：
@@ -226,7 +226,7 @@
 * 测试步骤：
 
   1. 登录到剩余 Compute 节点中的一台；
-  1. 执行命令 `nova host-evacuate <compute_node_name>`，其中 \<compute\_node\_name\> 为宕机的 Compute 节点的名称；
+  1. 执行命令 `nova host-evacuate --on-shared-storage <compute_node_name>`，其中 \<compute\_node\_name\> 为宕机的 Compute 节点的名称；
   1. 等待，确认所有云主机是否恢复成功。
 
 * 预期结果：
