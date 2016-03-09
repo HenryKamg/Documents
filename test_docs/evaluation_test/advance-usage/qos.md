@@ -687,40 +687,42 @@
 
 * 场景描述：
 
-  有一个内网，同时有 A 和 B 两个 instance 需要对外提供 HTTP 服务，另外 instanceA 上面还要对外提供 FTP 服务。我在连接着这个内网的路由上设置了一个 QoS，带宽为 100KB/s，默认队列的保证带宽（给未归类的其它流量用）为 10KB/s。我现在希望 instanceA 能够使用 60KB/s 的带宽上传，其中 HTTP 保证 40KB/s，FTP 保证 20KB/s，instance B 使用 30KB/s 的带宽上传，全部给 HTTP 服务。
+  2 个不同的网络（各自有子网和路由）。其中一个网络中，同时有 A 和 B 两个 instance 需要对外提供 HTTP 服务，另外 instanceA 上面还要对外提供 FTP 服务。在连接着这个内网的路由上设置了一个 QoS，带宽为 100KB/s，默认队列的保证带宽（给未归类的其它流量用）为 10KB/s。现在希望 instanceA 能够使用 60KB/s 的带宽上传，其中 HTTP 保证 40KB/s，FTP 保证 20KB/s，instance B 使用 30KB/s 的带宽上传，全部给 HTTP 服务。
 
 * 前提：
 
-  * 创建了同一个内网中的三个虚拟机，名称分别为 instance[A-C]。
-  * 创建了另外一个内网中的一个虚拟机，名称分别为 instance[D]。
+  * 创建 2 个网络，net_1 和 net_2 ，每个网络分别创建对应的子网（ subnet_1 属于 net_1 ，subnet_2 属于 net_2 ）以及路由（ router_1 连接 subnet_1 ，网关指向外网网络； router_2 连接 subnet_2 ，网关指向外网网络 ）；
+  * 创建了 3 个虚拟机，名称分别为 instance[A-C] ，连接到 subnet_1 ；
+  * 创建了另外 1 个虚拟机，名称分别为 instance[D] ，连接到 subnet_2 ；
+  * 为 4 个虚拟机分配 floatingip ；
   * 四个虚拟机中，都安装了 iperf3 工具。
-  * 创建 A 和 B 的内网路由上的 QoS，带宽设置为 100KB/s，默认队列带宽为 10KB/s，方向为上传，指向该内网的路由：
+  * 在 router_1 上创建 QoS，带宽设置为 100KB/s，默认队列带宽为 10KB/s，方向为上传：
 
     ```
-    # neutron eayun-qos-create --name apporc_test_router_qos --target-type router --target-id 83c5ffb9-97e7-4862-b497-b10f01ca6882 ingress 102400 10240
+    # neutron eayun-qos-create --name zc-testing-router-qos --target-type router --target-id d2b8621f-2c7e-47aa-b692-a39603e6a2ab egress 102400 10240
     Created a new qos:
     +--------------------+--------------------------------------+
     | Field              | Value                                |
     +--------------------+--------------------------------------+
     | burst              |                                      |
     | cburst             |                                      |
-    | default_queue_id   | 7997305a-8d28-4b90-8abb-4f10ed6ec8bc |
+    | default_queue_id   | 2faa3f70-d180-4792-b635-fa0ce6a79bdc |
     | description        |                                      |
-    | direction          | ingress                              |
-    | id                 | da6a5a81-f152-4165-9521-fbfa5cd0fada |
-    | name               | apporc_test_router_qos               |
-    | qos_queues         | 7997305a-8d28-4b90-8abb-4f10ed6ec8bc |
+    | direction          | egress                               |
+    | id                 | c1a155f8-ff84-48c1-abf0-721b4672592b |
+    | name               | zc-testing-router-qos                |
+    | qos_queues         | 2faa3f70-d180-4792-b635-fa0ce6a79bdc |
     | rate               | 102400                               |
-    | target_id          | 83c5ffb9-97e7-4862-b497-b10f01ca6882 |
+    | target_id          | d2b8621f-2c7e-47aa-b692-a39603e6a2ab |
     | target_type        | router                               |
-    | tenant_id          | 30187482c96749f6a1eccd6acd76f45d     |
+    | tenant_id          | 7b8bc72da97b463182d1ed6666d4b323     |
     | unattached_filters |                                      |
     +--------------------+--------------------------------------+
     ```
   * 在该 QoS 下创建队列 queueA，带宽设置为 60KB/s，提供给 instanceA 使用：
 
     ```
-    # neutron eayun-qos-queue-create da6a5a81-f152-4165-9521-fbfa5cd0fada 61440 --ceil 102400 --prio 0
+    # neutron eayun-qos-queue-create c1a155f8-ff84-48c1-abf0-721b4672592b 61440 --ceil 102400 --prio 0
     Created a new qos_queue:
     +------------------+--------------------------------------+
     | Field            | Value                                |
@@ -729,19 +731,21 @@
     | burst            |                                      |
     | cburst           |                                      |
     | ceil             | 102400                               |
-    | id               | 25e4a68b-18ee-4fc6-b6d6-a10f7b91d2ce |
+    | id               | 94e028a1-c6d4-469a-b670-82571502e6e5 |
     | parent_id        |                                      |
     | prio             | 0                                    |
-    | qos_id           | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | qos_id           | c1a155f8-ff84-48c1-abf0-721b4672592b |
     | rate             | 61440                                |
     | subqueues        |                                      |
-    | tenant_id        | 30187482c96749f6a1eccd6acd76f45d     |
+    | tenant_id        | 0644b0d9525e4cf7824656c98e9a3ebf     |
     +------------------+--------------------------------------+
     ```
   * 在 queueA 下创建两个队列 queueA-1 和 queueA-2，速度分别设置为 40KB/s 和 20KB/s，分别提供给 HTTP 和 FTP 使用：
 
+    （注意：子队列的 --ceil 参数需要设置才可能出现实际占用带宽的变化）
+
     ```
-    # neutron eayun-qos-queue-create --parent 25e4a68b-18ee-4fc6-b6d6-a10f7b91d2ce da6a5a81-f152-4165-9521-fbfa5cd0fada 40960 --prio 0 
+    # neutron eayun-qos-queue-create --parent 94e028a1-c6d4-469a-b670-82571502e6e5 c1a155f8-ff84-48c1-abf0-721b4672592b 40960 --ceil 102400 --prio 0
     Created a new qos_queue:
     +------------------+--------------------------------------+
     | Field            | Value                                |
@@ -749,17 +753,17 @@
     | attached_filters |                                      |
     | burst            |                                      |
     | cburst           |                                      |
-    | ceil             |                                      |
-    | id               | 324c5d83-c06b-4c67-b97b-3e065187f0af |
-    | parent_id        | 25e4a68b-18ee-4fc6-b6d6-a10f7b91d2ce |
+    | ceil             | 102400                               |
+    | id               | cea1544c-b91c-4cac-86e9-5d5b2782c966 |
+    | parent_id        | 94e028a1-c6d4-469a-b670-82571502e6e5 |
     | prio             | 0                                    |
-    | qos_id           | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | qos_id           | c1a155f8-ff84-48c1-abf0-721b4672592b |
     | rate             | 40960                                |
     | subqueues        |                                      |
-    | tenant_id        | 30187482c96749f6a1eccd6acd76f45d     |
+    | tenant_id        | 0644b0d9525e4cf7824656c98e9a3ebf     |
     +------------------+--------------------------------------+
 
-    # neutron eayun-qos-queue-create --parent 25e4a68b-18ee-4fc6-b6d6-a10f7b91d2ce da6a5a81-f152-4165-9521-fbfa5cd0fada  20480 --prio 0 
+    # neutron eayun-qos-queue-create --parent 94e028a1-c6d4-469a-b670-82571502e6e5 c1a155f8-ff84-48c1-abf0-721b4672592b 20480 --ceil 102400 --prio 0
     Created a new qos_queue:
     +------------------+--------------------------------------+
     | Field            | Value                                |
@@ -767,20 +771,20 @@
     | attached_filters |                                      |
     | burst            |                                      |
     | cburst           |                                      |
-    | ceil             |                                      |
-    | id               | 84891ac5-1031-4183-984a-34b1faffc70d |
-    | parent_id        | 25e4a68b-18ee-4fc6-b6d6-a10f7b91d2ce |
+    | ceil             | 102400                               |
+    | id               | 6977edb9-ef18-4deb-80f2-1276b4ebcd7e |
+    | parent_id        | 94e028a1-c6d4-469a-b670-82571502e6e5 |
     | prio             | 0                                    |
-    | qos_id           | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | qos_id           | c1a155f8-ff84-48c1-abf0-721b4672592b |
     | rate             | 20480                                |
     | subqueues        |                                      |
-    | tenant_id        | 30187482c96749f6a1eccd6acd76f45d     |
+    | tenant_id        | 0644b0d9525e4cf7824656c98e9a3ebf     |
     +------------------+--------------------------------------+
     ```
   * 在 QoS 下创建队列 queueB，带宽设置为 30KB/s，提供给 instanceB 使用，即 instanceB 的 HTTP 服务使用：
 
     ```
-    # neutron eayun-qos-queue-create da6a5a81-f152-4165-9521-fbfa5cd0fada 30720 --ceil 102400 --prio 0 
+    # neutron eayun-qos-queue-create c1a155f8-ff84-48c1-abf0-721b4672592b 30720 --ceil 102400 --prio 0
     Created a new qos_queue:
     +------------------+--------------------------------------+
     | Field            | Value                                |
@@ -789,73 +793,73 @@
     | burst            |                                      |
     | cburst           |                                      |
     | ceil             | 102400                               |
-    | id               | 41065b3d-cc1e-4aa6-9d44-a85b97f9a4a9 |
+    | id               | 3b1f1ba1-e750-4518-924f-c9fdf4e51912 |
     | parent_id        |                                      |
     | prio             | 0                                    |
-    | qos_id           | da6a5a81-f152-4165-9521-fbfa5cd0fada |
+    | qos_id           | c1a155f8-ff84-48c1-abf0-721b4672592b |
     | rate             | 30720                                |
     | subqueues        |                                      |
-    | tenant_id        | 30187482c96749f6a1eccd6acd76f45d     |
+    | tenant_id        | 0644b0d9525e4cf7824656c98e9a3ebf     |
     +------------------+--------------------------------------+
     ```
   * 创建过滤器，匹配从 instanceA 向外的 HTTP 流量，指向 queueA-1：
 
     ```
-    # neutron eayun-qos-filter-create --queue 324c5d83-c06b-4c67-b97b-3e065187f0af --protocol 6 --src-port 80 --src-addr 10.10.10.8/32 da6a5a81-f152-4165-9521-fbfa5cd0fada 100
+    # neutron eayun-qos-filter-create --queue cea1544c-b91c-4cac-86e9-5d5b2782c966 --protocol 6 --src-port 80 --src-addr 25.0.0.209/32 c1a155f8-ff84-48c1-abf0-721b4672592b 100
     Created a new qos_filter:
     +-----------+--------------------------------------+
     | Field     | Value                                |
     +-----------+--------------------------------------+
     | dst_addr  |                                      |
     | dst_port  |                                      |
-    | id        | e531f23f-3ec8-4ea3-81bf-cf2a6cc0b231 |
+    | id        | 081735ed-7a8d-4ef1-8c8d-51a5b5f8daea |
     | prio      | 100                                  |
     | protocol  | 6                                    |
-    | qos_id    | da6a5a81-f152-4165-9521-fbfa5cd0fada |
-    | queue_id  | 324c5d83-c06b-4c67-b97b-3e065187f0af |
-    | src_addr  | 10.10.10.8/32                        |
+    | qos_id    | c1a155f8-ff84-48c1-abf0-721b4672592b |
+    | queue_id  | cea1544c-b91c-4cac-86e9-5d5b2782c966 |
+    | src_addr  | 25.0.0.209/32                        |
     | src_port  | 80                                   |
-    | tenant_id | 30187482c96749f6a1eccd6acd76f45d     |
+    | tenant_id | 0644b0d9525e4cf7824656c98e9a3ebf     |
     +-----------+--------------------------------------+
     ```
   * 创建过滤器，匹配从 instanceA 向外的 FTP 流量，指向 queueA-2：
 
     ```
-    # neutron eayun-qos-filter-create --queue 84891ac5-1031-4183-984a-34b1faffc70d --protocol 6 --src-port 21 --src-addr 10.10.10.8/32 da6a5a81-f152-4165-9521-fbfa5cd0fada 101
+    # neutron eayun-qos-filter-create --queue 6977edb9-ef18-4deb-80f2-1276b4ebcd7e --protocol 6 --src-port 21 --src-addr 25.0.0.209/32 c1a155f8-ff84-48c1-abf0-721b4672592b 101
     Created a new qos_filter:
     +-----------+--------------------------------------+
     | Field     | Value                                |
     +-----------+--------------------------------------+
     | dst_addr  |                                      |
     | dst_port  |                                      |
-    | id        | 203af614-a3eb-4824-b096-d0d3f7eaa91e |
+    | id        | 2cbcfc10-e646-4ce9-a868-9ca4c226e0cd |
     | prio      | 101                                  |
     | protocol  | 6                                    |
-    | qos_id    | da6a5a81-f152-4165-9521-fbfa5cd0fada |
-    | queue_id  | 84891ac5-1031-4183-984a-34b1faffc70d |
-    | src_addr  | 10.10.10.8/32                        |
+    | qos_id    | c1a155f8-ff84-48c1-abf0-721b4672592b |
+    | queue_id  | 6977edb9-ef18-4deb-80f2-1276b4ebcd7e |
+    | src_addr  | 25.0.0.209/32                        |
     | src_port  | 21                                   |
-    | tenant_id | 30187482c96749f6a1eccd6acd76f45d     |
+    | tenant_id | 0644b0d9525e4cf7824656c98e9a3ebf     |
     +-----------+--------------------------------------+
     ```
   * 创建过滤器，匹配从 instanceB 向外的 HTTP 流量，执行 queueB：
-      
+
     ```
-    # neutron eayun-qos-filter-create --queue 41065b3d-cc1e-4aa6-9d44-a85b97f9a4a9 --protocol 6 --src-port 80 --src-addr 10.10.10.9/32 da6a5a81-f152-4165-9521-fbfa5cd0fada 102
+    # neutron eayun-qos-filter-create --queue 3b1f1ba1-e750-4518-924f-c9fdf4e51912 --protocol 6 --src-port 80 --src-addr 25.0.0.210/32 c1a155f8-ff84-48c1-abf0-721b4672592b 102
     Created a new qos_filter:
     +-----------+--------------------------------------+
     | Field     | Value                                |
     +-----------+--------------------------------------+
     | dst_addr  |                                      |
     | dst_port  |                                      |
-    | id        | 467fa5e5-52b8-4273-9423-ccb3c22ae3fd |
+    | id        | 648a7f12-5bc1-4ad5-a600-cb79638855e5 |
     | prio      | 102                                  |
     | protocol  | 6                                    |
-    | qos_id    | da6a5a81-f152-4165-9521-fbfa5cd0fada |
-    | queue_id  | 41065b3d-cc1e-4aa6-9d44-a85b97f9a4a9 |
-    | src_addr  | 10.10.10.9/32                        |
+    | qos_id    | c1a155f8-ff84-48c1-abf0-721b4672592b |
+    | queue_id  | 3b1f1ba1-e750-4518-924f-c9fdf4e51912 |
+    | src_addr  | 25.0.0.210/32                        |
     | src_port  | 80                                   |
-    | tenant_id | 30187482c96749f6a1eccd6acd76f45d     |
+    | tenant_id | 0644b0d9525e4cf7824656c98e9a3ebf     |
     +-----------+--------------------------------------+
     ```
 
@@ -867,13 +871,13 @@
     #!/bin/bash
     # test.sh
 
-    iperf3 -c 10.10.10.8 -R -f K -p 80 -b 800K -t 50 > data1 &
+    iperf3 -c 25.0.0.209 -R -f K -p 80 -b 800K -t 60 > data1 &
     sleep 10
-    iperf3 -c 10.10.10.8 -R -f K -p 21 -b 800K -t 30 > data2 &
+    iperf3 -c 25.0.0.209 -R -f K -p 21 -b 800K -t 40 > data2 &
     sleep 10
-    iperf3 -c 10.10.10.9 -R -f K -p 80 -b 800K -t 30 > data3 &
+    iperf3 -c 25.0.0.210 -R -f K -p 80 -b 800K -t 40 > data3 &
     sleep 10
-    iperf3 -c 10.10.10.24 -R -f K -b 800K -t 20 > data4 &
+    iperf3 -c 25.0.0.211 -R -f K -b 800K -t 30 > data4 &
     ```
 
     注意：测试过程中，instance[A-D] 上不要连入 ssh，其上操作执行后即应退出 ssh，因为会影响测试数据。
