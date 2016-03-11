@@ -56,7 +56,6 @@
    * [集群的伸缩](autoscaling/scaling.md)
    * [删除自动伸缩集群](autoscaling/delete_cluster.md)
 * [运维工具高级使用](tools/README.md)
-   * [部署监控插件](tools/deploy_monitor_plugin.md)
    * [升级 EayunStack](tools/upgrade.md)
 * [灾难恢复](disaster_recovery/README.md)
    * [术语说明](disaster_recovery/glossary.md)
