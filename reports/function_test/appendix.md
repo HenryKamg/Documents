@@ -7,6 +7,6 @@
 * Rally 的使用：
   * https://oa.eayun.cn/wiki/doku.php?id=eayunstack:rally:基本使用
 * Rally 的测试结果：
-  * http://10.10.10.4/rally_report/
+  * http://10.10.10.4/rally_report/EayunStack_v1.1_testing/
 * 测试用例手册：
   * http://docs.eayun.cn/zh-CN/EayunStack/1.1/html/test_case/index.html

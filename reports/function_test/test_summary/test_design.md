@@ -9,11 +9,11 @@
 |Glance|glance 模块的功能|13|0|
 |Neutron|neutron 模块的功能|78|58|
 |Nova|nova 模块的功能|52|10|
-|Cinder|cinder 模块的功能|47|5|
+|Cinder|cinder 模块的功能|46|4|
 |Quota|各个模块的 quota 功能|5|0|
 |Ceilometer|Ceilometer 模块的功能|20|20|
 |AutoScaling|集群自动伸缩功能|-|-|
-|运维工具|运维工具的各项功能|14|14|
+|运维工具|运维工具的各项功能|15|15|
 |总计|-|256|114|
 
 > ###### 注：
@@ -87,7 +87,7 @@
 
 |测试内容|用例数目|
 |--------|--------|
-|volume|38|
+|volume|37|
 |snapshot|9|
 
 ### Quota
@@ -119,7 +119,7 @@
 
 |测试内容|用例数目|
 |--------|--------|
-|运维工具各功能|14|
+|运维工具各功能|15|
 
 ## 测试范围
 
@@ -131,4 +131,5 @@
 * **非常规途径**：预期结果为**错误**的操作
 
 > ###### 注：
-> 测试用例请参考[测试用例手册](http://docs.eayun.cn/zh-CN/EayunStack/1.1/html/test_case/index.html)。
+> * 测试用例请参考[测试用例手册](http://docs.eayun.cn/zh-CN/EayunStack/1.1/html/test_case/index.html)。
+> * 测试用例中，部分可用 Rally 进行测试，部分需要人工测试。

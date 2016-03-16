@@ -6,4 +6,4 @@
 
   * [缺陷汇总和趋势分析](bug_collection.md)
   * [缺陷严重程度](bug_level.md)
-  * [遗留缺陷与未解决问题](remain_issue.md)
+  * [遗留缺陷与未解决问题](known_issue.md)
