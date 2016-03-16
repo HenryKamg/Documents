@@ -118,3 +118,196 @@
 
 > ###### 说明：
 > VPN 服务仅支持端到端的连接，因此 server-B 与 server-C 之间不能 PING 通。
+
+## PPTP 服务
+
+### 创建 PPTP 服务和证书
+
+* 前提：
+
+  * 确认 Neutron 支持 PPTP：
+
+    ```
+    (controller)# neutron service-provider-list
+    +--------------+----------+---------+
+    | service_type | name     | default |
+    +--------------+----------+---------+
+    | VPN          | pptp     | False   |
+    | VPN          | openswan | True    |
+    | LOADBALANCER | haproxy  | True    |
+    +--------------+----------+---------+
+    ```
+
+* 操作：
+
+  1. 登录 Controller 节点；
+  1. 执行命令，创建 vpnservice：
+
+    ```
+    (controller)# neutron vpn-service-create --name [VPN_SERVICE_NAME] [ROUTER_ID] [SUBNET_ID] --provider pptp
+    ```
+  1. 创建 PPTP 证书：
+
+    ```
+    (controller)# neutron eayun-pptp-credential-create [USERNAME] [PASSWORD] --vpnservices list=true [VPNSERVICE_ID]
+    ```
+
+* 预期结果：
+
+  * PPTP VPN 服务创建成功：
+
+    ```
+    (controller)# neutron vpn-service-create --name test-pptp-vpn 169e460d-16ff-4c25-bd2a-47250772541c 9a77f095-0697-4664-896a-36e2eba60be2 --provider pptp
+    Created a new vpnservice:
+    +----------------+--------------------------------------+
+    | Field          | Value                                |
+    +----------------+--------------------------------------+
+    | admin_state_up | True                                 |
+    | description    |                                      |
+    | id             | ace6f0cf-f774-45aa-82a9-10366e7f7633 |
+    | name           | test-pptp-vpn                        |
+    | provider       | pptp                                 |
+    | router_id      | 169e460d-16ff-4c25-bd2a-47250772541c |
+    | status         | PENDING_CREATE                       |
+    | subnet_id      | 9a77f095-0697-4664-896a-36e2eba60be2 |
+    | tenant_id      | 7f67af7413074a85b751eaf997d59ae7     |
+    +----------------+--------------------------------------+
+    ```
+  * PPTP 证书创建成功：
+
+    ```
+    (controller)# neutron eayun-pptp-credential-create test abc123 --vpnservices list=true ace6f0cf-f774-45aa-82a9-10366e7f7633
+    Created a new pptp_credential:
+    +-------------+--------------------------------------+
+    | Field       | Value                                |
+    +-------------+--------------------------------------+
+    | id          | 5f403265-4ab7-4534-bb1f-882be4e100c8 |
+    | password    | abc123                               |
+    | tenant_id   | 7f67af7413074a85b751eaf997d59ae7     |
+    | username    | test                                 |
+    | vpnservices | ace6f0cf-f774-45aa-82a9-10366e7f7633 |
+    +-------------+--------------------------------------+
+    ```
+
+### 更新 PPTP 证书密码
+
+* 前提：
+
+  * 确认 Neutron 支持 PPTP VPN 服务；
+  * 已经创建了 PPTP VPN 证书。
+
+* 操作：
+
+  1. 列出当前证书：
+
+    ```
+    (controller)# neutron eayun-pptp-credential-list
+    ```
+  1. 执行命令，更新证书密码：
+
+    ```
+    (controller)# neutron eayun-pptp-credential-update [CREDENTIAL_ID] --password [NEW_PASSWORD]
+    ```
+
+* 预期结果：
+
+  * 证书密码更新成功，命令行返回成功提示：
+    ```
+    (controller)# neutron eayun-pptp-credential-update 5f403265-4ab7-4534-bb1f-882be4e100c8 --password eayun123
+    Updated pptp_credential: 5f403265-4ab7-4534-bb1f-882be4e100c8
+    ```
+  * 查看证书，看到密码被更新：
+
+    ```
+    (controller)# neutron eayun-pptp-credential-show 5f403265-4ab7-4534-bb1f-882be4e100c8
+    +-------------+--------------------------------------+
+    | Field       | Value                                |
+    +-------------+--------------------------------------+
+    | id          | 5f403265-4ab7-4534-bb1f-882be4e100c8 |
+    | password    | eayun123                             |
+    | tenant_id   | 7f67af7413074a85b751eaf997d59ae7     |
+    | username    | test                                 |
+    | vpnservices | ace6f0cf-f774-45aa-82a9-10366e7f7633 |
+    +-------------+--------------------------------------+
+    ```
+
+### 更新 PPTP 证书的 vpnservice 列表
+
+* 前提：
+
+  * 确认 Neutron 支持 PPTP VPN 服务；
+  * 已经创建了 PPTP VPN 服务和证书。
+
+* 操作：
+
+  1. 获取要更新到 PPTP 证书的 vpnservice 的 ID；
+  1. 执行命令，更新 PPTP 证书的 vpnservice 列表：
+
+    ```
+    (controller)# neutron eayun-pptp-credential-update [CREDENTIAL_ID] --vpnservices list=true [VPNSERVICE_ID1] [VPNSERVICE_ID2]
+    ```
+
+* 预期结果：
+
+  * 更新证书 vpnservice 列表成功，命令行返回成功提示：
+
+    ```
+    (controller)# neutron eayun-pptp-credential-update 5f403265-4ab7-4534-bb1f-882be4e100c8 --vpnservices list=true ace6f0cf-f774-45aa-82a9-10366e7f7633 fa409fdf-383c-4f61-ade5-330fa123102b
+    Updated pptp_credential: 5f403265-4ab7-4534-bb1f-882be4e100c8
+    ```
+  * 查看证书，看到 vpnservice 列表被更新为指定的 vpnservice：
+
+    ```
+    (controller)# neutron eayun-pptp-credential-show 5f403265-4ab7-4534-bb1f-882be4e100c8
+    +-------------+--------------------------------------+
+    | Field       | Value                                |
+    +-------------+--------------------------------------+
+    | id          | 5f403265-4ab7-4534-bb1f-882be4e100c8 |
+    | password    | eayun123                             |
+    | tenant_id   | 7f67af7413074a85b751eaf997d59ae7     |
+    | username    | test                                 |
+    | vpnservices | ace6f0cf-f774-45aa-82a9-10366e7f7633 |
+    |             | fa409fdf-383c-4f61-ade5-330fa123102b |
+    +-------------+--------------------------------------+
+    ```
+  * 可以使用该证书连接到列表中的 vpnservice。
+
+### 清空 PPTP 证书的 vpnservice 列表
+
+* 前提：
+
+  * 确认 Neutron 支持 PPTP VPN 服务；
+  * 已经创建了 PPTP VPN 服务和证书。
+
+* 操作：
+
+  1. 登录 Controller 节点；
+  1. 执行命令，清空 vpnservice 列表：
+
+    ```
+    (controller)# neutron eayun-pptp-credential-update [CREDENTIAL_ID] --vpnservices action=clear
+    ```
+
+* 预期结果：
+
+  * PPTP 证书的 vpnservice 列表被清空，命令行返回成功提示：
+
+    ```
+    (controller)# neutron eayun-pptp-credential-update 5f403265-4ab7-4534-bb1f-882be4e100c8 --vpnservices action=clear
+    Updated pptp_credential: 5f403265-4ab7-4534-bb1f-882be4e100c8
+    ```
+  * 查看证书，看到 vpnservice 列表被清空：
+
+    ```
+    (controller)# neutron eayun-pptp-credential-show 5f403265-4ab7-4534-bb1f-882be4e100c8
+    +-------------+--------------------------------------+
+    | Field       | Value                                |
+    +-------------+--------------------------------------+
+    | id          | 5f403265-4ab7-4534-bb1f-882be4e100c8 |
+    | password    | eayun123                             |
+    | tenant_id   | 7f67af7413074a85b751eaf997d59ae7     |
+    | username    | test                                 |
+    | vpnservices |                                      |
+    +-------------+--------------------------------------+
+    ```
+  * 该证书无法连接到任何 vpnservice。
