@@ -5,10 +5,10 @@
 |参与内容|负责人|
 |--------|------|
 |创建测试租户和虚拟机|周嫣然|
-|EayunStack 1.0.1 Ceilometer 性能测试||
-|EayunStack 1.1 Ceilometer 性能测试||
+|EayunStack 1.0.1 Ceilometer 性能测试|刘洋|
+|EayunStack 1.1 Ceilometer 性能测试|刘洋，蔡杉，陈远斌|
 |清理测试资源|周嫣然|
-|整理测试数据||
+|整理测试数据|刘洋，蔡杉|
 |输出测试报告|周嫣然|
 
 ## EayunStack 1.0.1 Ceilometer 性能
