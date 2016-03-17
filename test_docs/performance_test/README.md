@@ -24,7 +24,7 @@
 <center><h4>马哲</h4></center>
 <center>易云捷讯 云计算测试组</br>zhe.ma@eayun.com</center>
 </br>
-<center><h4>陈远兵</h4></center>
+<center><h4>陈远斌</h4></center>
 <center>易云捷讯 云计算测试组</br>yuanbing.chen@eayun.com</center>
 </br>
 <center><h4>刘洋</h4></center>
