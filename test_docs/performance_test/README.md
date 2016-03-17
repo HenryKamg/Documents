@@ -39,4 +39,4 @@
 </br>
 </br>
 <center><h3>法律通告</h3></center>
-<center>Copyright eayun© 2015 | 易云捷讯科技（北京）有限公司 | 商业法律信息，请参考易云公司网站</center>
+<center>© 2011-2016 易云捷讯科技（北京）股份有限公司 | © 2011-2016 Eayun,Inc. All rights reserved | 商业法律信息，请参考易云公司网站</center>
